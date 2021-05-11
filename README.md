@@ -1,4 +1,4 @@
-# sonus
+# SONUS
 
 A speech recognition and synthesis app project.
 App is AI powered.
