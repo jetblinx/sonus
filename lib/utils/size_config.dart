@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sonus/utils/constants.dart';
 
 class SizeConfig {
   static MediaQueryData _mediaQueryData;
@@ -17,10 +18,10 @@ class SizeConfig {
 
 double getProportionateScreenHeight(double inputHeight) {
   double screenHeight = SizeConfig.screenHeight;
-  return (inputHeight / 851.0) * screenHeight;
+  return (inputHeight / phoneHeight) * screenHeight;
 }
 
 double getProportionateScreenWidth(double inputWidth) {
   double screenWidth = SizeConfig.screenWidth;
-  return (inputWidth / 393.0) * screenWidth;
+  return (inputWidth / phoneWidth) * screenWidth;
 }
