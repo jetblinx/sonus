@@ -4,7 +4,18 @@ import 'package:flutter/material.dart';
 
 
 /* COLORS */
+// for light 
+const Color lightScaffoldBackgroundColor = Color(0xFFFFFFFF);
+const Color lightTextColor = Color(0xFF333333);
+const Color lightAccentColor = Color(0xFF333333);
 
+// common
+const Color primaryColor = Color(0xFF4CAF50);
+
+// for dark
+const Color darkScaffoldBackgroundColor = Color(0xFF333333);
+const Color darkTextColor = Color(0xFFFFFFFF);
+const Color darkAccentColor = Color(0xFFFFFFFF);
 
 /* PADDINGS & MARGINS */
 

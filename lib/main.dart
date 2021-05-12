@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sonus/logic/repositories/themes_repository.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
-import 'ui/screens/major/major.dart';
 
 void main() {
   runApp(Main());
@@ -23,10 +23,9 @@ class Main extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sonus',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      themeMode: ThemeMode.light,
+      theme: ThemesRepisotory.light,
+      darkTheme: ThemesRepisotory.dark,
       supportedLocales: L10n.all,
       localizationsDelegates: [
         AppLocalizations.delegate,

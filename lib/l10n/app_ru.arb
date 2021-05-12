@@ -1,4 +1,9 @@
 {
+  "english": "English",
+  "language": "Язык",
   "modules": "Модули",
-  "settings": "Настройки"
+  "russian": "Русский",
+  "settings": "Настройки",
+  "speech_recognition": "Распознавание речи",
+  "speech_to_text": "Речь в текст"
 }
