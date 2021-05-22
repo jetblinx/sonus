@@ -33,10 +33,17 @@ dependencies:
   fluentui_system_icons: ^1.1.93
   sqflite: ^2.0.0+2
   flutter_bloc: ^7.0.0
+  flutter_launcher_icons: ^0.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
