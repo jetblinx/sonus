@@ -1,8 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:sonus/ui/screens/archive/archive.dart';
 import 'package:sonus/ui/screens/major/components/modules/tts.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
-import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 import 'modules/asr.dart';
@@ -34,7 +34,8 @@ class Body extends StatelessWidget {
                         FluentIcons.folder_20_filled,
                         color: Theme.of(context).buttonColor,
                       ),
-                      onPressed: () {}),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, Archive.routeName)),
                   IconButton(
                       icon: Icon(
                         FluentIcons.settings_20_filled,
@@ -49,7 +50,7 @@ class Body extends StatelessWidget {
               Spacer(flex: 4,),
               Divider(),
               TTS(),
-              SizedBox(height: getProportionateScreenHeight(10))
+              //SizedBox(height: getProportionateScreenHeight(10))
             ],
           )),
     );
