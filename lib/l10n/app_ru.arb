@@ -7,5 +7,8 @@
   "russian": "Русский",
   "settings": "Настройки",
   "speech_recognition": "Распознавание речи",
-  "speech_to_text": "Речь в текст"
+  "speech_to_text": "Речь в текст",
+  "dark_theme": "Темная тема",
+  "settings_general": "Общие",
+  "input_text": "Введите текст"
 }

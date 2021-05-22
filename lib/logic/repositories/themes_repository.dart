@@ -4,154 +4,154 @@ import 'package:sonus/utils/constants.dart';
 class ThemesRepisotory {
 
   static final light = ThemeData(
-      scaffoldBackgroundColor: lightScaffoldBackgroundColor,
-      primaryColor: primaryColor,
-      accentColor: lightAccentColor,
-      buttonColor: lightAccentColor,
-      backgroundColor: lightScaffoldBackgroundColor,
+      scaffoldBackgroundColor: kLightScaffoldBackgroundColor,
+      primaryColor: kPrimaryColor,
+      accentColor: kLightAccentColor,
+      buttonColor: kLightAccentColor,
+      backgroundColor: kLightScaffoldBackgroundColor,
       textTheme: TextTheme(
         bodyText1: TextStyle(
           // fontFamily: "Open Sans",
-          color: lightAccentColor,
+          color: kLightAccentColor,
           fontSize: 16.0
         ),
         bodyText2: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 14.0
         ),
         button: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         subtitle1: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         subtitle2: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         caption: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor,
+          color: kLightAccentColor,
           fontWeight: FontWeight.w600,
           fontSize: 18.0
         ),
         headline1: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor,
+          color: kLightAccentColor,
           fontWeight: FontWeight.w800,
           fontSize: 16.0
         ),
         headline2: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         headline3: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         headline4: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         headline5: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         headline6: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
         overline: TextStyle(
           fontFamily: "Open Sans",
-          color: lightAccentColor, 
+          color: kLightAccentColor, 
           fontSize: 16.0
         ),
       ),
   );
 
   static final dark = ThemeData(
-    scaffoldBackgroundColor: darkScaffoldBackgroundColor,
-    primaryColor: primaryColor,
-    accentColor: darkAccentColor,
-    buttonColor: darkAccentColor,
-    backgroundColor: darkScaffoldBackgroundColor,
+    scaffoldBackgroundColor: kDarkScaffoldBackgroundColor,
+    primaryColor: kPrimaryColor,
+    accentColor: kDarkAccentColor,
+    buttonColor: kDarkAccentColor,
+    backgroundColor: kDarkScaffoldBackgroundColor,
     textTheme: TextTheme(
       bodyText1: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 14.0
       ),
       bodyText2: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 14.0
       ),
       button: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       subtitle1: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       subtitle2: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       caption: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkTextColor,
+        color: kDarkAccentColor,
         fontWeight: FontWeight.w600,
         fontSize: 18.0
       ),
       headline1: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor,
+        color: kDarkAccentColor,
         fontWeight: FontWeight.w800,
         fontSize: 16.0
       ),
       headline2: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       headline3: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       headline4: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       headline5: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       headline6: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
       overline: TextStyle(
         // fontFamily: "Open Sans",
-        color: darkAccentColor, 
+        color: kDarkAccentColor, 
         fontSize: 16.0
       ),
     )
