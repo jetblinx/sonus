@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:sonus/utils/size_config.dart';
 
 /* TEXT */
 
 
 /* COLORS */
-// for light 
+// Light
 const Color kLightScaffoldBackgroundColor = Color(0xFFFFFFFF);
 const Color kLightTextColor = Color(0xFF333333);
 const Color kLightAccentColor = Color(0xFF333333);
 
-// common
+// Common
 const Color kPrimaryColor = Color(0xFF4CAF50);
+const Color kWhiteColor = Color(0xFFFFFF);
 
-// for dark
+// Dark
 const Color kDarkScaffoldBackgroundColor = Color(0xFF333333);
 const Color kDarkTextColor = Color(0xFFFFFFFF);
 const Color kDarkAccentColor = Color(0xFFFFFFFF);
 
 /* PADDINGS & MARGINS */
+// Chips
+double kPaddingChipsHorizontal = getProportionateScreenWidth(10);
+double kPaddingChipsVertical = getProportionateScreenWidth(2);
 
 
 /* SIZES */

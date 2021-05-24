@@ -48,7 +48,7 @@ class Body extends StatelessWidget {
               Spacer(flex: 3),
               ASR(),
               Spacer(flex: 4,),
-              Divider(),
+              Divider(height: 1,),
               TTS(),
               //SizedBox(height: getProportionateScreenHeight(10))
             ],

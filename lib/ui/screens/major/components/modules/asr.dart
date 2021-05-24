@@ -14,6 +14,8 @@ class ASR extends StatelessWidget {
                     FluentIcons.mic_on_20_regular,
                     color: Theme.of(context).buttonColor,
                   ),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onPressed: () => {}),
           //child: Text(""),
         ),

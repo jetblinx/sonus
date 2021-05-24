@@ -18,7 +18,8 @@ class ThemesRepisotory {
         bodyText2: TextStyle(
           fontFamily: "Open Sans",
           color: kLightAccentColor, 
-          fontSize: 14.0
+          fontSize: 14.0,
+          fontWeight: FontWeight.w600,
         ),
         button: TextStyle(
           fontFamily: "Open Sans",
@@ -95,7 +96,8 @@ class ThemesRepisotory {
       bodyText2: TextStyle(
         // fontFamily: "Open Sans",
         color: kDarkAccentColor, 
-        fontSize: 14.0
+        fontSize: 14.0,
+        fontWeight: FontWeight.w600,
       ),
       button: TextStyle(
         // fontFamily: "Open Sans",
