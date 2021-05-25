@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
+import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
@@ -23,6 +24,15 @@ class Main extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sonus',
+
+      // Removes Scroll Glow everywhere
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: RemoveScrollGlow(),
+          child: child,
+        );
+      },
+
       themeMode: ThemeMode.light,
       theme: ThemesRepisotory.light,
       darkTheme: ThemesRepisotory.dark,

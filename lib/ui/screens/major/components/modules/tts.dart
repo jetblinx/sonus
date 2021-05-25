@@ -1,9 +1,9 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:sonus/ui/screens/major/components/chips.dart';
+import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/services.dart';
 
 class TTS extends StatelessWidget {
   TextEditingController _controller = new TextEditingController();
@@ -14,8 +14,14 @@ class TTS extends StatelessWidget {
     "How are you?",
     "What's up?",
     "Go home",
-    "Let's play",
-    Icon(FluentIcons.add_20_filled,),
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    Icon(
+      FluentIcons.add_20_filled,
+    ),
   ];
 
   Widget buildChips(context) => Wrap(
@@ -30,14 +36,18 @@ class TTS extends StatelessWidget {
                     chip,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
+                  // avatar: CircleAvatar(
+                  //   child: Text("😎"),
+                  //   backgroundColor: Colors.white,
+                  // ),
                   onPressed: () {
                     print(chip);
-                    print(chips);
+                    HapticFeedback.lightImpact();
                   },
                 )
               : Padding(
                   padding: const EdgeInsets.only(
-                    top: 3,
+                    top: 4,
                   ),
                   child: CircleAvatar(
                     child: IconButton(
@@ -46,7 +56,7 @@ class TTS extends StatelessWidget {
                       color: Colors.white,
                       onPressed: () {},
                     ),
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: kColorPrimary,
                   ),
                 ))
           .toList());
@@ -57,33 +67,25 @@ class TTS extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            constraints:
-                BoxConstraints(maxHeight: getProportionateScreenHeight(150)),
-            child: ListView(
-              children: [
-                buildChips(context),
-              ],
+            constraints: BoxConstraints(
+                minHeight: 0, maxHeight: kSizeBlockChips),
+            child: Scrollbar(
+              radius: Radius.circular(20),
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                children: [
+                  SizedBox(height: kPaddingBlockChips,),
+                  buildChips(context),
+                  SizedBox(height: kPaddingBlockChips,),
+                ],
+              ),
             ),
           ),
           Divider(
             height: 1,
           ),
-          TextField(
-            controller: _controller,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintStyle: TextStyle(fontSize: getProportionateScreenWidth(18)),
-                hintText: AppLocalizations.of(context).input_text,
-                labelStyle:
-                    TextStyle(fontSize: getProportionateScreenWidth(18)),
-                icon: _controller.text.isEmpty
-                    ? null
-                    : Icon(FluentIcons.dismiss_24_regular),
-                suffixIcon: Icon(FluentIcons.send_24_regular)),
-            minLines: 1,
-            maxLines: 5,
-          ),
+          TextInputField(controller: _controller),
         ],
       ),
     );

@@ -3,33 +3,35 @@ import 'package:sonus/utils/size_config.dart';
 
 /* TEXT */
 
-
 /* COLORS */
 // Light
-const Color kLightScaffoldBackgroundColor = Color(0xFFFFFFFF);
-const Color kLightTextColor = Color(0xFF333333);
-const Color kLightAccentColor = Color(0xFF333333);
+const Color kColorLightScaffoldBackground = Color(0xFFFFFFFF);
+const Color kColorLightText = Color(0xFF333333);
+const Color kColorLightAccent = Color(0xFF333333);
 
 // Common
-const Color kPrimaryColor = Color(0xFF4CAF50);
-const Color kWhiteColor = Color(0xFFFFFF);
+const Color kColorPrimary = Color(0xFF4CAF50);
+const Color kColorWhite = Colors.white;
 
 // Dark
-const Color kDarkScaffoldBackgroundColor = Color(0xFF333333);
-const Color kDarkTextColor = Color(0xFFFFFFFF);
-const Color kDarkAccentColor = Color(0xFFFFFFFF);
+const Color kColorDarkScaffoldBackground = Color(0xFF333333);
+const Color kColorDarkText = Color(0xFFFFFFFF);
+const Color kColorDarkAccent = Color(0xFFFFFFFF);
 
 /* PADDINGS & MARGINS */
 // Chips
 double kPaddingChipsHorizontal = getProportionateScreenWidth(10);
 double kPaddingChipsVertical = getProportionateScreenWidth(2);
-
+double kPaddingBlockChips = getProportionateScreenHeight(5);
 
 /* SIZES */
 
-// Size of phone where testing the app. 
+// Size of phone where testing the app.
 // Used for screen adaptation
-const double kPhoneHeight = 851.0;
-const double kPhoneWidth = 393.0;
+const double kSizePhoneHeight = 851.0;
+const double kSizePhoneWidth = 393.0;
 
-const double kButtonMicSize = 64;
+const double kSizeButtonMic = 64;
+const int kSizeTextFieldLines = 5;
+
+double kSizeBlockChips = getProportionateScreenWidth(160);
