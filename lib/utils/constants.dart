@@ -24,6 +24,11 @@ double kPaddingChipsHorizontal = getProportionateScreenWidth(10);
 double kPaddingChipsVertical = getProportionateScreenWidth(2);
 double kPaddingBlockChips = getProportionateScreenHeight(5);
 
+// Screens
+double kPaddingAllHorizontal = getProportionateScreenWidth(15);
+double kPaddingScreenPage = getProportionateScreenWidth(10);
+double kPaddingScreenPageContent = getProportionateScreenWidth(15);
+
 /* SIZES */
 
 // Size of phone where testing the app.

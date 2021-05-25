@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -7,8 +8,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),
+        padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
             height: getProportionateScreenHeight(10),
@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20)),
+                horizontal: kPaddingScreenPageContent),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(AppLocalizations.of(context).modules,

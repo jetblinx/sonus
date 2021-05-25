@@ -1,9 +1,8 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
+import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
-import 'package:sonus/utils/size_config.dart';
-import 'package:flutter/services.dart';
+import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
   TextEditingController _controller = new TextEditingController();
@@ -20,46 +19,9 @@ class TTS extends StatelessWidget {
     "What's up?",
     "Go home",
     Icon(
-      FluentIcons.add_20_filled,
+      kIconAdd,
     ),
   ];
-
-  Widget buildChips(context) => Wrap(
-      spacing: 10,
-      children: chips
-          .map((chip) => chip is String
-              ? ActionChip(
-                  labelPadding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(10),
-                      vertical: getProportionateScreenHeight(2)),
-                  label: Text(
-                    chip,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  // avatar: CircleAvatar(
-                  //   child: Text("😎"),
-                  //   backgroundColor: Colors.white,
-                  // ),
-                  onPressed: () {
-                    print(chip);
-                    HapticFeedback.lightImpact();
-                  },
-                )
-              : Padding(
-                  padding: const EdgeInsets.only(
-                    top: 4,
-                  ),
-                  child: CircleAvatar(
-                    child: IconButton(
-                      splashRadius: 24,
-                      icon: chip,
-                      color: Colors.white,
-                      onPressed: () {},
-                    ),
-                    backgroundColor: kColorPrimary,
-                  ),
-                ))
-          .toList());
 
   @override
   Widget build(BuildContext context) {
@@ -76,15 +38,13 @@ class TTS extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   SizedBox(height: kPaddingBlockChips,),
-                  buildChips(context),
+                  ChipBuilder(chips: chips,),
                   SizedBox(height: kPaddingBlockChips,),
                 ],
               ),
             ),
           ),
-          Divider(
-            height: 1,
-          ),
+          
           TextInputField(controller: _controller),
         ],
       ),
