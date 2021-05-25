@@ -31,7 +31,7 @@ class TextInputField extends StatelessWidget {
         decoration: InputDecoration(
             border: InputBorder.none,
             hintStyle: Theme.of(context).textTheme.headline2,
-            hintText: AppLocalizations.of(context).input_text,
+            hintText: AppLocalizations.of(context).enter_text,
             labelStyle: Theme.of(context).textTheme.headline2,
             icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
             suffixIcon: icon != null
