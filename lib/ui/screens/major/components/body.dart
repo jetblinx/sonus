@@ -56,7 +56,6 @@ class Body extends StatelessWidget {
                 height: 1,
               ),
               TTS(),
-              //SizedBox(height: getProportionateScreenHeight(10))
             ],
           )),
     );

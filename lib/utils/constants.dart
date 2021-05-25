@@ -12,6 +12,7 @@ const Color kColorLightAccent = Color(0xFF333333);
 // Common
 const Color kColorPrimary = Color(0xFF4CAF50);
 const Color kColorWhite = Colors.white;
+const Color kColorSwitchGrey = Color(0xFFD0D0D0);
 
 // Dark
 const Color kColorDarkScaffoldBackground = Color(0xFF333333);
@@ -31,6 +32,9 @@ double kPaddingScreenPageContent = getProportionateScreenWidth(15);
 
 double kPaddingBottom20 = getProportionateScreenWidth(20);
 
+// Switch
+const double kPaddingSwitchCircle = 5;
+
 /* SIZES */
 
 // Size of phone where testing the app.
@@ -43,3 +47,10 @@ const double kSizeButtonComplete = 32;
 const int kSizeTextFieldLines = 5;
 
 double kSizeBlockChips = getProportionateScreenWidth(160);
+
+// Switch
+const double kSizeSwitchCircle = 20;
+const double kSizeSwitchWidth = 50;
+
+/* DURATION */
+const kDurationSwitch = Duration(milliseconds: 300);
