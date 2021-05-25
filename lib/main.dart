@@ -25,7 +25,7 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sonus',
 
-      // Removes Scroll Glow 
+      // Removes Scroll Glow Everywhere
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: RemoveScrollGlow(),

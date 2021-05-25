@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sonus/ui/screens/quick_phrases/view/quick_phrase_view.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class ChipBuilder extends StatelessWidget {
   final List chips;
-  const ChipBuilder({Key key, this.chips}) : super(key: key);
+  final String onPress;
+
+  const ChipBuilder({Key key, this.chips, this.onPress}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -25,8 +29,9 @@ class ChipBuilder extends StatelessWidget {
                     //   backgroundColor: Colors.white,
                     // ),
                     onPressed: () {
-                      print(chip);
                       HapticFeedback.lightImpact();
+                      Navigator.pushNamed(context, QuickPhraseView.routeName);
+                      print(chip);
                     },
                   )
                 : Padding(

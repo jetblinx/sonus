@@ -44,8 +44,7 @@ class TTS extends StatelessWidget {
               ),
             ),
           ),
-          
-          TextInputField(controller: _controller),
+          TextInputField(controller: _controller, isBorder: true,),
         ],
       ),
     );

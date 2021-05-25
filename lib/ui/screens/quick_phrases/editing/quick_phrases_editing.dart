@@ -14,10 +14,10 @@ class QuickPhrasesEditing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Body(),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-        child: TextInputField(controller: _controller, icon: Icon(kIconAdd),),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+      //   child: TextInputField(controller: _controller, icon: Icon(kIconAdd), isBorder: true,),
+      // ),
     );
   }
 }

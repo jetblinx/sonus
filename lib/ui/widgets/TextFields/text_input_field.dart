@@ -9,11 +9,13 @@ class TextInputField extends StatelessWidget {
     Key key,
     @required TextEditingController controller,
     this.icon,
+    this.isBorder,
   })  : _controller = controller,
         super(key: key);
 
   final TextEditingController _controller;
   final Icon icon;
+  final bool isBorder;
 
   TextBloc _textBloc = TextBloc();
 
@@ -21,7 +23,8 @@ class TextInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(width: 0.0, color: Theme.of(context).dividerColor)),
+        border: isBorder != null ? Border(
+            top: BorderSide(width: 0.0, color: Theme.of(context).dividerColor)) : null,
       ),
       child: TextField(
         controller: _controller,

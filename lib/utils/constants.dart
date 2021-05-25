@@ -29,6 +29,8 @@ double kPaddingAllHorizontal = getProportionateScreenWidth(15);
 double kPaddingScreenPage = getProportionateScreenWidth(10);
 double kPaddingScreenPageContent = getProportionateScreenWidth(15);
 
+double kPaddingBottom20 = getProportionateScreenWidth(20);
+
 /* SIZES */
 
 // Size of phone where testing the app.
@@ -37,6 +39,7 @@ const double kSizePhoneHeight = 851.0;
 const double kSizePhoneWidth = 393.0;
 
 const double kSizeButtonMic = 64;
+const double kSizeButtonComplete = 32;
 const int kSizeTextFieldLines = 5;
 
 double kSizeBlockChips = getProportionateScreenWidth(160);

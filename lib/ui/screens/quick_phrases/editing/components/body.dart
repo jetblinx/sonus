@@ -20,6 +20,66 @@ class Body extends StatelessWidget {
     "How are you?",
     "What's up?",
     "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
   ];
 
   @override
@@ -30,32 +90,51 @@ class Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
-            AppBar(
-              iconTheme: IconThemeData(
-                color: Colors.black,
-              ),
-              centerTitle: true,
-              title: Text(
-                AppLocalizations.of(context).editing_phrases,
-                style:
-                    TextStyle(color: Colors.black87, fontWeight: FontWeight.w800),
-              ),
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+            Container(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ChipBuilder(chips: chips,),
-                ]
+                  SizedBox(
+                    height: getProportionateScreenHeight(10),
+                  ),
+                  AppBar(
+                    iconTheme: IconThemeData(
+                      color: Colors.black,
+                    ),
+                    centerTitle: true,
+                    title: Text(
+                      AppLocalizations.of(context).editing_phrases,
+                      style: TextStyle(
+                          color: Colors.black87, fontWeight: FontWeight.w800),
+                    ),
+                    backgroundColor: Colors.white,
+                    elevation: 0.0,
+                  ),
+                  Divider(
+                    height: 1,
+                  ),
+                ],
               ),
-            )
+            ),
+            Expanded(
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+                child: Stack(children: <Widget>[
+                  SingleChildScrollView(
+                    child: ChipBuilder(
+                  chips: chips,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+            Container(
+                    child: TextInputField(
+                      controller: _controller,
+                      icon: Icon(kIconAdd),
+                      isBorder: true,
+                    ),
+                  )
           ],
         ),
       ),

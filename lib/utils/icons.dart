@@ -11,3 +11,6 @@ const kIconSettings = FluentIcons.settings_20_filled;
 const kIconAdd = FluentIcons.add_20_filled;
 const kIconSend = FluentIcons.send_24_regular;
 const kIconDismiss = FluentIcons.dismiss_24_regular;
+
+const kIconComplete = FluentIcons.checkmark_24_regular;
+const kIconDelete = FluentIcons.delete_24_regular;
