@@ -4,7 +4,7 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  bool asr_on = true;
+  bool asrOn = true;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,14 @@ class Body extends StatelessWidget {
                 ),
                 AppBar(
                   iconTheme: IconThemeData(
-                    color: Colors.black,
+                    color: Theme.of(context).accentColor,
                   ),
                   centerTitle: true,
                   title: Text(
                     AppLocalizations.of(context).settings,
-                    style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.w800),
+                    style: Theme.of(context).textTheme.caption,
                   ),
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   elevation: 0.0,
                 ),
                 SizedBox(
@@ -44,17 +43,21 @@ class Body extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(AppLocalizations.of(context).modules,
-                        style: Theme.of(context).textTheme.headline1),
+                    Text(
+                      AppLocalizations.of(context).modules,
+                      style: Theme.of(context).textTheme.headline1
+                    ),
                     SizedBox(
                       height: getProportionateScreenHeight(15),
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(AppLocalizations.of(context).speech_recognition,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asr_on: asr_on),
+                          Text(
+                            AppLocalizations.of(context).speech_recognition,
+                            style: Theme.of(context).textTheme.headline2
+                          ),
+                          FlatSwitch(asrOn: asrOn),
                         ]),
                     SizedBox(
                       height: getProportionateScreenHeight(15),
@@ -62,9 +65,11 @@ class Body extends StatelessWidget {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(AppLocalizations.of(context).speech_to_text,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asr_on: asr_on),
+                          Text(
+                            AppLocalizations.of(context).speech_to_text,
+                            style: Theme.of(context).textTheme.headline2
+                          ),
+                          FlatSwitch(asrOn: asrOn),
                         ]),
                     Divider(),
                     SizedBox(
@@ -80,7 +85,7 @@ class Body extends StatelessWidget {
                         children: [
                           Text(AppLocalizations.of(context).dark_theme,
                               style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asr_on: asr_on),
+                          FlatSwitch(asrOn: asrOn),
                         ]),
                     SizedBox(
                       height: getProportionateScreenHeight(15),
@@ -105,10 +110,10 @@ class Body extends StatelessWidget {
 class FlatSwitch extends StatelessWidget {
   const FlatSwitch({
     Key key,
-    @required this.asr_on,
+    @required this.asrOn,
   }) : super(key: key);
 
-  final bool asr_on;
+  final bool asrOn;
 
   @override
   Widget build(BuildContext context) {
@@ -121,13 +126,13 @@ class FlatSwitch extends StatelessWidget {
         width: kSizeSwitchWidth,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: asr_on ? kColorPrimary : kColorSwitchGrey),
+            color: asrOn ? kColorPrimary : kColorSwitchGrey),
         child: Padding(
           padding: const EdgeInsets.all(kPaddingSwitchCircle),
           child: AnimatedAlign(
             duration: kDurationSwitch,
             curve: Curves.decelerate,
-            alignment: asr_on ? Alignment.centerRight : Alignment.centerLeft,
+            alignment: asrOn ? Alignment.centerRight : Alignment.centerLeft,
             child: Container(
               width: kSizeSwitchCircle,
               height: kSizeSwitchCircle,

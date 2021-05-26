@@ -7,9 +7,9 @@ import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = new TextEditingController();
 
-  List chips = [
+  final List chips = [
     "Hi",
     "Hello",
     "How are you?",
@@ -43,15 +43,14 @@ class Body extends StatelessWidget {
                   ),
                   AppBar(
                     iconTheme: IconThemeData(
-                      color: Colors.black,
+                      color: Theme.of(context).accentColor,
                     ),
                     centerTitle: true,
                     title: Text(
                       AppLocalizations.of(context).editing_phrases,
-                      style: TextStyle(
-                          color: Colors.black87, fontWeight: FontWeight.w800),
+                      style: Theme.of(context).textTheme.caption,
                     ),
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     elevation: 0.0,
                   ),
                   Divider(
@@ -77,7 +76,10 @@ class Body extends StatelessWidget {
             Container(
               child: TextInputField(
                 controller: _controller,
-                icon: Icon(kIconAdd),
+                icon: Icon(
+                  kIconAdd,
+                  color: Theme.of(context).accentColor,
+                ),
                 isBorder: true,
               ),
             )

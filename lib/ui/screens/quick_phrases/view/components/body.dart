@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
-import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class Body extends StatelessWidget {
             ),
             AppBar(
               iconTheme: IconThemeData(
-                color: Colors.black,
+                color: Theme.of(context).accentColor,
               ),
               centerTitle: true,
               actions: [
@@ -30,10 +29,9 @@ class Body extends StatelessWidget {
               ],
               title: Text(
                 AppLocalizations.of(context).edit_phrase,
-                style:
-                    TextStyle(color: Colors.black87, fontWeight: FontWeight.w800),
+                style: Theme.of(context).textTheme.caption,
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0.0,
             ),
             Padding(

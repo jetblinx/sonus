@@ -52,6 +52,7 @@ class Body extends StatelessWidget {
               ASR(),
               Divider(
                 height: 1,
+                color: Theme.of(context).accentColor,
               ),
               Container(child: TTS()),
             ],

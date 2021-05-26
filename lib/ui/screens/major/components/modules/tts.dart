@@ -5,9 +5,9 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
-  TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = new TextEditingController();
 
-  List chips = [
+  final List chips = [
     "Hi",
     "Hello",
     "How are you?",
@@ -30,7 +30,9 @@ class TTS extends StatelessWidget {
         children: [
           Container(
             constraints: BoxConstraints(
-                minHeight: 0, maxHeight: kSizeBlockChips),
+                minHeight: 0,
+                maxHeight: kSizeBlockChips
+            ),
             child: Scrollbar(
               radius: Radius.circular(20),
               child: ListView(

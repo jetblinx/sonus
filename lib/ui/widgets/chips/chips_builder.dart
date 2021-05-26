@@ -16,45 +16,42 @@ class ChipBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
         spacing: 10,
-        children: chips
-            .map((chip) => chip is String
-                ? ActionChip(
-                    labelPadding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(10),
-                        vertical: getProportionateScreenHeight(2)),
-                    label: Text(
-                      chip,
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    // avatar: CircleAvatar(
-                    //   child: Text("😎"),
-                    //   backgroundColor: Colors.white,
-                    // ),
-                    onPressed: () {
-                      onPress != "open"
-                          ? {
-                              HapticFeedback.lightImpact(),
-                              print(chip),
-                            }
-                          : Navigator.pushNamed(
-                              context, QuickPhraseView.routeName);
-                    },
-                  )
-                : Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4,
-                    ),
-                    child: CircleAvatar(
-                      child: IconButton(
-                        splashRadius: 24,
-                        icon: chip,
-                        color: Colors.white,
-                        onPressed: () => Navigator.pushNamed(
-                            context, QuickPhrasesEditing.routeName),
-                      ),
-                      backgroundColor: kColorPrimary,
-                    ),
-                  ))
-            .toList());
+        children: chips.map((chip) => chip is String
+          ? ActionChip(
+            // backgroundColor: Theme.of(context).backgroundColor,
+              labelPadding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(10),
+                vertical: getProportionateScreenHeight(2)
+              ),
+              label: Text(
+                chip,
+                // style: Theme.of(context).textTheme.bodyText2,
+              ),
+              // avatar: CircleAvatar(
+              //   child: Text("😎"),
+              //   backgroundColor: Colors.white,
+              // ),
+              onPressed: () {
+                HapticFeedback.lightImpact();
+                Navigator.pushNamed(context, QuickPhraseView.routeName);
+                print(chip);
+              },
+            )
+          : Padding(
+            padding: const EdgeInsets.only(
+              top: 4,
+            ),
+            child: CircleAvatar(
+              child: IconButton(
+                splashRadius: 24,
+                icon: chip,
+                color: Colors.white,
+                onPressed: () => Navigator.pushNamed(context, QuickPhrasesEditing.routeName),
+              ),
+              backgroundColor: kColorPrimary,
+            ),
+          )
+        ).toList()
+    );
   }
 }
