@@ -15,7 +15,7 @@ void main() {
 
 class Main extends StatelessWidget {
 
-  bool darkTheme = true;
+  bool darkTheme = false;
 
   @override
   Widget build(BuildContext context) {

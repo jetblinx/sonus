@@ -3,15 +3,15 @@ import 'package:sonus/utils/constants.dart';
 
 class ThemesRepisotory {
   static final light = ThemeData(
-    scaffoldBackgroundColor: kColorLightScaffoldBackground,
+    scaffoldBackgroundColor: Colors.grey[100],
     primaryColor: kColorPrimary,
     accentColor: kColorLightAccent,
     buttonColor: kColorLightAccent,
-    backgroundColor: kColorLightScaffoldBackground,
-    dividerColor: kColorLightAccent,
-    dividerTheme: DividerThemeData(color: kColorLightAccent),
+    backgroundColor: Colors.grey[100],
+    dividerColor: Colors.grey[300],
+    dividerTheme: DividerThemeData(color: Colors.grey[300]),
     chipTheme: ChipThemeData(
-        backgroundColor: Colors.grey[350],
+        backgroundColor: Colors.grey[300],
         disabledColor: Colors.grey,
         brightness: Brightness.light,
         labelStyle: TextStyle(
@@ -69,7 +69,7 @@ class ThemesRepisotory {
       accentColor: kColorDarkAccent,
       buttonColor: kColorDarkAccent,
       backgroundColor: Colors.grey[900],
-      dividerColor: Colors.grey[800],
+      dividerColor: kColorDarkScaffoldBackground,
       dividerTheme: DividerThemeData(color: Colors.grey[700]),
       chipTheme: ChipThemeData(
           backgroundColor: Colors.grey[700],

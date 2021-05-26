@@ -34,7 +34,7 @@ class TextInputField extends StatelessWidget {
             ? Border(
                 top: BorderSide(
                     width: 1.0,
-                    color: Theme.of(context).scaffoldBackgroundColor))
+                    color: Theme.of(context).dividerColor))
             : null,
       ),
       child: Padding(
