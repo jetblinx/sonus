@@ -15,7 +15,7 @@ class QuickPhraseView extends StatelessWidget {
       body: Body(),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: kPaddingBottom20),
-        child: IconButton(icon: Icon(kIconComplete), onPressed: () {}, iconSize: kSizeButtonComplete,),
+        child: IconButton(icon: Icon(kIconComplete, color: Theme.of(context).buttonColor,), onPressed: () {}, iconSize: kSizeButtonComplete,),
       ),
     );
   }

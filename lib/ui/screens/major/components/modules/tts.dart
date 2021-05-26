@@ -26,27 +26,39 @@ class TTS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).backgroundColor,
       child: Column(
         children: [
-          Container(
-            constraints: BoxConstraints(
-                minHeight: 0,
-                maxHeight: kSizeBlockChips
-            ),
-            child: Scrollbar(
-              radius: Radius.circular(20),
-              child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                children: [
-                  SizedBox(height: kPaddingBlockChips,),
-                  ChipBuilder(chips: chips, onPress: "sound",),
-                  SizedBox(height: kPaddingBlockChips,),
-                ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+            child: Container(
+              constraints:
+                  BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
+              child: Scrollbar(
+                radius: Radius.circular(20),
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  children: [
+                    SizedBox(
+                      height: kPaddingBlockChips,
+                    ),
+                    ChipBuilder(
+                      chips: chips,
+                      onPress: "sound",
+                    ),
+                    SizedBox(
+                      height: kPaddingBlockChips,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-          TextInputField(controller: _controller, isBorder: true,),
+          TextInputField(
+            controller: _controller,
+            isBorder: true,
+          ),
         ],
       ),
     );

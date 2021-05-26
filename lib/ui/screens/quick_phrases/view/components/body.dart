@@ -38,9 +38,8 @@ class Body extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextInputField(controller: _controller,),
+                  TextInputField(controller: _controller, backgroundTransaprent: true, centerAlign: true,),
                 ]
               ),
             )

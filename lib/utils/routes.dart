@@ -4,6 +4,7 @@ import 'package:sonus/ui/screens/major/major.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrase_view.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
+import 'package:sonus/ui/screens/splash/splash.dart';
 
 final Map<String, WidgetBuilder> routes = {
   Major.routeName: (context) => Major(),
@@ -11,4 +12,5 @@ final Map<String, WidgetBuilder> routes = {
   Archive.routeName: (context) => Archive(),
   QuickPhrasesEditing.routeName: (context) => QuickPhrasesEditing(),
   QuickPhraseView.routeName: (context) => QuickPhraseView(),
+  Splash.routeName: (context) => Splash(),
 };

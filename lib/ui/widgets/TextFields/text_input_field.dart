@@ -10,12 +10,16 @@ class TextInputField extends StatelessWidget {
     @required TextEditingController controller,
     this.icon,
     this.isBorder,
+    this.backgroundTransaprent = false,
+    this.centerAlign = false,
   })  : _controller = controller,
         super(key: key);
 
   final TextEditingController _controller;
   final Icon icon;
   final bool isBorder;
+  final bool backgroundTransaprent;
+  final bool centerAlign;
 
   final TextBloc _textBloc = TextBloc();
 
@@ -23,33 +27,39 @@ class TextInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: isBorder != null 
-        ? Border(
-          top: BorderSide(
-            width: 0.0, 
-            color: Theme.of(context).accentColor)
-        ) 
-        : null,
+        color: backgroundTransaprent
+            ? Colors.transparent
+            : Theme.of(context).backgroundColor,
+        border: isBorder != null
+            ? Border(
+                top: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).scaffoldBackgroundColor))
+            : null,
       ),
-      child: TextField(
-        controller: _controller,
-        textCapitalization: TextCapitalization.sentences,
-        onChanged: (String text) => _textBloc.updateText(text),
-        cursorColor: Colors.black,
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            hintStyle: Theme.of(context).textTheme.headline2,
-            hintText: AppLocalizations.of(context).enter_text,
-            labelStyle: Theme.of(context).textTheme.headline2,
-            icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
-            suffixIcon: icon != null
-            ? IconButton(
-              icon: icon,
-              onPressed: () {},
-            )
-            : null),
-        minLines: 1,
-        maxLines: kSizeTextFieldLines,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+        child: TextField(
+          textAlign: centerAlign ? TextAlign.center : TextAlign.start,
+          controller: _controller,
+          textCapitalization: TextCapitalization.sentences,
+          onChanged: (String text) => _textBloc.updateText(text),
+          //cursorColor: Colors.black,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintStyle: Theme.of(context).textTheme.headline2,
+              hintText: AppLocalizations.of(context).enter_text,
+              labelStyle: Theme.of(context).textTheme.headline2,
+              icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
+              suffixIcon: icon != null
+                  ? IconButton(
+                      icon: icon,
+                      onPressed: () {},
+                    )
+                  : null),
+          minLines: 1,
+          maxLines: kSizeTextFieldLines,
+        ),
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrase_view.dart';
 import 'package:sonus/utils/constants.dart';
-import 'package:sonus/utils/size_config.dart';
 
 class ChipBuilder extends StatelessWidget {
   final List chips;
@@ -18,22 +17,15 @@ class ChipBuilder extends StatelessWidget {
         spacing: 10,
         children: chips.map((chip) => chip is String
           ? ActionChip(
-            // backgroundColor: Theme.of(context).backgroundColor,
-              labelPadding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(10),
-                vertical: getProportionateScreenHeight(2)
-              ),
               label: Text(
                 chip,
-                // style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyText2,
               ),
-              // avatar: CircleAvatar(
-              //   child: Text("😎"),
-              //   backgroundColor: Colors.white,
-              // ),
               onPressed: () {
+                onPress == "open" ? {
+                  Navigator.pushNamed(context, QuickPhraseView.routeName)
+                } : 
                 HapticFeedback.lightImpact();
-                Navigator.pushNamed(context, QuickPhraseView.routeName);
                 print(chip);
               },
             )

@@ -9,16 +9,17 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                AppBar(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          color: Theme.of(context).backgroundColor,
+          child: Column(
+            children: [
+              SizedBox(
+                height: getProportionateScreenHeight(10),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+                child: AppBar(
                   iconTheme: IconThemeData(
                     color: Theme.of(context).accentColor,
                   ),
@@ -27,36 +28,34 @@ class Body extends StatelessWidget {
                     AppLocalizations.of(context).settings,
                     style: Theme.of(context).textTheme.caption,
                   ),
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  backgroundColor: Colors.transparent,
                   elevation: 0.0,
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
+        ),
+        Expanded(
+          child: SingleChildScrollView(
             child: Padding(
               padding:
-                  EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+                  EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      AppLocalizations.of(context).modules,
-                      style: Theme.of(context).textTheme.headline1
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
                     ),
+                    Text(AppLocalizations.of(context).modules,
+                        style: Theme.of(context).textTheme.headline1),
                     SizedBox(
                       height: getProportionateScreenHeight(15),
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context).speech_recognition,
-                            style: Theme.of(context).textTheme.headline2
-                          ),
+                          Text(AppLocalizations.of(context).speech_recognition,
+                              style: Theme.of(context).textTheme.headline2),
                           FlatSwitch(asrOn: asrOn),
                         ]),
                     SizedBox(
@@ -65,13 +64,16 @@ class Body extends StatelessWidget {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context).speech_to_text,
-                            style: Theme.of(context).textTheme.headline2
-                          ),
+                          Text(AppLocalizations.of(context).speech_to_text,
+                              style: Theme.of(context).textTheme.headline2),
                           FlatSwitch(asrOn: asrOn),
                         ]),
-                    Divider(),
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
+                    Divider(
+                      height: 1,
+                    ),
                     SizedBox(
                       height: getProportionateScreenHeight(15),
                     ),
@@ -100,9 +102,9 @@ class Body extends StatelessWidget {
                         ]),
                   ]),
             ),
-          )
-        ]),
-      ),
+          ),
+        )
+      ]),
     );
   }
 }

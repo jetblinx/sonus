@@ -30,18 +30,22 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: getProportionateScreenHeight(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            color: Theme.of(context).backgroundColor,
+            child: Column(
+              children: [
+                SizedBox(
+                  child: Container(
+                    color: Theme.of(context).backgroundColor,
                   ),
-                  AppBar(
+                  height: getProportionateScreenHeight(10),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+                  child: AppBar(
                     iconTheme: IconThemeData(
                       color: Theme.of(context).accentColor,
                     ),
@@ -50,41 +54,46 @@ class Body extends StatelessWidget {
                       AppLocalizations.of(context).editing_phrases,
                       style: Theme.of(context).textTheme.caption,
                     ),
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    backgroundColor: Colors.transparent,
                     elevation: 0.0,
                   ),
-                  Divider(
-                    height: 1,
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-                child: Stack(children: <Widget>[
-                  SingleChildScrollView(
-                    child: ChipBuilder(
-                      chips: chips,
-                      onPress: "open",
-                    ),
-                  ),
-                ]),
-              ),
-            ),
-            Container(
-              child: TextInputField(
-                controller: _controller,
-                icon: Icon(
-                  kIconAdd,
-                  color: Theme.of(context).accentColor,
                 ),
-                isBorder: true,
+              
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+              child: Stack(children: <Widget>[
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: getProportionateScreenHeight(10),
+                      ),
+                      ChipBuilder(
+                        chips: chips,
+                        onPress: "open",
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            ),
+          ),
+          Container(
+            child: TextInputField(
+              controller: _controller,
+              icon: Icon(
+                kIconAdd,
+                color: Theme.of(context).accentColor,
               ),
-            )
-          ],
-        ),
+              isBorder: true,
+            ),
+          )
+        ],
       ),
     );
   }
