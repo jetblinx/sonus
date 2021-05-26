@@ -9,7 +9,8 @@ class ChipBuilder extends StatelessWidget {
   final List chips;
   final String onPress;
 
-  const ChipBuilder({Key key, this.chips, this.onPress}) : super(key: key);
+  const ChipBuilder({Key key, this.chips, @required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,13 @@ class ChipBuilder extends StatelessWidget {
                     //   backgroundColor: Colors.white,
                     // ),
                     onPressed: () {
-                      HapticFeedback.lightImpact();
-                      Navigator.pushNamed(context, QuickPhraseView.routeName);
-                      print(chip);
+                      onPress != "open"
+                          ? {
+                              HapticFeedback.lightImpact(),
+                              print(chip),
+                            }
+                          : Navigator.pushNamed(
+                              context, QuickPhraseView.routeName);
                     },
                   )
                 : Padding(
@@ -44,7 +49,8 @@ class ChipBuilder extends StatelessWidget {
                         splashRadius: 24,
                         icon: chip,
                         color: Colors.white,
-                        onPressed: () => Navigator.pushNamed(context, QuickPhrasesEditing.routeName),
+                        onPressed: () => Navigator.pushNamed(
+                            context, QuickPhrasesEditing.routeName),
                       ),
                       backgroundColor: kColorPrimary,
                     ),

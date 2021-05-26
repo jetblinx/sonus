@@ -40,7 +40,8 @@ class ThemesRepisotory {
           fontFamily: "Open Sans",
           color: kColorLightAccent,
           fontWeight: FontWeight.w600,
-          fontSize: 18.0
+          fontSize: 20.0,
+          height: 1.5
         ),
         headline1: TextStyle(
           fontFamily: "Open Sans",
@@ -118,7 +119,7 @@ class ThemesRepisotory {
         // fontFamily: "Open Sans",
         color: kColorDarkAccent,
         fontWeight: FontWeight.w600,
-        fontSize: 18.0
+        fontSize: 20.0
       ),
       headline1: TextStyle(
         // fontFamily: "Open Sans",

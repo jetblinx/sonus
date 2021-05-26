@@ -17,7 +17,7 @@ class TTS extends StatelessWidget {
     "Hello",
     "How are you?",
     "What's up?",
-    "Go home",
+    //"Go home",
     Icon(
       kIconAdd,
     ),
@@ -38,7 +38,7 @@ class TTS extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   SizedBox(height: kPaddingBlockChips,),
-                  ChipBuilder(chips: chips,),
+                  ChipBuilder(chips: chips, onPress: "sound",),
                   SizedBox(height: kPaddingBlockChips,),
                 ],
               ),

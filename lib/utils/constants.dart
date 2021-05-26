@@ -46,7 +46,7 @@ const double kSizeButtonMic = 64;
 const double kSizeButtonComplete = 32;
 const int kSizeTextFieldLines = 5;
 
-double kSizeBlockChips = getProportionateScreenWidth(160);
+const double kSizeBlockChips = 154;
 
 // Switch
 const double kSizeSwitchCircle = 20;
