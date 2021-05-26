@@ -33,7 +33,7 @@ class Main extends StatelessWidget {
         );
       },
 
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: ThemesRepisotory.light,
       darkTheme: ThemesRepisotory.dark,
       supportedLocales: L10n.all,

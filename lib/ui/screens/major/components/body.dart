@@ -54,6 +54,7 @@ class Body extends StatelessWidget {
               Spacer(),
               Divider(
                 height: 1,
+                color: Theme.of(context).accentColor,
               ),
               TTS(),
             ],

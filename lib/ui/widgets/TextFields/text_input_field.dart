@@ -17,14 +17,19 @@ class TextInputField extends StatelessWidget {
   final Icon icon;
   final bool isBorder;
 
-  TextBloc _textBloc = TextBloc();
+  final TextBloc _textBloc = TextBloc();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: isBorder != null ? Border(
-            top: BorderSide(width: 0.0, color: Theme.of(context).dividerColor)) : null,
+        border: isBorder != null 
+        ? Border(
+          top: BorderSide(
+            width: 0.0, 
+            color: Theme.of(context).accentColor)
+        ) 
+        : null,
       ),
       child: TextField(
         controller: _controller,
@@ -38,11 +43,11 @@ class TextInputField extends StatelessWidget {
             labelStyle: Theme.of(context).textTheme.headline2,
             icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
             suffixIcon: icon != null
-                ? IconButton(
-                    icon: icon,
-                    onPressed: () {},
-                  )
-                : null),
+            ? IconButton(
+              icon: icon,
+              onPressed: () {},
+            )
+            : null),
         minLines: 1,
         maxLines: kSizeTextFieldLines,
       ),
