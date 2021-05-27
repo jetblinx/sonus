@@ -60,9 +60,9 @@ class DatabaseProvider {
       )
     ''');
 
-    // records group table
+    // records groups table
     await db.execute('''
-      CREATE TABLE records_group(
+      CREATE TABLE records_groups(
         id INTEGER PRIMARY KEY,
         name TEXT
       )

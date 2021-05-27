@@ -25,12 +25,12 @@ class SettingsModel extends Equatable {
     "speech_to_text": this.speechToText ? 1 : 0
   };
 
-  SettingsModel copyWith({int id, int language, bool theme, bool speechRecognition, bool speechToText}) {
+  SettingsModel copyWith(SettingsModel settings) {
     return SettingsModel(
-      id: id ?? this.id,
-      language: language ?? this.language,
-      speechRecognition: speechRecognition ?? this.speechRecognition,
-      speechToText: speechToText ?? this.speechToText
+      id: settings.id ?? this.id,
+      language: settings.language ?? this.language,
+      speechRecognition: settings.speechRecognition ?? this.speechRecognition,
+      speechToText: settings.speechToText ?? this.speechToText
     );
   }
 
