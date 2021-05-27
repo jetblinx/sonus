@@ -8,6 +8,9 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String accentColorGroupName = "Accent color";
+
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
@@ -109,8 +112,10 @@ class Body extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline2),
                           Text(AppLocalizations.of(context).language_choosen,
                               style: Theme.of(context).textTheme.headline1)
-                        ]),
+                        ]
+                    ),
                   ]),
+
             ),
           ),
         )

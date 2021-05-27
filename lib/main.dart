@@ -6,7 +6,6 @@ import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
 import 'ui/screens/major/major.dart';
-
 void main() {
   runApp(Main());
 }
