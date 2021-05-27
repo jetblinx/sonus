@@ -12,7 +12,7 @@ class Body extends StatelessWidget {
   final List chips = [
     "Hi",
     "Hello",
-    "How are you?",
+    "How are you? fdgdf gdfgdfgfdgf gfgfg fgfgfgffgh ffgfgfgfhghfg fgfg",
     "What's up?",
     "Go home",
     "Hi",

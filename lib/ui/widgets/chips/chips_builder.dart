@@ -25,6 +25,7 @@ class ChipBuilder extends StatelessWidget {
                 ? ActionChip(
                     label: Text(
                       chip,
+                      overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {
