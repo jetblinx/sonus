@@ -12,7 +12,7 @@ class ASR extends StatelessWidget {
     print(languages);
   }
 
-  bool asrOn = false;
+  final bool asrOn = false;
 
   @override
   Widget build(BuildContext context) {

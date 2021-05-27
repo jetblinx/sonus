@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class Archive extends StatelessWidget {
+class Notes extends StatelessWidget {
   static String routeName = "/archive";
 
   @override

@@ -4,7 +4,7 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  bool asrOn = true;
+  final bool asrOn = true;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +71,16 @@ class Body extends StatelessWidget {
                     SizedBox(
                       height: getProportionateScreenHeight(15),
                     ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(AppLocalizations.of(context).quick_tts,
+                              style: Theme.of(context).textTheme.headline2),
+                          FlatSwitch(asrOn: asrOn),
+                        ]),
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
                     Divider(
                       height: 1,
                     ),
@@ -97,7 +107,7 @@ class Body extends StatelessWidget {
                         children: [
                           Text(AppLocalizations.of(context).language,
                               style: Theme.of(context).textTheme.headline2),
-                          Text(AppLocalizations.of(context).russian,
+                          Text(AppLocalizations.of(context).language_choosen,
                               style: Theme.of(context).textTheme.headline1)
                         ]),
                   ]),

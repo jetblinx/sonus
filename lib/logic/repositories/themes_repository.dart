@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sonus/utils/constants.dart';
 
 class ThemesRepisotory {
   static final light = ThemeData(
-    scaffoldBackgroundColor: Colors.grey[100],
+    scaffoldBackgroundColor: kColorLightScaffoldBackground,
+    appBarTheme: AppBarTheme(
+      brightness: Brightness.light,
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          systemNavigationBarColor: kColorLightScaffoldBackground,
+          systemNavigationBarIconBrightness: Brightness.dark,
+          systemNavigationBarDividerColor: Colors.transparent,
+        ),
+    ),
     primaryColor: kColorPrimary,
     accentColor: kColorLightAccent,
     buttonColor: kColorLightAccent,
-    backgroundColor: Colors.grey[100],
-    dividerColor: Colors.grey[300],
-    dividerTheme: DividerThemeData(color: Colors.grey[300]),
+    backgroundColor: kColorLightScaffoldBackground,
+    dividerColor: kColorLightDivider,
+    dividerTheme: DividerThemeData(color: kColorLightDivider),
     chipTheme: ChipThemeData(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: kColorLightDivider,
         disabledColor: Colors.grey,
         brightness: Brightness.light,
         labelStyle: TextStyle(
@@ -51,7 +62,7 @@ class ThemesRepisotory {
       headline2: TextStyle(
           fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
       headline3: TextStyle(
-          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
+          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 18.0),
       headline4: TextStyle(
           fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
       headline5: TextStyle(
@@ -65,14 +76,24 @@ class ThemesRepisotory {
 
   static final dark = ThemeData(
       scaffoldBackgroundColor: kColorDarkScaffoldBackground,
+      appBarTheme: AppBarTheme(
+        brightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+          systemNavigationBarColor: kColorDarkScaffoldBackground,
+          systemNavigationBarIconBrightness: Brightness.light,
+          systemNavigationBarDividerColor: Colors.transparent,
+        ),
+      ),
       primaryColor: kColorPrimary,
       accentColor: kColorDarkAccent,
       buttonColor: kColorDarkAccent,
-      backgroundColor: Colors.grey[900],
+      backgroundColor: kColorDarkSecondary,
       dividerColor: kColorDarkScaffoldBackground,
-      dividerTheme: DividerThemeData(color: Colors.grey[700]),
+      dividerTheme: DividerThemeData(color: kColorDarkDivider),
       chipTheme: ChipThemeData(
-          backgroundColor: Colors.grey[700],
+          backgroundColor: kColorDarkDivider,
           disabledColor: Colors.black87,
           brightness: Brightness.dark,
           labelStyle: TextStyle(
@@ -111,7 +132,7 @@ class ThemesRepisotory {
         headline2: TextStyle(
             fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
         headline3: TextStyle(
-            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
+            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 18.0),
         headline4: TextStyle(
             fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
         headline5: TextStyle(

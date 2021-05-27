@@ -11,39 +11,44 @@ class ChipBuilder extends StatelessWidget {
   const ChipBuilder({Key key, this.chips, @required this.onPress})
       : super(key: key);
 
+  void _sayQuickPhrase(chip) {
+    HapticFeedback.lightImpact();
+    print(chip);                     
+  }
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
         spacing: 10,
-        children: chips.map((chip) => chip is String
-          ? ActionChip(
-              label: Text(
-                chip,
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              onPressed: () {
-                onPress == "open" ? {
-                  Navigator.pushNamed(context, QuickPhraseView.routeName)
-                } : 
-                HapticFeedback.lightImpact();
-                print(chip);
-              },
-            )
-          : Padding(
-            padding: const EdgeInsets.only(
-              top: 4,
-            ),
-            child: CircleAvatar(
-              child: IconButton(
-                splashRadius: 24,
-                icon: chip,
-                color: Colors.white,
-                onPressed: () => Navigator.pushNamed(context, QuickPhrasesEditing.routeName),
-              ),
-              backgroundColor: kColorPrimary,
-            ),
-          )
-        ).toList()
-    );
+        children: chips
+            .map((chip) => chip is String
+                ? ActionChip(
+                    label: Text(
+                      chip,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                    onPressed: () {
+                      onPress == "open"
+                          ? Navigator.pushNamed(
+                              context, QuickPhraseView.routeName)
+                          : _sayQuickPhrase(chip);
+                    },
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(
+                      top: 4,
+                    ),
+                    child: CircleAvatar(
+                      child: IconButton(
+                        splashRadius: 24,
+                        icon: chip,
+                        color: Colors.white,
+                        onPressed: () => Navigator.pushNamed(
+                            context, QuickPhrasesEditing.routeName),
+                      ),
+                      backgroundColor: kColorPrimary,
+                    ),
+                  ))
+            .toList());
   }
 }

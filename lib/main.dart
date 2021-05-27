@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
-import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,18 +12,11 @@ void main() {
 }
 
 class Main extends StatelessWidget {
-
-  bool darkTheme = false;
+  final bool darkTheme = true;
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: darkTheme ? Brightness.light : Brightness.dark,
-      systemNavigationBarColor: darkTheme ? kColorDarkScaffoldBackground : Colors.white,
-      //systemNavigationBarIconBrightness: darkTheme ? Brightness.light : Brightness.dark,
-      systemNavigationBarDividerColor: Colors.transparent,
-    ));
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sonus',
@@ -39,8 +30,8 @@ class Main extends StatelessWidget {
       },
 
       themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
-      theme: darkTheme ? ThemesRepisotory.dark : ThemesRepisotory.light,
-      darkTheme: darkTheme ? ThemesRepisotory.dark : ThemesRepisotory.light,
+      theme: ThemesRepisotory.light,
+      darkTheme: ThemesRepisotory.dark,
       supportedLocales: L10n.all,
       localizationsDelegates: [
         AppLocalizations.delegate,

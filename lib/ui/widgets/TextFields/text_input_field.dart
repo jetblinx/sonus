@@ -12,6 +12,7 @@ class TextInputField extends StatelessWidget {
     this.isBorder,
     this.backgroundTransaprent = false,
     this.centerAlign = false,
+    this.maxLines = kSizeTextFieldLines,
   })  : _controller = controller,
         super(key: key);
 
@@ -20,6 +21,7 @@ class TextInputField extends StatelessWidget {
   final bool isBorder;
   final bool backgroundTransaprent;
   final bool centerAlign;
+  final int maxLines;
 
   final TextBloc _textBloc = TextBloc();
 
@@ -33,13 +35,13 @@ class TextInputField extends StatelessWidget {
         border: isBorder != null
             ? Border(
                 top: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).dividerColor))
+                    width: 1.0, color: Theme.of(context).dividerColor))
             : null,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: TextField(
+          style: Theme.of(context).textTheme.headline3,
           textAlign: centerAlign ? TextAlign.center : TextAlign.start,
           controller: _controller,
           textCapitalization: TextCapitalization.sentences,
@@ -47,9 +49,8 @@ class TextInputField extends StatelessWidget {
           //cursorColor: Colors.black,
           decoration: InputDecoration(
               border: InputBorder.none,
-              hintStyle: Theme.of(context).textTheme.headline2,
+              hintStyle: Theme.of(context).textTheme.headline3,
               hintText: AppLocalizations.of(context).enter_text,
-              labelStyle: Theme.of(context).textTheme.headline2,
               icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
               suffixIcon: icon != null
                   ? IconButton(
@@ -58,7 +59,7 @@ class TextInputField extends StatelessWidget {
                     )
                   : null),
           minLines: 1,
-          maxLines: kSizeTextFieldLines,
+          maxLines: maxLines != null ? kSizeTextFieldLines : null,
         ),
       ),
     );
