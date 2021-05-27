@@ -5,10 +5,12 @@
   "enter_text": "Введите текст",
   "language": "Язык",
   "modules": "Модули",
-  "russian": "Русский",
+  "language_choosen": "Русский",
   "settings": "Настройки",
   "speech_recognition": "Распознавание речи",
   "speech_to_text": "Речь в текст",
   "dark_theme": "Темная тема",
-  "settings_general": "Общие"
+  "settings_general": "Общие",
+  "quick_tts": "Быстрая озвучка",
+  "notes": "Notes"
 }

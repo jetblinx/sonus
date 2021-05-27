@@ -11,41 +11,60 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
-            AppBar(
-              iconTheme: IconThemeData(
-                color: Theme.of(context).accentColor,
-              ),
-              centerTitle: true,
-              actions: [
-                IconButton(icon: Icon(kIconDelete), onPressed: () {},),
+      child: Column(children: [
+        Container(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                AppBar(
+                  iconTheme: IconThemeData(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  centerTitle: true,
+                  actions: [
+                    IconButton(
+                      icon: Icon(kIconDelete),
+                      onPressed: () {},
+                    ),
+                  ],
+                  title: Text(
+                    AppLocalizations.of(context).edit_phrase,
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  elevation: 0.0,
+                ),
               ],
-              title: Text(
-                AppLocalizations.of(context).edit_phrase,
-                style: Theme.of(context).textTheme.caption,
-              ),
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextInputField(controller: _controller, backgroundTransaprent: true, centerAlign: true,),
-                ]
-              ),
-            )
-          ],
+          ),
         ),
-      ),
+        Expanded(
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+          child: Center(
+            child: TextInputField(
+              maxLines: null,
+              controller: _controller,
+              backgroundTransaprent: true,
+              centerAlign: true,
+            ),
+          ),
+        )),
+        Container(
+          child: IconButton(
+            icon: Icon(
+              kIconComplete,
+              color: Theme.of(context).buttonColor,
+            ),
+            onPressed: () {},
+            iconSize: kSizeButtonComplete,
+          ),
+        ),
+      ]),
     );
   }
 }

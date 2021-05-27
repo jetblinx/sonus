@@ -5,9 +5,10 @@ import 'package:sonus/utils/size_config.dart';
 
 /* COLORS */
 // Light
-const Color kColorLightScaffoldBackground = Color(0xFFFFFFFF);
+Color kColorLightScaffoldBackground = Colors.grey[100];
 const Color kColorLightText = Color(0xFF333333);
 const Color kColorLightAccent = Color(0xFF333333);
+Color kColorLightDivider = Colors.grey[300];
 
 // Common
 const Color kColorPrimary = Color(0xFF4CAF50);
@@ -17,9 +18,11 @@ const Color kColorSwitchGrey = Color(0xFFD0D0D0);
 Color kColorBackgroundScreenSplash = Colors.grey[900];
 
 // Dark
-const Color kColorDarkScaffoldBackground = Color(0xFF111111);
+Color kColorDarkScaffoldBackground = Color(0xFF111111);
 const Color kColorDarkText = Color(0xFFFFFFFF);
 const Color kColorDarkAccent = Color(0xFFFFFFFF);
+Color kColorDarkDivider = Colors.grey[700];
+Color kColorDarkSecondary = Colors.grey[900];
 
 /* PADDINGS & MARGINS */
 // Chips
