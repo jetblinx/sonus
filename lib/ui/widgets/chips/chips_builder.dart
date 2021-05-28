@@ -5,60 +5,29 @@ import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dar
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrase_view.dart';
 import 'package:sonus/utils/constants.dart';
 
-class ChipBuilder extends StatefulWidget {
+class ChipBuilder extends StatelessWidget {
   final List chips;
   final String onPress;
+  final FlutterTts flutterTts;
+  final String language;
 
-  const ChipBuilder({Key key, this.chips, @required this.onPress,})
+  const ChipBuilder({Key key, this.chips, @required this.onPress, this.flutterTts, @required this.language})
       : super(key: key);
 
-  @override
-  _ChipBuilderState createState() => _ChipBuilderState();
-}
-
-class _ChipBuilderState extends State<ChipBuilder> {
-
-  FlutterTts flutterTts;
-  String _engine;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _initTts();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    flutterTts.stop();
-  }
-
-  Future _sayQuickPhrase(chip) async {
-    print(_engine);
-    print(flutterTts);
-    await flutterTts.awaitSpeakCompletion(true);
-    await flutterTts.speak(chip);
+  void _speak(chip) async {
     HapticFeedback.lightImpact();
+    await flutterTts.setLanguage(language);
+    await flutterTts.setPitch(1.0);
+    await flutterTts.setSpeechRate(0.9);
+    await flutterTts.speak(chip);
     print(chip);                     
-  }
-
-  _initTts() async {
-    flutterTts = FlutterTts();
-    var _engine = await flutterTts.getDefaultEngine;
-    flutterTts.setEngine(_engine.toString());
-    print(_engine.toString());
-    flutterTts.setLanguage("ru-RU");
-    flutterTts.setPitch(1.0);
-    flutterTts.setSpeechRate(0.9);
   }
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
         spacing: 10,
-        children: widget.chips
+        children: chips
             .map((chip) => chip is String
                 ? ActionChip(
                     label: Text(
@@ -67,10 +36,10 @@ class _ChipBuilderState extends State<ChipBuilder> {
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {
-                      widget.onPress == "open"
+                      onPress == "open"
                           ? Navigator.pushNamed(
                               context, QuickPhraseView.routeName)
-                          : _sayQuickPhrase(chip);
+                          : _speak(chip);
                     },
                   )
                 : Padding(
