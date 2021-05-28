@@ -49,7 +49,7 @@ class DatabaseProvider {
         theme INTEGER, 
         language INTEGER,
         speech_recognition INTEGER,
-        speech_to_text INTEGER,
+        text_to_speech INTEGER,
         FOREIGN KEY (language) REFERENCES languages (id)
       )
     ''');
@@ -62,23 +62,25 @@ class DatabaseProvider {
       )
     ''');
 
-    // // records groups table
-    // await db.execute('''
-    //   CREATE TABLE records_groups(
-    //     id INTEGER PRIMARY KEY,
-    //     name TEXT
-    //   )
-    // ''');
 
-    // // records table 
-    // await db.execute('''
-    //   CREATE TABLE records(
-    //     id INTEGER PRIMARY KEY,
-    //     text TEXT,
-    //     group INTEGER,
-    //     FOREIGN KEY (group) REFERENCES records_groups (id)
-    //   )
-    // ''');
+    // FIXME please
+    // records groups table
+    await db.execute('''
+      CREATE TABLE records_groups(
+        id INTEGER PRIMARY KEY,
+        name TEXT
+      )
+    ''');
+
+    // records table 
+    await db.execute('''
+      CREATE TABLE records(
+        id INTEGER PRIMARY KEY,
+        record TEXT,
+        group_id INTEGER,
+        FOREIGN KEY (group_id) REFERENCES records_groups (id)
+      )
+    ''');
     
     await db.rawInsert('''
       INSERT INTO languages(id, name, language_code) VALUES(1, "English", "en");
@@ -87,6 +89,6 @@ class DatabaseProvider {
       INSERT INTO languages(id, name, language_code) VALUES(2, "Русский", "ru");
     ''');
 
-    await db.insert("settings", SettingsModel(id: 1, language: 2, speechRecognition: true, speechToText: true, theme: false).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: 2, speechRecognition: 1, textToSpeech: 1, theme: 1).toMap());
   }
 }

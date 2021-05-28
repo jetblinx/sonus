@@ -10,10 +10,9 @@ class SettingsDao {
     try {
       List<Map<String, dynamic>> result;
       result = await db.query(_table, limit: 1);
-      print(result.toString());
       return result.isNotEmpty ? result.map((e) => SettingsModel.fromMap(e)).toList().first : null;
-    } catch (err) {
-      print(err);
+    } catch (_) {
+      print(_);
       return null;
     }
   }
@@ -21,12 +20,10 @@ class SettingsDao {
   Future<int> updateSettings(SettingsModel settings) async {
     final db = await _databaseProvider.database;
     try {
-      final SettingsModel currentSettigs  = await getSettings();
-      
-      return db.update(_table, currentSettigs.copyWith(settings).toMap());
-    } catch (err) {
-      print(err);
-      return -1;
+      return await db.update(_table, settings.toMap());
+    } catch (_) {
+      print(_);
+      return null;
     }
   }
 }

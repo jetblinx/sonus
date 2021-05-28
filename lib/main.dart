@@ -14,8 +14,6 @@ void main() {
 }
 
 class Main extends StatelessWidget {
-  final bool darkTheme = true;
-
   @override
   Widget build(BuildContext context) {
 
@@ -39,7 +37,7 @@ class Main extends StatelessWidget {
                 );
               },
 
-              themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
+              themeMode: state.settings.theme == 0 || state.settings.theme == null ? ThemeMode.light : ThemeMode.dark,
               theme: ThemesRepisotory.light,
               darkTheme: ThemesRepisotory.dark,
               supportedLocales: L10n.all,
@@ -65,7 +63,7 @@ class Main extends StatelessWidget {
               );
             },
 
-            themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
+            themeMode: ThemeMode.dark,
             theme: ThemesRepisotory.light,
             darkTheme: ThemesRepisotory.dark,
             supportedLocales: L10n.all,
@@ -77,7 +75,7 @@ class Main extends StatelessWidget {
             ],
             home: Scaffold(
               body: Center(
-                child: SvgPicture.asset("assets/logo/logo_transparent.svg")
+                child: SvgPicture.asset("assets/logo/logo_transparent.svg", height: 150.0, width: 150.0,)
               )
             )
           );

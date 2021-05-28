@@ -21,6 +21,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final SettingsCubit settingsCubit = BlocProvider.of<SettingsCubit>(context);
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
       if (state is SettingsLoadedState) {
@@ -74,11 +75,11 @@ class _BodyState extends State<Body> {
                               Text(AppLocalizations.of(context).speech_recognition,
                                   style: Theme.of(context).textTheme.headline2),
                               // FlatSwitch(asrOn: asrOn),
-                              Switch(value: speechRecognition, onChanged: (bool value) {
-                                setState(() {
-                                  speechRecognition = value;
-                                });
-                                state.copyWith(SettingsModel(speechRecognition: value));
+                              Switch(value: state.settings.speechRecognition == 0 ? false : true, onChanged: (bool value) {
+                                // setState(() {
+                                //   speechRecognition = value;
+                                // });
+                                // state.copyWith(SettingsModel(speechRecognition: value ? 1 : 0));
                               })
                             ]),
                         SizedBox(
@@ -90,11 +91,12 @@ class _BodyState extends State<Body> {
                               Text(AppLocalizations.of(context).speech_to_text,
                                   style: Theme.of(context).textTheme.headline2),
                               // FlatSwitch(asrOn: asrOn),
-                              Switch(value: speechToText, onChanged: (bool value) {
-                                setState(() {
-                                  speechToText = value;
-                                });
-                                state.copyWith(SettingsModel(speechToText: value));
+                              Switch(value: state.settings.textToSpeech == 0 ? false : true, onChanged: (bool value) {
+                                if (value) {
+                                  settingsCubit.update(SettingsModel(textToSpeech: 1));
+                                } else {
+                                  settingsCubit.update(SettingsModel(textToSpeech: 0));
+                                }
                               })
                             ]),
                         SizedBox(
@@ -128,11 +130,10 @@ class _BodyState extends State<Body> {
                               Text(AppLocalizations.of(context).dark_theme,
                                   style: Theme.of(context).textTheme.headline2),
                               // FlatSwitch(asrOn: asrOn),
-                              Switch(value: theme, onChanged: (bool value) {
-                                setState(() {
-                                  theme = theme;
-                                });
-                                BlocProvider.of<SettingsCubit>(context).update(SettingsModel(theme: value));
+                              Switch(
+                                value: state.settings.theme == 0 || state.settings.theme == null 
+                                ? false : true, onChanged: (bool isDark) {
+                                settingsCubit.update(SettingsModel(theme: isDark ? 1 : 0));
                               })
                             ]),
                         SizedBox(
