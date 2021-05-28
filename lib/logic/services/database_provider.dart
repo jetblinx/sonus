@@ -63,7 +63,6 @@ class DatabaseProvider {
     ''');
 
 
-    // FIXME please
     // records groups table
     await db.execute('''
       CREATE TABLE records_groups(
@@ -89,6 +88,6 @@ class DatabaseProvider {
       INSERT INTO languages(id, name, language_code) VALUES(2, "Русский", "ru");
     ''');
 
-    await db.insert("settings", SettingsModel(id: 1, language: 2, speechRecognition: 1, textToSpeech: 1, theme: 1).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: 2, theme: 0, speechRecognition: 1, textToSpeech: 1).toMap());
   }
 }

@@ -9,12 +9,12 @@ abstract class SettingsState extends Equatable {
 
 class SettingsInitialState extends SettingsState {}
 
-class SettingsCurrentState extends SettingsState {
+class SettingsLoadedState extends SettingsState {
   final SettingsModel settings;
-  SettingsCurrentState(this.settings);
+  SettingsLoadedState(this.settings);
 
-  SettingsCurrentState copyWith(SettingsModel settings) {
-    return SettingsCurrentState(SettingsModel(
+  SettingsLoadedState copyWith(SettingsModel settings) {
+    return SettingsLoadedState(SettingsModel(
       id: settings.id ?? this.settings,
       language: settings.language ?? this.settings.language,
       theme: settings.theme != null ? settings.theme : this.settings.theme,
@@ -24,14 +24,14 @@ class SettingsCurrentState extends SettingsState {
   }
 }
 
-class SettingsPrevState extends SettingsState {
-  SettingsModel settings;
-  final SettingsCurrentState state;
-  SettingsPrevState({this.settings, this.state})  {
-    if (state != null) {
-      settings = state.settings;
-    }
-  }
-}
+// class SettingsPrevState extends SettingsState {
+//   SettingsModel settings;
+//   final SettingsLoadedState state;
+//   SettingsPrevState({this.settings, this.state})  {
+//     if (state != null) {
+//       settings = state.settings;
+//     }
+//   }
+// }
 
 class SettingsErrorState extends SettingsState {}

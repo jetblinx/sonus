@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
@@ -30,7 +31,7 @@ class _BodyState extends State<Body> {
         if (state is SettingsErrorState) settingsCubit.load();
       },
       builder: (context, state) {
-        if (state is SettingsCurrentState) {
+        if (state is SettingsLoadedState) {
           return Container(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
@@ -75,18 +76,19 @@ class _BodyState extends State<Body> {
                             height: getProportionateScreenHeight(15),
                           ),
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(AppLocalizations.of(context).speech_recognition,
-                                    style: Theme.of(context).textTheme.headline2),
-                                // FlatSwitch(asrOn: asrOn),
-                                Switch(value: state.settings.speechRecognition == 0 ? false : true, onChanged: (bool value) {
-                                  // setState(() {
-                                  //   speechRecognition = value;
-                                  // });
-                                  // state.copyWith(SettingsModel(speechRecognition: value ? 1 : 0));
-                                })
-                              ]),
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppLocalizations.of(context).speech_recognition,
+                                  style: Theme.of(context).textTheme.headline2),
+                              // FlatSwitch(asrOn: asrOn),
+                              Switch(
+                                value: Converter.intToBool(state.settings.speechRecognition), 
+                                onChanged: (bool value) {
+                                  settingsCubit.update(state.settings.copyWith(SettingsModel(speechRecognition: Converter.boolToInt(value))));
+                                }
+                              )
+                            ]
+                          ),
                           SizedBox(
                             height: getProportionateScreenHeight(15),
                           ),
@@ -96,13 +98,12 @@ class _BodyState extends State<Body> {
                                 Text(AppLocalizations.of(context).speech_to_text,
                                     style: Theme.of(context).textTheme.headline2),
                                 // FlatSwitch(asrOn: asrOn),
-                                Switch(value: state.settings.textToSpeech == 0 ? false : true, onChanged: (bool value) {
-                                  if (value) {
-                                    settingsCubit.update(SettingsModel(textToSpeech: 1));
-                                  } else {
-                                    settingsCubit.update(SettingsModel(textToSpeech: 0));
+                                Switch(
+                                  value: Converter.intToBool(state.settings.textToSpeech), 
+                                  onChanged: (bool value) {
+                                    settingsCubit.update(state.settings.copyWith(SettingsModel(textToSpeech: Converter.boolToInt(value))));
                                   }
-                                })
+                                )
                               ]),
                           SizedBox(
                             height: getProportionateScreenHeight(15),
@@ -135,12 +136,10 @@ class _BodyState extends State<Body> {
                                 Text(AppLocalizations.of(context).dark_theme,
                                     style: Theme.of(context).textTheme.headline2),
                                 // FlatSwitch(asrOn: asrOn),
-                                // FIXME aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                                 Switch(
                                   value: Converter.intToBool( state.settings.theme),
                                   onChanged: (bool isDark) {
-                                    Logger.log(state.settings.theme.toString());
-                                  settingsCubit.update(SettingsModel(theme: Converter.boolToInt(isDark)));
+                                    settingsCubit.update(state.settings.copyWith(SettingsModel(theme: Converter.boolToInt(isDark))));
                                   }
                                 )
                               ]),
@@ -164,7 +163,9 @@ class _BodyState extends State<Body> {
           );
         }
         return Scaffold(
-          body: Center(child: Text("Error of settings loading"),),
+          body:  Center(
+            child: SvgPicture.asset("assets/logo/logo_transparent.svg", height: 150.0, width: 150.0,)
+          )
         );    
       }
     );
