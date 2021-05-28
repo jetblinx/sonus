@@ -20,7 +20,9 @@ class SettingsDao {
   Future<int> updateSettings(SettingsModel settings) async {
     final db = await _databaseProvider.database;
     try {
-      return await db.update(_table, settings.toMap());
+      return await db.rawUpdate('''
+        UPDATE $_table SET language=${settings.language}, theme=${settings.theme} WHERE id=1
+      ''');
     } catch (_) {
       print(_);
       return null;

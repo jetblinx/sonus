@@ -7,21 +7,31 @@ abstract class SettingsState extends Equatable {
   List<Object> get props => [];
 }
 
-class SettingsLoadedState extends SettingsState {
+class SettingsInitialState extends SettingsState {}
+
+class SettingsCurrentState extends SettingsState {
   final SettingsModel settings;
+  SettingsCurrentState(this.settings);
 
-  SettingsLoadedState({this.settings});
-
-  // SettingsModel copyWith(SettingsModel settings) {
-  //   return SettingsModel(
-  //     id: settings.id ?? this.settings.id,
-  //     language: settings.language ?? this.settings.language,
-  //     theme: settings.theme != null ? settings.theme : this.settings.theme,
-  //     speechRecognition: settings.speechRecognition ?? this.settings.speechRecognition,
-  //     speechToText: settings.speechToText ?? this.settings.speechToText
-  //   );
-  // }
+  SettingsCurrentState copyWith(SettingsModel settings) {
+    return SettingsCurrentState(SettingsModel(
+      id: settings.id ?? this.settings,
+      language: settings.language ?? this.settings.language,
+      theme: settings.theme != null ? settings.theme : this.settings.theme,
+      speechRecognition: settings.speechRecognition != null ? settings.speechRecognition : this.settings.speechRecognition,
+      textToSpeech: settings.textToSpeech != null ? settings.textToSpeech : this.settings.textToSpeech
+    ));
+  }
 }
 
-class SettingsInitialState extends SettingsState {}
+class SettingsPrevState extends SettingsState {
+  SettingsModel settings;
+  final SettingsCurrentState state;
+  SettingsPrevState({this.settings, this.state})  {
+    if (state != null) {
+      settings = state.settings;
+    }
+  }
+}
+
 class SettingsErrorState extends SettingsState {}

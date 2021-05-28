@@ -2,12 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/logic/repositories/settings_repository.dart';
-import 'package:sonus/utils/logger.dart';
 
 part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
-  final SettingsRepository _repository = new SettingsRepository();
+  final SettingsRepository _repository = SettingsRepository();
 
   SettingsCubit() : super(SettingsInitialState()) {
     load();
@@ -15,30 +14,23 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> load() async {
     try {
+      if (state is SettingsCurrentState) {
+        emit(SettingsPrevState(state: state));
+      } else {
+        emit(SettingsInitialState());
+      }
+      print(state.toString());
       final settings = await _repository.settings;
-      emit(SettingsLoadedState(settings: settings));
-      Logger.log(settings.toString());
-    } catch (err) {
-      emit(SettingsErrorState());
+      emit(SettingsCurrentState(settings));
+      print(state.toString());
+    } catch (e) {
+      print(e);
     }
   }
 
   Future<void> update(SettingsModel settings) async {
-    final SettingsLoadedState currentState = state;
-    if (state is SettingsLoadedState) {
-      try {
-        emit(SettingsLoadedState(settings: currentState.settings.copyWith(settings)));
-        await _repository.update(currentState.settings.copyWith(settings));
-      } catch (err) {
-        emit(SettingsErrorState());
-      }
-    }
-    try {
-        emit(SettingsLoadedState(settings: settings));
-        await _repository.update(settings);
-      } catch (err) {
-        emit(SettingsErrorState());
-      }
+    emit(SettingsPrevState(state: state));
+    await _repository.update(settings);
+    load();
   }
-
 }
