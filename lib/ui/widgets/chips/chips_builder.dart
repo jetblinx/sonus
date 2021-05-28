@@ -19,7 +19,7 @@ class ChipBuilder extends StatefulWidget {
 class _ChipBuilderState extends State<ChipBuilder> {
 
   FlutterTts flutterTts;
-  Future<dynamic> _engine;
+  String _engine;
 
   @override
   void initState() {
@@ -35,7 +35,9 @@ class _ChipBuilderState extends State<ChipBuilder> {
     flutterTts.stop();
   }
 
-  void _sayQuickPhrase(chip) async {
+  Future _sayQuickPhrase(chip) async {
+    print(_engine);
+    print(flutterTts);
     await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.speak(chip);
     HapticFeedback.lightImpact();
@@ -43,8 +45,8 @@ class _ChipBuilderState extends State<ChipBuilder> {
   }
 
   _initTts() async {
-    FlutterTts flutterTts = FlutterTts();
-    _engine = await flutterTts.getDefaultEngine;
+    flutterTts = FlutterTts();
+    var _engine = await flutterTts.getDefaultEngine;
     flutterTts.setEngine(_engine.toString());
     print(_engine.toString());
     flutterTts.setLanguage("ru-RU");
