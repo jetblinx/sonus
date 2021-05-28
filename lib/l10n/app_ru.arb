@@ -12,5 +12,6 @@
   "dark_theme": "Темная тема",
   "settings_general": "Общие",
   "quick_tts": "Быстрая озвучка",
-  "notes": "Notes"
+  "notes": "Notes",
+  "note_groups": "Группы заметок"
 }

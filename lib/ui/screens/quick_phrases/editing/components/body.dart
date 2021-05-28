@@ -36,7 +36,7 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Theme.of(context).backgroundColor,
+            //color: Theme.of(context).backgroundColor,
             child: Column(
               children: [
                 SizedBox(

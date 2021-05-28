@@ -75,7 +75,7 @@ class Main extends StatelessWidget {
             ],
             home: Scaffold(
               body: Center(
-                child: SvgPicture.asset("assets/logo/logo_transparent.svg", height: 100.0,)
+                child: SvgPicture.asset("assets/logo/logo_transparent.svg", height: 75.0,)
               )
             )
           );
