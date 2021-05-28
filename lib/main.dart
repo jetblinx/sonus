@@ -24,7 +24,7 @@ class Main extends StatelessWidget {
           if (state is SettingsErrorState) BlocProvider.of<SettingsCubit>(context).load();
         },
         builder: (context, state) {
-          if (state is SettingsLoadedState) {
+          if (state is SettingsCurrentState) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Sonus',

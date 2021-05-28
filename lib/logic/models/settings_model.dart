@@ -27,7 +27,6 @@ class SettingsModel extends Equatable {
   };
 
   SettingsModel copyWith(SettingsModel settings) {
-    Logger.log(settings.toString());
     return SettingsModel(
       id: settings.id != null ? settings.id : this.id,
       language: settings.language ?? this.language,
