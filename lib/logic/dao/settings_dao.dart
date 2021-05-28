@@ -9,7 +9,12 @@ class SettingsDao {
     final db = await _databaseProvider.database;
     try {
       List<Map<String, dynamic>> result;
-      result = await db.query(_table, limit: 1);
+      result = await db.rawQuery('''
+        SELECT $_table.id, $_table.language, $_table.theme, 
+        $_table.speech_recognition, $_table.text_to_speech, 
+        languages.language_code FROM $_table
+        LEFT JOIN languages ON $_table.language=languages.id
+      ''');
       return result.isNotEmpty ? result.map((e) => SettingsModel.fromMap(e)).toList().first : null;
     } catch (_) {
       print(_);
@@ -20,9 +25,7 @@ class SettingsDao {
   Future<int> updateSettings(SettingsModel settings) async {
     final db = await _databaseProvider.database;
     try {
-      return await db.rawUpdate('''
-        UPDATE $_table SET language=${settings.language}, theme=${settings.theme} WHERE id=1
-      ''');
+      return await db.update(_table, settings.toMap());
     } catch (_) {
       print(_);
       return null;

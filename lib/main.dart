@@ -24,7 +24,7 @@ class Main extends StatelessWidget {
           if (state is SettingsErrorState) BlocProvider.of<SettingsCubit>(context).load();
         },
         builder: (context, state) {
-          if (state is SettingsCurrentState) {
+          if (state is SettingsLoadedState) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Sonus',
@@ -47,6 +47,7 @@ class Main extends StatelessWidget {
                 GlobalCupertinoLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate
               ],
+              // locale: state.settings.languageCode != null ? Locale(state.settings.languageCode) : null,
               home: Major(),
               routes: routes,
             );

@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:sonus/utils/logger.dart';
 
 class SettingsModel extends Equatable {
   final int id;
@@ -7,15 +6,17 @@ class SettingsModel extends Equatable {
   final int theme;
   final int speechRecognition;
   final int textToSpeech;
+  final String languageCode;
 
-  SettingsModel({this.id = 1, this.language, this.theme, this.speechRecognition, this.textToSpeech});
+  SettingsModel({this.id = 1, this.language, this.theme, this.speechRecognition, this.textToSpeech, this.languageCode});
 
   factory SettingsModel.fromMap(Map<String, dynamic> row) => SettingsModel(
     id: row["id"],
     language: row["language"],
     theme: row["theme"],
     speechRecognition: row["speech_recognition"],
-    textToSpeech: row["text_to_speech"]
+    textToSpeech: row["text_to_speech"],
+    languageCode: row["language_code"]
   );
 
   Map<String, dynamic> toMap() => {
@@ -38,4 +39,9 @@ class SettingsModel extends Equatable {
 
   @override
   List<Object> get props => [language, theme, speechRecognition, textToSpeech];
+
+  @override
+  String toString() {
+    return "SettingsModel(id: ${this.id}, language: ${this.language}, theme: ${this.theme}, speechRecognition: ${this.speechRecognition}, textToSpeech: ${this.textToSpeech})";
+  }
 }
