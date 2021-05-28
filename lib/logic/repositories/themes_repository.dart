@@ -7,13 +7,14 @@ class ThemesRepisotory {
     scaffoldBackgroundColor: kColorLightScaffoldBackground,
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: kColorLightScaffoldBackground,
-        systemNavigationBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor: Colors.transparent,
-      ),
+      backgroundColor: Colors.transparent,
+      // systemOverlayStyle: SystemUiOverlayStyle(
+      //   statusBarColor: Colors.transparent,
+      //   statusBarIconBrightness: Brightness.dark,
+      //   systemNavigationBarColor: kColorLightScaffoldBackground,
+      //   systemNavigationBarIconBrightness: Brightness.dark,
+      //   systemNavigationBarDividerColor: Colors.transparent,
+      // ),
     ),
     colorScheme: ColorScheme(
           primary: kColorPrimary,
@@ -92,13 +93,14 @@ class ThemesRepisotory {
       scaffoldBackgroundColor: kColorDarkScaffoldBackground,
       appBarTheme: AppBarTheme(
         brightness: Brightness.dark,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
-          systemNavigationBarColor: kColorDarkScaffoldBackground,
-          systemNavigationBarIconBrightness: Brightness.light,
-          systemNavigationBarDividerColor: Colors.transparent,
-        ),
+        backgroundColor: Colors.transparent,
+        // systemOverlayStyle: SystemUiOverlayStyle(
+        //   statusBarColor: Colors.transparent,
+        //   statusBarIconBrightness: Brightness.light,
+        //   systemNavigationBarColor: kColorDarkScaffoldBackground,
+        //   systemNavigationBarIconBrightness: Brightness.light,
+        //   systemNavigationBarDividerColor: Colors.transparent,
+        // ),
       ),
       colorScheme: ColorScheme(
           primary: kColorPrimary,
@@ -106,7 +108,7 @@ class ThemesRepisotory {
           secondary: kColorDarkSecondary,
           secondaryVariant: Colors.white,
           surface: Colors.white,
-          background: kColorDarkScaffoldBackground,
+          background: kColorDarkSecondary,
           error: Colors.white,
           onPrimary: Colors.white,
           onSecondary: Colors.white,

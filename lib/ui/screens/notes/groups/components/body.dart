@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(
                   child: Container(
-                    color: Theme.of(context).backgroundColor,
+                    //color: Theme.of(context).backgroundColor,
                   ),
                   height: getProportionateScreenHeight(10),
                 ),

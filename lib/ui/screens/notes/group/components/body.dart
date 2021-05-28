@@ -27,13 +27,10 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Theme.of(context).backgroundColor,
             child: Column(
               children: [
                 SizedBox(
-                  child: Container(
-                    color: Theme.of(context).backgroundColor,
-                  ),
+                  child: Container(),
                   height: getProportionateScreenHeight(10),
                 ),
                 Padding(
@@ -64,18 +61,18 @@ class Body extends StatelessWidget {
                 },
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
-                      customBorder: CircleBorder(),
-                      child: ListTile(
-                        title: Text(
-                          notes[index],
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
+                    customBorder: CircleBorder(),
+                    child: ListTile(
+                      title: Text(
+                        notes[index],
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
-                      onTap: () {
-                        Navigator.pushNamed(context, Note.routeName);
-                      },
-                    );
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Note.routeName);
+                    },
+                  );
                 },
                 itemCount: notes.length,
               ),
