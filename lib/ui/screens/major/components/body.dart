@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sonus/ui/screens/notes/notes.dart';
 import 'package:sonus/ui/screens/major/components/modules/tts.dart';
+import 'package:sonus/ui/screens/notes/groups/groups.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
 import 'package:sonus/utils/icons.dart';
@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
                       color: Theme.of(context).buttonColor,
                     ),
                     onPressed: () =>
-                        Navigator.pushNamed(context, Notes.routeName)),
+                        Navigator.pushNamed(context, Groups.routeName)),
                 IconButton(
                     icon: Icon(
                       kIconSettings,

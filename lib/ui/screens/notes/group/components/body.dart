@@ -4,6 +4,12 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
+  List groups = [
+    'Default',
+    'Friends',
+    'School',
+    'Food',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,6 @@ class Body extends StatelessWidget {
                     elevation: 0.0,
                   ),
                 ),
-              
               ],
             ),
           ),
@@ -46,13 +51,8 @@ class Body extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
               child: Stack(children: <Widget>[
                 SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: getProportionateScreenHeight(10),
-                      ),
-                    ],
-                  ),
+                  
+                  
                 ),
               ]),
             ),
