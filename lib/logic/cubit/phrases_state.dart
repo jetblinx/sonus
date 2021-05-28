@@ -7,11 +7,11 @@ abstract class PhrasesState extends Equatable {
   List<Object> get props => [];
 }
 
-class PhrasesInitial extends PhrasesState {}
+class PhrasesInitialState extends PhrasesState {}
 
-class PhrasesLoaded extends PhrasesState {
+class PhrasesLoadedState extends PhrasesState {
   final List<PhraseModel> phrases;
-  PhrasesLoaded(this.phrases);
+  PhrasesLoadedState(this.phrases);
 
   void copyWith(PhraseModel phrase) {
     this.phrases.add(phrase);

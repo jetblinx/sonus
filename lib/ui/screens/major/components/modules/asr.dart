@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/utils/constants.dart';
+import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/logger.dart';
 

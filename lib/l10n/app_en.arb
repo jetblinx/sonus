@@ -6,6 +6,7 @@
   "language": "Language",
   "modules": "Modules",
   "language_choosen": "English",
+  "no_phrases": "No quick prases",
   "settings": "Settings",
   "speech_recognition": "Speech recognition",
   "speech_to_text": "Speech to text",
