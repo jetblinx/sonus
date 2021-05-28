@@ -3,13 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
+import 'package:sonus/utils/logger.dart';
 
 class ASR extends StatelessWidget {
   
   final FlutterTts flutterTts = FlutterTts();
   Future _langs() async {
     List<dynamic> languages = await flutterTts.getLanguages;
-    print(languages);
+    Logger.log(languages.toString());
   }
 
   final bool asrOn = false;

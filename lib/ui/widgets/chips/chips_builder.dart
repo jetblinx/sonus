@@ -19,7 +19,7 @@ class ChipBuilder extends StatefulWidget {
 class _ChipBuilderState extends State<ChipBuilder> {
 
   FlutterTts flutterTts;
-  Future<dynamic> _engine;
+  String _engine;
 
   @override
   void initState() {
