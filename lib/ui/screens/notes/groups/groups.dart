@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class Notes extends StatelessWidget {
-  static String routeName = "/archive";
+class Groups extends StatelessWidget {
+  static String routeName = "/groups";
 
   @override
   Widget build(BuildContext context) {

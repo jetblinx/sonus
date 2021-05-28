@@ -37,6 +37,9 @@ double kPaddingScreenPageContent = getProportionateScreenWidth(15);
 
 double kPaddingBottom20 = getProportionateScreenWidth(20);
 
+// Groups
+double kPaddingGroupContainer = getProportionateScreenWidth(15);
+
 // Switch
 const double kPaddingSwitchCircle = 5;
 
