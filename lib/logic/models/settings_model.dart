@@ -12,7 +12,7 @@ class SettingsModel extends Equatable {
   factory SettingsModel.fromMap(Map<String, dynamic> row) => SettingsModel(
     id: row["id"],
     language: row["language"],
-    theme: row["theme"],
+    theme: row["theme"] == 1 ? true : false,
     speechRecognition: row["speech_recognition"] == 0 ? false : true,
     speechToText: row["speech_to_text"] == 0 ? false : true
   );

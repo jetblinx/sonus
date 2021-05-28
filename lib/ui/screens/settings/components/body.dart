@@ -1,128 +1,296 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/logic/cubit/settings_cubit.dart';
+import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
-class Body extends StatelessWidget {
-  final bool asrOn = true;
+class Body  extends StatefulWidget {
+  Body ({Key key}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  bool speechRecognition = false;
+  bool speechToText = false;
+  bool theme = true;
+  int language = 1;
 
   @override
   Widget build(BuildContext context) {
-
-    String accentColorGroupName = "Accent color";
-
-    return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          color: Theme.of(context).backgroundColor,
-          child: Column(
-            children: [
-              SizedBox(
-                height: getProportionateScreenHeight(10),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-                child: AppBar(
-                  iconTheme: IconThemeData(
-                    color: Theme.of(context).accentColor,
-                  ),
-                  centerTitle: true,
-                  title: Text(
-                    AppLocalizations.of(context).settings,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+      if (state is SettingsLoadedState) {
+          
+        return Container(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              color: Theme.of(context).backgroundColor,
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
+                children: [
+                  SizedBox(
+                    height: getProportionateScreenHeight(10),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+                    child: AppBar(
+                      iconTheme: IconThemeData(
+                        color: Theme.of(context).accentColor,
+                      ),
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context).settings,
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
                     ),
-                    Text(AppLocalizations.of(context).modules,
-                        style: Theme.of(context).textTheme.headline1),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context).speech_recognition,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asrOn: asrOn),
-                        ]),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context).speech_to_text,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asrOn: asrOn),
-                        ]),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context).quick_tts,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asrOn: asrOn),
-                        ]),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Divider(
-                      height: 1,
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Text(AppLocalizations.of(context).settings_general,
-                        style: Theme.of(context).textTheme.headline1),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context).dark_theme,
-                              style: Theme.of(context).textTheme.headline2),
-                          FlatSwitch(asrOn: asrOn),
-                        ]),
-                    SizedBox(
-                      height: getProportionateScreenHeight(15),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context).language,
-                              style: Theme.of(context).textTheme.headline2),
-                          Text(AppLocalizations.of(context).language_choosen,
-                              style: Theme.of(context).textTheme.headline1)
-                        ]
-                    ),
-                  ]),
-
+                  ),
+                ],
+              ),
             ),
-          ),
-        )
-      ]),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
+                        Text(AppLocalizations.of(context).modules,
+                            style: Theme.of(context).textTheme.headline1),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppLocalizations.of(context).speech_recognition,
+                                  style: Theme.of(context).textTheme.headline2),
+                              // FlatSwitch(asrOn: asrOn),
+                              Switch(value: speechRecognition, onChanged: (bool value) {
+                                setState(() {
+                                  speechRecognition = value;
+                                });
+                                state.copyWith(SettingsModel(speechRecognition: value));
+                              })
+                            ]),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppLocalizations.of(context).speech_to_text,
+                                  style: Theme.of(context).textTheme.headline2),
+                              // FlatSwitch(asrOn: asrOn),
+                              Switch(value: speechToText, onChanged: (bool value) {
+                                setState(() {
+                                  speechToText = value;
+                                });
+                                state.copyWith(SettingsModel(speechToText: value));
+                              })
+                            ]),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(AppLocalizations.of(context).quick_tts,
+                              style: Theme.of(context).textTheme.headline2
+                            ),
+                            // FlatSwitch(asrOn: asrOn),
+                          ]),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Divider(
+                          height: 1,
+                        ),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Text(AppLocalizations.of(context).settings_general,
+                            style: Theme.of(context).textTheme.headline1),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppLocalizations.of(context).dark_theme,
+                                  style: Theme.of(context).textTheme.headline2),
+                              // FlatSwitch(asrOn: asrOn),
+                              Switch(value: theme, onChanged: (bool value) {
+                                setState(() {
+                                  theme = theme;
+                                });
+                                BlocProvider.of<SettingsCubit>(context).update(SettingsModel(theme: value));
+                              })
+                            ]),
+                        SizedBox(
+                          height: getProportionateScreenHeight(15),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppLocalizations.of(context).language,
+                                  style: Theme.of(context).textTheme.headline2),
+                              Text(AppLocalizations.of(context).language_choosen,
+                                  style: Theme.of(context).textTheme.headline1)
+                            ]
+                        )
+                      ])
+                )
+              )
+            )
+          ])
+        );
+      }
+      return Scaffold(
+        body: Center(child: Text("Error of settings loading"),),
+      );    
+      }
     );
   }
 }
+
+// class Body extends StatelessWidget {
+//   final bool asrOn = true;
+
+//   @override
+//   Widget build(BuildContext context) {
+
+//     String accentColorGroupName = "Accent color";
+
+//     return BlocBuilder<SettingsCubit, SettingsState>(
+//       builder: (context, state) {
+//       if (state is SettingsLoadedState) {
+//         return Container(
+//           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+//             Container(
+//               color: Theme.of(context).backgroundColor,
+//               child: Column(
+//                 children: [
+//                   SizedBox(
+//                     height: getProportionateScreenHeight(10),
+//                   ),
+//                   Padding(
+//                     padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+//                     child: AppBar(
+//                       iconTheme: IconThemeData(
+//                         color: Theme.of(context).accentColor,
+//                       ),
+//                       centerTitle: true,
+//                       title: Text(
+//                         AppLocalizations.of(context).settings,
+//                         style: Theme.of(context).textTheme.caption,
+//                       ),
+//                       backgroundColor: Colors.transparent,
+//                       elevation: 0.0,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             Expanded(
+//               child: SingleChildScrollView(
+//                 child: Padding(
+//                   padding:
+//                       EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+//                   child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(20),
+//                         ),
+//                         Text(AppLocalizations.of(context).modules,
+//                             style: Theme.of(context).textTheme.headline1),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Text(AppLocalizations.of(context).speech_recognition,
+//                                   style: Theme.of(context).textTheme.headline2),
+//                               // FlatSwitch(asrOn: asrOn),
+//                               Switch(value: state.settings.speechRecognition, onChanged: (bool value) {
+//                                 state.copyWith(SettingsModel(speechRecognition: value));
+//                               })
+//                             ]),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Text(AppLocalizations.of(context).speech_to_text,
+//                                   style: Theme.of(context).textTheme.headline2),
+//                               // FlatSwitch(asrOn: asrOn),
+//                             ]),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Text(AppLocalizations.of(context).quick_tts,
+//                                   style: Theme.of(context).textTheme.headline2),
+//                               // FlatSwitch(asrOn: asrOn),
+//                             ]),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Divider(
+//                           height: 1,
+//                         ),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Text(AppLocalizations.of(context).settings_general,
+//                             style: Theme.of(context).textTheme.headline1),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Text(AppLocalizations.of(context).dark_theme,
+//                                   style: Theme.of(context).textTheme.headline2),
+//                               // FlatSwitch(asrOn: asrOn),
+//                             ]),
+//                         SizedBox(
+//                           height: getProportionateScreenHeight(15),
+//                         ),
+//                         Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Text(AppLocalizations.of(context).language,
+//                                   style: Theme.of(context).textTheme.headline2),
+//                               Text(AppLocalizations.of(context).language_choosen,
+//                                   style: Theme.of(context).textTheme.headline1)
+//                             ]
+//                         )
+//                       ])
+//                 )
+//               )
+//             )
+//           ])
+//         );
+//       }
+//       }
+//     );
+      
+//   }
+// }
 
 class FlatSwitch extends StatelessWidget {
   const FlatSwitch({

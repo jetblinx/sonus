@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:sonus/logic/models/language_model.dart';
+import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -60,22 +62,31 @@ class DatabaseProvider {
       )
     ''');
 
-    // records groups table
-    await db.execute('''
-      CREATE TABLE records_groups(
-        id INTEGER PRIMARY KEY,
-        name TEXT
-      )
+    // // records groups table
+    // await db.execute('''
+    //   CREATE TABLE records_groups(
+    //     id INTEGER PRIMARY KEY,
+    //     name TEXT
+    //   )
+    // ''');
+
+    // // records table 
+    // await db.execute('''
+    //   CREATE TABLE records(
+    //     id INTEGER PRIMARY KEY,
+    //     text TEXT,
+    //     group INTEGER,
+    //     FOREIGN KEY (group) REFERENCES records_groups (id)
+    //   )
+    // ''');
+    
+    await db.rawInsert('''
+      INSERT INTO languages(id, name, language_code) VALUES(1, "English", "en");
+    ''');
+    await db.rawInsert('''
+      INSERT INTO languages(id, name, language_code) VALUES(2, "Русский", "ru");
     ''');
 
-    // records table 
-    await db.execute('''
-      CREATE TABLE records(
-        id INTEGER PRIMARY KEY,
-        text TEXT
-        group INTEGER,
-        FOREIGN KEY (group) REFERENCES records_group (id)
-      )
-    ''');
+    await db.insert("settings", SettingsModel(id: 1, language: 2, speechRecognition: true, speechToText: true, theme: false).toMap());
   }
 }
