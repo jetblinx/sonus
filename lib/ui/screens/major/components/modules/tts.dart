@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
@@ -6,8 +7,12 @@ import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
   final TextEditingController _controller = new TextEditingController();
+  final FlutterTts flutterTts = FlutterTts();
 
   final List chips = [
+    "Привет",
+    "Как дела?",
+    "Что нового?",
     "Hi",
     "Hello",
     "How are you?",
@@ -22,6 +27,8 @@ class TTS extends StatelessWidget {
       kIconAdd,
     ),
   ];
+
+  final String language = "ru-RU";
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +53,8 @@ class TTS extends StatelessWidget {
                     ChipBuilder(
                       chips: chips,
                       onPress: "sound",
+                      flutterTts: flutterTts,
+                      language: language,
                     ),
                     SizedBox(
                       height: kPaddingBlockChips,

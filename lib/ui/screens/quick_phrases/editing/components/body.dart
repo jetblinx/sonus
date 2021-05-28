@@ -27,6 +27,8 @@ class Body extends StatelessWidget {
     "Go home",
   ];
 
+  final String language = "ru-RU";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -76,6 +78,7 @@ class Body extends StatelessWidget {
                       ChipBuilder(
                         chips: chips,
                         onPress: "open",
+                        language: language,
                       ),
                     ],
                   ),
