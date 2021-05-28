@@ -13,5 +13,6 @@
   "dark_theme": "Dark theme",
   "settings_general": "General",
   "quick_tts": "Quick TTS",
-  "notes": "Notes"
+  "notes": "Notes",
+  "note_groups": "Note Groups"
 }

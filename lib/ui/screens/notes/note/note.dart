@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import './components/body.dart';
+import 'components/body.dart';
 
-class QuickPhraseView extends StatelessWidget {
-  static String routeName = "/quick_phrase_view";
+class Note extends StatelessWidget {
+  static String routeName = "/note";
 
   @override
   Widget build(BuildContext context) {

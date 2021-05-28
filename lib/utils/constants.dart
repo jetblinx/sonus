@@ -9,6 +9,7 @@ Color kColorLightScaffoldBackground = Colors.grey[100];
 const Color kColorLightText = Color(0xFF333333);
 const Color kColorLightAccent = Color(0xFF333333);
 Color kColorLightDivider = Colors.grey[300];
+Color kColorLightSecondary = Colors.grey[200];
 
 // Common
 const Color kColorPrimary = Color(0xFF4CAF50);

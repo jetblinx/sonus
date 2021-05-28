@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:sonus/ui/screens/notes/group/group.dart';
 import 'package:sonus/ui/screens/notes/groups/groups.dart';
 import 'package:sonus/ui/screens/major/major.dart';
+import 'package:sonus/ui/screens/notes/note/note.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrase_view.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
@@ -15,9 +16,8 @@ final Map<String, WidgetBuilder> routes = {
 
   Groups.routeName: (context) => Groups(),
   GroupView.routeName: (context) => GroupView(),
+  Note.routeName: (context) => Note(),
 
   QuickPhrasesEditing.routeName: (context) => QuickPhrasesEditing(),
   QuickPhraseView.routeName: (context) => QuickPhraseView(),
-
-  
 };

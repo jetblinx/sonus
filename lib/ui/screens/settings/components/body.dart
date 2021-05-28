@@ -34,7 +34,7 @@ class _BodyState extends State<Body> {
           return Container(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
-                color: Theme.of(context).backgroundColor,
+                //color: Theme.of(context).backgroundColor,
                 child: Column(
                   children: [
                     SizedBox(

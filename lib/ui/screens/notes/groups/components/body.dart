@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/ui/screens/notes/group/group.dart';
+import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/utils/constants.dart';
+import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
+  final TextEditingController _controller = new TextEditingController();
+  
   final List groups = [
     'Default',
     'Friends',
@@ -20,12 +24,12 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Theme.of(context).backgroundColor,
+            //color: Theme.of(context).backgroundColor,
             child: Column(
               children: [
                 SizedBox(
                   child: Container(
-                    color: Theme.of(context).backgroundColor,
+                    //color: Theme.of(context).backgroundColor,
                   ),
                   height: getProportionateScreenHeight(10),
                 ),
@@ -37,7 +41,7 @@ class Body extends StatelessWidget {
                     ),
                     centerTitle: true,
                     title: Text(
-                      AppLocalizations.of(context).notes,
+                      AppLocalizations.of(context).note_groups,
                       style: Theme.of(context).textTheme.caption,
                     ),
                     backgroundColor: Colors.transparent,
@@ -49,11 +53,10 @@ class Body extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+              padding: EdgeInsets.symmetric(
+                  horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
               child: GridView.builder(
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
@@ -64,7 +67,10 @@ class Body extends StatelessWidget {
                     return InkWell(
                       customBorder: CircleBorder(),
                       child: Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).dividerColor,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).colorScheme.background,
+                        ),
                         child: Padding(
                           padding: EdgeInsets.all(kPaddingGroupContainer),
                           child: Center(
@@ -83,6 +89,16 @@ class Body extends StatelessWidget {
                   }),
             ),
           ),
+          Container(
+            child: TextInputField(
+              controller: _controller,
+              icon: Icon(
+                kIconAdd,
+                color: Theme.of(context).accentColor,
+              ),
+              isBorder: true,
+            ),
+          )
         ],
       ),
     );
