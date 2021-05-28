@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
+import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
@@ -32,44 +35,54 @@ class TTS extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-            child: Container(
-              constraints:
-                  BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
-              child: Scrollbar(
-                radius: Radius.circular(20),
-                child: ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  children: [
-                    SizedBox(
-                      height: kPaddingBlockChips,
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, settingsState) {
+        if (settingsState is SettingsLoadedState) {
+          if (Converter.intToBool(settingsState.settings.textToSpeech)) {
+            return Container(
+              color: Theme.of(context).backgroundColor,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
+                      child: Scrollbar(
+                        radius: Radius.circular(20),
+                        child: ListView(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          children: [
+                            SizedBox(
+                              height: kPaddingBlockChips,
+                            ),
+                            ChipBuilder(
+                              chips: chips,
+                              onPress: "sound",
+                              flutterTts: flutterTts,
+                              language: language,
+                            ),
+                            SizedBox(
+                              height: kPaddingBlockChips,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    ChipBuilder(
-                      chips: chips,
-                      onPress: "sound",
-                      flutterTts: flutterTts,
-                      language: language,
-                    ),
-                    SizedBox(
-                      height: kPaddingBlockChips,
-                    ),
-                  ],
-                ),
+                  ),
+                  TextInputField(
+                    controller: _controller,
+                    isBorder: true,
+                  ),
+                ],
               ),
-            ),
-          ),
-          TextInputField(
-            controller: _controller,
-            isBorder: true,
-          ),
-        ],
-      ),
+            );
+          }
+        }
+        return Container();
+      },
     );
+    
   }
 }

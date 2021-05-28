@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
 import 'package:sonus/utils/remove_scroll_glow.dart';
@@ -17,8 +18,11 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(
-      create: (context) => SettingsCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) =>SettingsCubit()),
+        BlocProvider(create: (context) => PhrasesCubit())
+      ],
       child: BlocConsumer<SettingsCubit, SettingsState>(
         listener: (context, state) {
           if (state is SettingsErrorState) BlocProvider.of<SettingsCubit>(context).load();
@@ -48,7 +52,10 @@ class Main extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate
               ],
               // locale: state.settings.languageCode != null ? Locale(state.settings.languageCode) : null,
-              home: Major(),
+              home: BlocProvider.value(
+                value: BlocProvider.of<PhrasesCubit>(context),
+                child: Major()
+              ) ,
               routes: routes,
             );
           }

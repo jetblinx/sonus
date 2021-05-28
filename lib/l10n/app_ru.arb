@@ -6,6 +6,7 @@
   "language": "Язык",
   "modules": "Модули",
   "language_choosen": "Русский",
+  "no_phrases": "Нет быстрых фраз",
   "settings": "Настройки",
   "speech_recognition": "Распознавание речи",
   "speech_to_text": "Речь в текст",

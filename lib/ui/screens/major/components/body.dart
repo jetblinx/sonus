@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/ui/screens/major/components/modules/tts.dart';
 import 'package:sonus/ui/screens/notes/groups/groups.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrases_editing.dart';
@@ -46,11 +48,21 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
-          ASR(),
+          Container(
+            child: BlocProvider.value(
+              value: BlocProvider.of<PhrasesCubit>(context), 
+              child: ASR()
+            )
+          ),
           Divider(
             height: 1,
           ),
-          Container(child: TTS()),
+          Container(
+            child: BlocProvider.value(
+              value: BlocProvider.of<PhrasesCubit>(context), 
+              child: TTS()
+            )
+          )
         ],
       ),
     );

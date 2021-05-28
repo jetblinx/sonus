@@ -6,7 +6,6 @@ import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
-import 'package:sonus/utils/logger.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body  extends StatefulWidget {
@@ -84,6 +83,9 @@ class _BodyState extends State<Body> {
                               Switch(
                                 value: Converter.intToBool(state.settings.speechRecognition), 
                                 onChanged: (bool value) {
+                                  if (!value) {
+                                    return settingsCubit.update(state.settings.copyWith(SettingsModel(speechRecognition: Converter.boolToInt(value), textToSpeech: 1)));
+                                  }
                                   settingsCubit.update(state.settings.copyWith(SettingsModel(speechRecognition: Converter.boolToInt(value))));
                                 }
                               )
@@ -101,6 +103,9 @@ class _BodyState extends State<Body> {
                                 Switch(
                                   value: Converter.intToBool(state.settings.textToSpeech), 
                                   onChanged: (bool value) {
+                                    if (!value) { 
+                                      return settingsCubit.update(state.settings.copyWith(SettingsModel(textToSpeech: Converter.boolToInt(value), speechRecognition: 1)));
+                                    }
                                     settingsCubit.update(state.settings.copyWith(SettingsModel(textToSpeech: Converter.boolToInt(value))));
                                   }
                                 )
