@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/utils/icons.dart';
 
 class TextInputField extends StatelessWidget {
   TextInputField({
@@ -44,7 +45,7 @@ class TextInputField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
           child: TextFormField(
-            controller: _controller,
+            // controller: _controller,
             initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
@@ -52,20 +53,22 @@ class TextInputField extends StatelessWidget {
             onChanged: onChanged,
             cursorColor: Colors.black,
             decoration: InputDecoration(
-                border: InputBorder.none,
-                hintStyle: Theme.of(context).textTheme.headline3,
-                hintText: AppLocalizations.of(context).enter_text,
-                suffixIcon: icon != null
-                    ? IconButton(
-                        icon: icon,
-                        onPressed: () { 
-                          onPressed();
-                          // if (autoClear) {
-                          //   _controller.clear();
-                          // }
-                        },
-                      )
-                    : null),
+              border: InputBorder.none,
+              hintStyle: Theme.of(context).textTheme.headline3,
+              hintText: AppLocalizations.of(context).enter_text,
+              // prefixIcon: IconButton(onPressed: ()=> clearField, icon: Icon(kIconDelete)),
+              suffixIcon: icon != null
+              ? IconButton(
+                  icon: icon,
+                  onPressed: () { 
+                    onPressed();
+                    // if (autoClear) {
+                    //   _controller.clear();
+                    // }
+                  },
+                )
+              : null
+            ),
             minLines: 1,
             maxLines: maxLines != null ? kSizeTextFieldLines : null,
           ),

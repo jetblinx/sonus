@@ -4,13 +4,13 @@ import 'package:equatable/equatable.dart';
 part 'tts_fied_state.dart';
 
 class TtsFiedCubit extends Cubit<String> {
-  TtsFiedCubit() : super(null);
+  TtsFiedCubit() : super("");
 
   void update(String value) {
     emit(value);
   }
 
   void clear() {
-    emit(null);
+    emit("");
   }
 }
