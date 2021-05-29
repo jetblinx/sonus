@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sonus/utils/constants.dart';
-import 'package:sonus/utils/icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TextInputField extends StatelessWidget {
@@ -10,13 +9,17 @@ class TextInputField extends StatelessWidget {
     this.isBorder,
     this.backgroundTransaprent = false,
     this.centerAlign = false,
+    this.onPressed,
     this.maxLines = kSizeTextFieldLines,
     this.onChanged,
+    this.autoClear = false,
     this.initialValue
   }) : super(key: key);
 
+  final _controller = TextEditingController();
+  final bool autoClear;
   final void Function(String) onChanged;
-
+  final Function onPressed;
   final String initialValue;
   final Icon icon;
   final bool isBorder;
@@ -41,6 +44,7 @@ class TextInputField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
           child: TextFormField(
+            controller: _controller,
             initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
@@ -51,11 +55,15 @@ class TextInputField extends StatelessWidget {
                 border: InputBorder.none,
                 hintStyle: Theme.of(context).textTheme.headline3,
                 hintText: AppLocalizations.of(context).enter_text,
-                icon: icon == null ? null : Icon(kIconDismiss),
                 suffixIcon: icon != null
                     ? IconButton(
                         icon: icon,
-                        onPressed: () {},
+                        onPressed: () { 
+                          onPressed();
+                          // if (autoClear) {
+                          //   _controller.clear();
+                          // }
+                        },
                       )
                     : null),
             minLines: 1,

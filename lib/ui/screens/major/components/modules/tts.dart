@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
+import 'package:sonus/logic/cubit/tts_fied_cubit.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
-import 'package:sonus/utils/icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/utils/icons.dart';
 
 
 class TTS extends StatelessWidget {
@@ -28,110 +29,131 @@ class TTS extends StatelessWidget {
               if (phrasesState is PhrasesLoadedState) BlocProvider.of<PhrasesCubit>(context).load();
             },
             builder: (context, phrasesState) {
-              if (phrasesState is PhrasesLoadedState) {
-                if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
-                  return Container(
-                    color: Theme.of(context).backgroundColor,
-                    child: Column(
-                      children: [
-                        Divider(
-                          height: 1,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                          child: phrasesState.phrases.isNotEmpty 
-                          ? Container(
-                            constraints: BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
-                            child: Scrollbar(
-                              radius: Radius.circular(20),
-                              child: ListView(
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.zero,
-                                  children: [
-                                    SizedBox(
-                                      height: kPaddingBlockChips,
-                                    ),
-                                    ChipBuilder(
-                                      phrases: phrasesState.phrases,
-                                      onPress: "sound",
-                                      flutterTts: flutterTts,
-                                      language: language,
-                                    ),
-                                    SizedBox(
-                                      height: kPaddingBlockChips,
-                                    ),
-                                  ],
-                              ) 
+              return BlocProvider(
+                create: (context) => TtsFiedCubit(),
+                child: BlocBuilder<TtsFiedCubit, String>(
+                builder: (context, ttsFiedValue) {
+                  if (phrasesState is PhrasesLoadedState) {
+                    if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
+                      return Container(
+                        color: Theme.of(context).backgroundColor,
+                        child: Column(
+                          children: [
+                            Divider(
+                              height: 1,
                             ),
-                          ) 
-                          : Container(),
-                        ),
-                        TextInputField(
-                          isBorder: true,
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
-                  if (phrasesState.phrases.isNotEmpty) {
-                    return Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Padding(
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                              child:  Container(
-                                height: MediaQuery.of(context).size.height/1.28,
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.zero,
-                                  children: [
-                                    SizedBox(
-                                      height: kPaddingBlockChips,
+                              child: phrasesState.phrases.isNotEmpty 
+                              ? Container(
+                                constraints: BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
+                                child: Scrollbar(
+                                  radius: Radius.circular(20),
+                                  child: ListView(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.zero,
+                                      children: [
+                                        SizedBox(
+                                          height: kPaddingBlockChips,
+                                        ),
+                                        ChipBuilder(
+                                          phrases: phrasesState.phrases,
+                                          onPress: "sound",
+                                          flutterTts: flutterTts,
+                                          language: language,
+                                        ),
+                                        SizedBox(
+                                          height: kPaddingBlockChips,
+                                        ),
+                                      ],
+                                  ) 
+                                ),
+                              ) 
+                              : Container(),
+                            ),
+                            TextInputField(
+                              onChanged: (String value) {
+                                BlocProvider.of<TtsFiedCubit>(context).update(value);
+                              },
+                              autoClear: true,
+                              isBorder: true,
+                              icon: Icon(kIconSend),
+                              onPressed: () async {
+                                HapticFeedback.lightImpact();
+                                await flutterTts.setLanguage(language);
+                                await flutterTts.setPitch(1.0);
+                                await flutterTts.setSpeechRate(0.9);
+                                await flutterTts.speak(ttsFiedValue);
+                                print(ttsFiedValue);
+                                BlocProvider.of<TtsFiedCubit>(context).clear();                    
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
+                      if (phrasesState.phrases.isNotEmpty) {
+                        return Expanded(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                                  child:  Container(
+                                    height: MediaQuery.of(context).size.height/1.28,
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.zero,
+                                      children: [
+                                        SizedBox(
+                                          height: kPaddingBlockChips,
+                                        ),
+                                        ChipBuilder(
+                                          phrases: phrasesState.phrases,
+                                          onPress: "sound",
+                                          flutterTts: flutterTts,
+                                          language: language,
+                                        ),
+                                        SizedBox(
+                                          height: kPaddingBlockChips,
+                                        ),
+                                      ],
                                     ),
-                                    ChipBuilder(
-                                      phrases: phrasesState.phrases,
-                                      onPress: "sound",
-                                      flutterTts: flutterTts,
-                                      language: language,
-                                    ),
-                                    SizedBox(
-                                      height: kPaddingBlockChips,
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
+                              TextInputField(
+                                isBorder: true,
+                              ),
+                            ],
                           ),
-                          TextInputField(
-                            isBorder: true,
+                        );
+                      } else {
+                        return Expanded(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                                  child: Center(
+                                    child: Text(AppLocalizations.of(context).no_phrases)
+                                  )
+                                )
+                              ),
+                              TextInputField(
+                                isBorder: true,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                              child: Center(
-                                child: Text(AppLocalizations.of(context).no_phrases)
-                              )
-                            )
-                          ),
-                          TextInputField(
-                            isBorder: true,
-                          ),
-                        ],
-                      ),
-                    );
+                        );
+                      }
+                    }
                   }
-                }
-              }
-              return Container();
+                  return Container();
+                },
+              )
+              );
             }
           );
         }
