@@ -12,24 +12,6 @@ import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
 
-  final List chips = [
-    "Hi",
-    "Hello",
-    "How are you? fdgdf gdfgdfgfdgf gfgfg fgfgfgffgh ffgfgfgfhghfg fgfg",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-  ];
-
   final String language = "ru-RU";
 
   @override

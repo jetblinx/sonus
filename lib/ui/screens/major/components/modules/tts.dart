@@ -13,99 +13,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TTS extends StatelessWidget {
   final FlutterTts flutterTts = FlutterTts();
-  final TextEditingController _textController = TextEditingController();
-
-  final List chips = [
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Привет",
-    "Как дела?",
-    "Что нового?",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    "Go home",
-    "Hi",
-    "Hello",
-    "How are you?",
-    "What's up?",
-    //"Go home",
-    Icon(
-      kIconAdd,
-    ),
-  ];
 
   final String language = "ru-RU";
   final _formKey = new GlobalKey<FormState>();
@@ -168,7 +75,7 @@ class TTS extends StatelessWidget {
                   );
                 }
                 if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
-                  
+                  final List<dynamic> phrases = phrasesState.phrases;
                   return Expanded(
                     //color: Theme.of(context).backgroundColor,
                     child: Column(
@@ -186,7 +93,7 @@ class TTS extends StatelessWidget {
                                     height: kPaddingBlockChips,
                                   ),
                                   ChipBuilder(
-                                    phrases: chips,
+                                    phrases: phrases,
                                     onPress: "sound",
                                     flutterTts: flutterTts,
                                     language: language,
