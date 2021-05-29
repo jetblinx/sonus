@@ -3,20 +3,21 @@ import 'package:sonus/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TextInputField extends StatelessWidget {
-  TextInputField({
-    Key key,
-    this.icon,
-    this.isBorder,
-    this.backgroundTransaprent = false,
-    this.centerAlign = false,
-    this.onPressed,
-    this.maxLines = kSizeTextFieldLines,
-    this.onChanged,
-    this.autoClear = false,
-    this.initialValue
-  }) : super(key: key);
+  TextInputField(
+      {Key key,
+      this.icon,
+      this.isBorder,
+      this.backgroundTransaprent = false,
+      this.centerAlign = false,
+      this.onPressed,
+      this.maxLines = kSizeTextFieldLines,
+      this.onChanged,
+      this.autoClear = false,
+      this.initialValue,
+      this.controller})
+      : super(key: key);
 
-  final _controller = TextEditingController();
+  final TextEditingController controller;
   final bool autoClear;
   final void Function(String) onChanged;
   final Function onPressed;
@@ -44,7 +45,7 @@ class TextInputField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
           child: TextFormField(
-            controller: _controller,
+            controller: controller,
             initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
@@ -58,7 +59,7 @@ class TextInputField extends StatelessWidget {
                 suffixIcon: icon != null
                     ? IconButton(
                         icon: icon,
-                        onPressed: () { 
+                        onPressed: () {
                           onPressed();
                           // if (autoClear) {
                           //   _controller.clear();
