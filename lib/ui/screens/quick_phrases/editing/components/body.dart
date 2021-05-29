@@ -7,7 +7,6 @@ import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  final TextEditingController _controller = new TextEditingController();
 
   final List chips = [
     "Hi",
