@@ -18,6 +18,7 @@ class TTS extends StatelessWidget {
 
   final String language = "ru-RU";
   final _formKey = new GlobalKey<FormState>();
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +74,13 @@ class TTS extends StatelessWidget {
                             ),
                             TextInputField(
                               onChanged: (String value) {
+                                print(value);
                                 BlocProvider.of<TtsFiedCubit>(context).update(value);
                               },
+                              controller: _controller,
                               autoClear: true,
                               isBorder: true,
-                              icon: Icon(kIconSend),
+                              icon: _controller.text.isEmpty ? null : Icon(kIconSend),
                               onPressed: () async {
                                 HapticFeedback.lightImpact();
                                 await flutterTts.setLanguage(language);

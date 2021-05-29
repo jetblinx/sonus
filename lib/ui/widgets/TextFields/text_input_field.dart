@@ -4,20 +4,21 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/utils/icons.dart';
 
 class TextInputField extends StatelessWidget {
-  TextInputField({
-    Key key,
-    this.icon,
-    this.isBorder,
-    this.backgroundTransaprent = false,
-    this.centerAlign = false,
-    this.onPressed,
-    this.maxLines = kSizeTextFieldLines,
-    this.onChanged,
-    this.autoClear = false,
-    this.initialValue
-  }) : super(key: key);
+  TextInputField(
+      {Key key,
+      this.icon,
+      this.isBorder,
+      this.backgroundTransaprent = false,
+      this.centerAlign = false,
+      this.onPressed,
+      this.maxLines = kSizeTextFieldLines,
+      this.onChanged,
+      this.autoClear = false,
+      this.initialValue,
+      this.controller})
+      : super(key: key);
 
-  final _controller = TextEditingController();
+  final TextEditingController controller;
   final bool autoClear;
   final void Function(String) onChanged;
   final Function onPressed;
@@ -45,7 +46,7 @@ class TextInputField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
           child: TextFormField(
-            // controller: _controller,
+            controller: controller,
             initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
@@ -53,22 +54,20 @@ class TextInputField extends StatelessWidget {
             onChanged: onChanged,
             cursorColor: Colors.black,
             decoration: InputDecoration(
-              border: InputBorder.none,
-              hintStyle: Theme.of(context).textTheme.headline3,
-              hintText: AppLocalizations.of(context).enter_text,
-              // prefixIcon: IconButton(onPressed: ()=> clearField, icon: Icon(kIconDelete)),
-              suffixIcon: icon != null
-              ? IconButton(
-                  icon: icon,
-                  onPressed: () { 
-                    onPressed();
-                    // if (autoClear) {
-                    //   _controller.clear();
-                    // }
-                  },
-                )
-              : null
-            ),
+                border: InputBorder.none,
+                hintStyle: Theme.of(context).textTheme.headline3,
+                hintText: AppLocalizations.of(context).enter_text,
+                suffixIcon: icon != null
+                    ? IconButton(
+                        icon: icon,
+                        onPressed: () {
+                          onPressed();
+                          if (autoClear) {
+                            controller.clear();
+                          }
+                        },
+                      )
+                    : null),
             minLines: 1,
             maxLines: maxLines != null ? kSizeTextFieldLines : null,
           ),
