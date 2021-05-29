@@ -82,10 +82,10 @@ class DatabaseProvider {
     ''');
     
     await db.rawInsert('''
-      INSERT INTO languages(id, name, language_code) VALUES(1, "English", "en");
+      INSERT INTO languages(id, name, language_code) VALUES(1, 'English', 'en');
     ''');
     await db.rawInsert('''
-      INSERT INTO languages(id, name, language_code) VALUES(2, "Русский", "ru");
+      INSERT INTO languages(id, name, language_code) VALUES(2, 'Русский', 'ru');
     ''');
 
     await db.insert("settings", SettingsModel(id: 1, language: 2, theme: 0, speechRecognition: 1, textToSpeech: 1).toMap());

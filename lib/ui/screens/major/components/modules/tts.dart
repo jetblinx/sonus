@@ -25,6 +25,79 @@ class TTS extends StatelessWidget {
     "Hello",
     "How are you?",
     "What's up?",
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Привет",
+    "Как дела?",
+    "Что нового?",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
+    "Go home",
+    "Hi",
+    "Hello",
+    "How are you?",
+    "What's up?",
     //"Go home",
     Icon(
       kIconAdd,
@@ -38,11 +111,14 @@ class TTS extends StatelessWidget {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, settingsState) {
         if (settingsState is SettingsLoadedState) {
-          if (Converter.intToBool(settingsState.settings.textToSpeech)) {
+          if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
             return Container(
               color: Theme.of(context).backgroundColor,
               child: Column(
                 children: [
+                  Divider(
+                    height: 1,
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
                     child: Container(
@@ -78,6 +154,47 @@ class TTS extends StatelessWidget {
               ),
             );
           }
+          if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
+            return Container(
+              color: Theme.of(context).backgroundColor,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                    child: Container(
+                      constraints: BoxConstraints(minHeight: 0, maxHeight: MediaQuery.of(context).size.height/1.2),
+                      child: Scrollbar(
+                        radius: Radius.circular(20),
+                        child: ListView(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          children: [
+                            SizedBox(
+                              height: kPaddingBlockChips,
+                            ),
+                            ChipBuilder(
+                              chips: chips,
+                              onPress: "sound",
+                              flutterTts: flutterTts,
+                              language: language,
+                            ),
+                            SizedBox(
+                              height: kPaddingBlockChips,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextInputField(
+                    controller: _controller,
+                    isBorder: true,
+                  ),
+                ],
+              ),
+            );
+          }
+
         }
         return Container();
       },

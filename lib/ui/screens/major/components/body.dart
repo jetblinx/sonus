@@ -54,15 +54,12 @@ class Body extends StatelessWidget {
               child: ASR(),
             )
           ),
-          Divider(
-            height: 1,
-          ),
           Container(
             child: BlocProvider.value(
               value: BlocProvider.of<PhrasesCubit>(context), 
               child: TTS()
-            )
-          )
+            ),
+          ),
         ],
       ),
     );
