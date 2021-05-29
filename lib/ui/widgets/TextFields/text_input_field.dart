@@ -46,7 +46,7 @@ class TextInputField extends StatelessWidget {
           controller: _controller,
           textCapitalization: TextCapitalization.sentences,
           onChanged: (String text) => _textBloc.updateText(text),
-          //cursorColor: Colors.black,
+          cursorColor: Colors.black,
           decoration: InputDecoration(
               border: InputBorder.none,
               hintStyle: Theme.of(context).textTheme.headline3,
