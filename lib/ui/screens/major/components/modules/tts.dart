@@ -160,12 +160,11 @@ class TTS extends StatelessWidget {
               color: Theme.of(context).backgroundColor,
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                    child: Container(
-                      constraints: BoxConstraints(minHeight: 0, maxHeight: MediaQuery.of(context).size.height/1.2),
-                      child: Scrollbar(
-                        radius: Radius.circular(20),
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                      child:  Container(
+                        height: MediaQuery.of(context).size.height/1.28,
                         child: ListView(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
@@ -187,9 +186,12 @@ class TTS extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextInputField(
-                    controller: _controller,
-                    isBorder: true,
+                  Container(
+                    height: 80,
+                    child: TextInputField(
+                      controller: _controller,
+                      isBorder: true,
+                    ),
                   ),
                 ],
               ),
