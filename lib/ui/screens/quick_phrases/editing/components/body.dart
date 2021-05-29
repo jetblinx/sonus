@@ -79,10 +79,10 @@ class Body extends StatelessWidget {
             onPressed: () {
               if (text != "") {
                 if (phrase != null) {
-                  BlocProvider.of<PhrasesCubit>(context).update(phrase.copyWith(value: text));
+                  BlocProvider.of<PhrasesCubit>(context).update(phrase.copyWith(value: text.trim()));
                 }
                 else {
-                  BlocProvider.of<PhrasesCubit>(context).add(PhraseModel(value: text));
+                  BlocProvider.of<PhrasesCubit>(context).add(PhraseModel(value: text.trim()));
                 }
                 Navigator.pop(context);
               }

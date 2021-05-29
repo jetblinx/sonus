@@ -17,8 +17,8 @@ class TTS extends StatelessWidget {
   final FlutterTts flutterTts = FlutterTts();
 
   final String language = "ru-RU";
-  final _formKey = new GlobalKey<FormState>();
-  TextEditingController _controller = TextEditingController();
+  // final _formKey = new GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
