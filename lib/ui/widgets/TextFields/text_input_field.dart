@@ -40,25 +40,27 @@ class TextInputField extends StatelessWidget {
         child: StreamBuilder(
             stream: _textBloc.textStream,
             builder: (ctxt, AsyncSnapshot<String> textStream) {
-              return TextField(
-                style: Theme.of(context).textTheme.headline3,
-                textAlign: centerAlign ? TextAlign.center : TextAlign.start,
-                textCapitalization: TextCapitalization.sentences,
-                onChanged: (String text) => _textBloc.updateText(text),
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintStyle: Theme.of(context).textTheme.headline3,
-                    hintText: AppLocalizations.of(context).enter_text,
-                    icon: textStream.hasError ? null : Icon(kIconDismiss),
-                    suffixIcon: icon != null
-                        ? IconButton(
-                            icon: icon,
-                            onPressed: () {},
-                          )
-                        : null),
-                minLines: 1,
-                maxLines: maxLines != null ? kSizeTextFieldLines : null,
+              return Form(
+                child: TextFormField(
+                  style: Theme.of(context).textTheme.headline3,
+                  textAlign: centerAlign ? TextAlign.center : TextAlign.start,
+                  textCapitalization: TextCapitalization.sentences,
+                  onChanged: (String text) => _textBloc.updateText(text),
+                  cursorColor: Colors.black,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintStyle: Theme.of(context).textTheme.headline3,
+                      hintText: AppLocalizations.of(context).enter_text,
+                      icon: textStream.hasError ? null : Icon(kIconDismiss),
+                      suffixIcon: icon != null
+                          ? IconButton(
+                              icon: icon,
+                              onPressed: () {},
+                            )
+                          : null),
+                  minLines: 1,
+                  maxLines: maxLines != null ? kSizeTextFieldLines : null,
+                ),
               );
             }),
       ),
