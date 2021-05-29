@@ -9,7 +9,6 @@ import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
-  final TextEditingController _controller = new TextEditingController();
   final FlutterTts flutterTts = FlutterTts();
 
   final List chips = [
@@ -148,7 +147,6 @@ class TTS extends StatelessWidget {
                     ),
                   ),
                   TextInputField(
-                    controller: _controller,
                     isBorder: true,
                   ),
                 ],
@@ -189,7 +187,6 @@ class TTS extends StatelessWidget {
                   Container(
                     height: 80,
                     child: TextInputField(
-                      controller: _controller,
                       isBorder: true,
                     ),
                   ),

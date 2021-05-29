@@ -7,7 +7,6 @@ import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  final TextEditingController _controller = new TextEditingController();
   
   final List groups = [
     'Default',
@@ -91,7 +90,6 @@ class Body extends StatelessWidget {
           ),
           Container(
             child: TextInputField(
-              controller: _controller,
               icon: Icon(
                 kIconAdd,
                 color: Theme.of(context).accentColor,

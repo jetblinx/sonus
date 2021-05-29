@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
           Container(
             child: BlocProvider.value(
               value: BlocProvider.of<PhrasesCubit>(context), 
-              child: ASR()
+              child: ASR(),
             )
           ),
           Container(

@@ -6,7 +6,6 @@ import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  final TextEditingController _controller = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,6 @@ class Body extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
           child: TextInputField(
             maxLines: null,
-            controller: _controller,
             backgroundTransaprent: true,  
           ),
         )),
