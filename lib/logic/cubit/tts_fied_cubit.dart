@@ -7,7 +7,7 @@ class TtsFiedCubit extends Cubit<String> {
   TtsFiedCubit() : super("");
 
   void update(String value) {
-    emit(value);
+    emit(value.trim());
   }
 
   void clear() {

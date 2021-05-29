@@ -77,7 +77,7 @@ class Body extends StatelessWidget {
               color: Theme.of(context).buttonColor,
             ),
             onPressed: () {
-              if (text != "") {
+              if (text.trim() != "") {
                 if (phrase != null) {
                   BlocProvider.of<PhrasesCubit>(context).update(phrase.copyWith(value: text.trim()));
                 }
