@@ -77,14 +77,23 @@ class Body extends StatelessWidget {
               color: Theme.of(context).buttonColor,
             ),
             onPressed: () {
-              if (text != null || text != "") {
-                if (phrase != null) BlocProvider.of<PhrasesCubit>(context).update(phrase.copyWith(value: text));
-                else BlocProvider.of<PhrasesCubit>(context).add(PhraseModel(value: text));
+              if (text != "") {
+                if (phrase != null) {
+                  BlocProvider.of<PhrasesCubit>(context).update(phrase.copyWith(value: text));
+                }
+                else {
+                  BlocProvider.of<PhrasesCubit>(context).add(PhraseModel(value: text));
+                }
                 Navigator.pop(context);
               }
             },
             iconSize: kSizeButtonComplete,
           ),
+        ),
+        SizedBox(
+          child: Container(
+          ),
+          height: getProportionateScreenHeight(15),
         ),
       ]),
     );

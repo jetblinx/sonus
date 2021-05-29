@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
@@ -122,8 +123,6 @@ class TTS extends StatelessWidget {
             builder: (context, phrasesState) {
               if (phrasesState is PhrasesLoadedState) {
                 if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
-                  final List<dynamic> phrases = phrasesState.phrases;
-                  // phrases.add(Icon(kIconAdd));
                   return Container(
                     color: Theme.of(context).backgroundColor,
                     child: Column(
@@ -146,7 +145,7 @@ class TTS extends StatelessWidget {
                                       height: kPaddingBlockChips,
                                     ),
                                     ChipBuilder(
-                                      phrases: phrases,
+                                      phrases: phrasesState.phrases,
                                       onPress: "sound",
                                       flutterTts: flutterTts,
                                       language: language,
@@ -168,43 +167,61 @@ class TTS extends StatelessWidget {
                   );
                 }
                 if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
-                  
-                  return Expanded(
-                    //color: Theme.of(context).backgroundColor,
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                            child:  Container(
-                              height: MediaQuery.of(context).size.height/1.28,
-                              child: ListView(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.zero,
-                                children: [
-                                  SizedBox(
-                                    height: kPaddingBlockChips,
-                                  ),
-                                  ChipBuilder(
-                                    phrases: chips,
-                                    onPress: "sound",
-                                    flutterTts: flutterTts,
-                                    language: language,
-                                  ),
-                                  SizedBox(
-                                    height: kPaddingBlockChips,
-                                  ),
-                                ],
+                  if (phrasesState.phrases.isNotEmpty) {
+                    return Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                              child:  Container(
+                                height: MediaQuery.of(context).size.height/1.28,
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  children: [
+                                    SizedBox(
+                                      height: kPaddingBlockChips,
+                                    ),
+                                    ChipBuilder(
+                                      phrases: phrasesState.phrases,
+                                      onPress: "sound",
+                                      flutterTts: flutterTts,
+                                      language: language,
+                                    ),
+                                    SizedBox(
+                                      height: kPaddingBlockChips,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        TextInputField(
-                          isBorder: true,
-                        ),
-                      ],
-                    ),
-                  );
+                          TextInputField(
+                            isBorder: true,
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                              child: Center(
+                                child: Text(AppLocalizations.of(context).no_phrases)
+                              )
+                            )
+                          ),
+                          TextInputField(
+                            isBorder: true,
+                          ),
+                        ],
+                      ),
+                    );
+                  }
                 }
               }
               return Container();
