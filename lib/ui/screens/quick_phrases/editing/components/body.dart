@@ -88,7 +88,6 @@ class Body extends StatelessWidget {
           ),
           Container(
             child: TextInputField(
-              controller: _controller,
               icon: Icon(
                 kIconAdd,
                 color: Theme.of(context).accentColor,

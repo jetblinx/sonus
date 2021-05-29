@@ -47,7 +47,6 @@ class Body extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
           child: TextInputField(
             maxLines: null,
-            controller: _controller,
             backgroundTransaprent: true,  
           ),
         )),

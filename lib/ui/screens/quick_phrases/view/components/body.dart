@@ -48,7 +48,6 @@ class Body extends StatelessWidget {
           child: Center(
             child: TextInputField(
               maxLines: null,
-              controller: _controller,
               backgroundTransaprent: true,
               centerAlign: true,
             ),
