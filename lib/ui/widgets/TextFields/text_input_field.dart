@@ -12,10 +12,12 @@ class TextInputField extends StatelessWidget {
     this.centerAlign = false,
     this.maxLines = kSizeTextFieldLines,
     this.onChanged,
+    this.initialValue
   }) : super(key: key);
 
-  final Function onChanged;
+  final void Function(String) onChanged;
 
+  final String initialValue;
   final Icon icon;
   final bool isBorder;
   final bool backgroundTransaprent;
@@ -39,6 +41,7 @@ class TextInputField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
           child: TextFormField(
+            initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
             textCapitalization: TextCapitalization.sentences,

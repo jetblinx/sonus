@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/ui/screens/notes/note/note.dart';
 import 'package:sonus/utils/constants.dart';
+import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  List notes = [
+  final List notes = [
     'Default',
     'Friends',
     'School',
@@ -44,6 +45,17 @@ class Body extends StatelessWidget {
                       AppLocalizations.of(context).notes,
                       style: Theme.of(context).textTheme.caption,
                     ),
+                    actions: [
+                      IconButton(
+                      icon: Icon(kIconDelete),
+                      onPressed: () {
+                        // if (phrase != null) {
+                        //   BlocProvider.of<PhrasesCubit>(context).delete(phrase.id);
+                        //   Navigator.pop(context);
+                        // }
+                      },
+                    ),
+                    ],
                     backgroundColor: Colors.transparent,
                     elevation: 0.0,
                   ),

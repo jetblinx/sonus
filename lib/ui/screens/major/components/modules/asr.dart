@@ -7,7 +7,6 @@ import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
-import 'package:sonus/utils/logger.dart';
 
 class ASR extends StatelessWidget {
   final FlutterTts flutterTts = FlutterTts();
