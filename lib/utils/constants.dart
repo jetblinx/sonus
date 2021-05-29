@@ -53,6 +53,7 @@ const double kSizePhoneWidth = 393.0;
 
 const double kSizeButtonMic = 64;
 const double kSizeButtonComplete = 32;
+const double kSizeButtonEnd = 48;
 const int kSizeTextFieldLines = 5;
 
 const double kSizeBlockChips = 154;
