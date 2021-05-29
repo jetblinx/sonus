@@ -8,7 +8,9 @@ part 'phrases_state.dart';
 
 class PhrasesCubit extends Cubit<PhrasesState> {
   final PhrasesRepository _repository = PhrasesRepository();
-  PhrasesCubit() : super(PhrasesInitialState());
+  PhrasesCubit() : super(PhrasesInitialState()) {
+    load();
+  }
 
   Future<void> load() async {
     try {
@@ -21,15 +23,19 @@ class PhrasesCubit extends Cubit<PhrasesState> {
   }
 
   Future<void> add(PhraseModel phrase) async {
-    final PhrasesLoadedState currentState = state;
     emit(PhrasesInitialState());
-    currentState.copyWith(phrase);
-    emit(currentState);
     await _repository.add(phrase);
+    load();
   }
 
-    Future<void> update(PhraseModel phrase) async {
+  Future<void> update(PhraseModel phrase) async {
+    emit(PhrasesInitialState());
     await _repository.update(phrase);
     load();
   }
+  Future<void> delete(int id) async {
+    emit(PhrasesInitialState());
+    await _repository.delete(id);
+    load();
+  } 
 }

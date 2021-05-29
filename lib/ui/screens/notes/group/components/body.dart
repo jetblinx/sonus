@@ -5,7 +5,7 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
-  List notes = [
+  final List notes = [
     'Default',
     'Friends',
     'School',
