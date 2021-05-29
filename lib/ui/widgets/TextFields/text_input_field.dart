@@ -38,28 +38,27 @@ class TextInputField extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
         child: Form(
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.headline3,
-                  textAlign: centerAlign ? TextAlign.center : TextAlign.start,
-                  textCapitalization: TextCapitalization.sentences,
-                  onChanged: onChanged,
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintStyle: Theme.of(context).textTheme.headline3,
-                      hintText: AppLocalizations.of(context).enter_text,
-                      icon: icon == null ? null : Icon(kIconDismiss),
-                      suffixIcon: true
-                          ? IconButton(
-                              icon: icon,
-                              onPressed: () {},
-                            )
-                          : null
-                      ),
-                  minLines: 1,
-                  maxLines: maxLines != null ? kSizeTextFieldLines : null,
-                ),
-              ),
+          child: TextFormField(
+            style: Theme.of(context).textTheme.headline3,
+            textAlign: centerAlign ? TextAlign.center : TextAlign.start,
+            textCapitalization: TextCapitalization.sentences,
+            onChanged: onChanged,
+            cursorColor: Colors.black,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintStyle: Theme.of(context).textTheme.headline3,
+                hintText: AppLocalizations.of(context).enter_text,
+                icon: icon == null ? null : Icon(kIconDismiss),
+                suffixIcon: icon != null
+                    ? IconButton(
+                        icon: icon,
+                        onPressed: () {},
+                      )
+                    : null),
+            minLines: 1,
+            maxLines: maxLines != null ? kSizeTextFieldLines : null,
+          ),
+        ),
       ),
     );
   }

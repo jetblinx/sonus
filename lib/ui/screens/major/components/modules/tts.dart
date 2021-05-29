@@ -154,11 +154,11 @@ class TTS extends StatelessWidget {
             );
           }
           if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
-            return Container(
-              color: Theme.of(context).backgroundColor,
+            return Expanded(
+              //color: Theme.of(context).backgroundColor,
               child: Column(
                 children: [
-                  Container(
+                  Expanded(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
                       child:  Container(
@@ -184,11 +184,8 @@ class TTS extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 80,
-                    child: TextInputField(
-                      isBorder: true,
-                    ),
+                  TextInputField(
+                    isBorder: true,
                   ),
                 ],
               ),
