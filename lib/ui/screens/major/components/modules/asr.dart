@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+
 import 'package:sonus/logic/cubit/asr_cubit.dart';
+import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
@@ -83,27 +85,35 @@ import 'package:sonus/utils/icons.dart';
 // }
 
 class ASR extends StatefulWidget {
+  final String selectedLanguage;
+  const ASR({
+    Key key,
+    @required this.selectedLanguage,
+  }) : super(key: key);
+
   @override
-  _ASRState createState() => _ASRState();
+  _ASRState createState() => _ASRState(selectedLanguage);
 }
 
 class _ASRState extends State<ASR> {
   final FlutterTts flutterTts = FlutterTts();
 
-  SpeechRecognition _speech;
+  SpeechRecognition _speech = SpeechRecognition();
+  String selectedLang;
+  _ASRState(this.selectedLang);
 
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
   bool isPaused = false;
 
   String transcription = '';
-  String selectedLang = "ru_RU";
   List<String> speechRecognized = [];
 
   @override
   initState() {
     super.initState();
     activateSpeechRecognizer();
+    print(selectedLang);
   }
 
   ScrollController _scrollController = ScrollController();
@@ -112,8 +122,13 @@ class _ASRState extends State<ASR> {
     _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   }
 
+  void setAsrLanguage(newLang) {
+    _speech.activate(newLang).then((res) {
+      setState(() => _speechRecognitionAvailable = res);
+    });
+  }
+
   void activateSpeechRecognizer() {
-    _speech = SpeechRecognition();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
@@ -163,8 +178,9 @@ class _ASRState extends State<ASR> {
   }
 
   void onRecognitionResult(String text) {
-    setState(() => {transcription = text, speechRecognized.last = transcription});
-    
+    setState(
+        () => {transcription = text, speechRecognized.last = transcription});
+
     _scrollToBottom();
   }
 
@@ -174,9 +190,7 @@ class _ASRState extends State<ASR> {
           isPaused = true,
           speechRecognized.last = text,
           transcription = '',
-          if (text.trim() == '') {
-            speechRecognized.removeLast()
-          }
+          if (text.trim() == '') {speechRecognized.removeLast()}
         });
     HapticFeedback.heavyImpact();
   }
@@ -266,14 +280,9 @@ class _ASRState extends State<ASR> {
                                               onPressed: () {
                                                 _speechRecognitionAvailable &&
                                                         !_isListening
-                                                    ? 
-                                                        start()
-                                                        
-                                                      
-                                                    
+                                                    ? start()
                                                     : null;
-                                                    HapticFeedback
-                                                            .heavyImpact();
+                                                HapticFeedback.heavyImpact();
                                               }),
                                           IconButton(
                                               iconSize: kSizeButtonEnd,
@@ -283,8 +292,7 @@ class _ASRState extends State<ASR> {
                                                     .buttonColor,
                                               ),
                                               onPressed: () {
-                                                _isListening ? 
-                                                cancel() : null;
+                                                _isListening ? cancel() : null;
                                                 BlocProvider.of<AsrCubit>(
                                                         context)
                                                     .changed();

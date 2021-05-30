@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/ui/screens/major/components/modules/tts.dart';
 import 'package:sonus/ui/screens/notes/groups/groups.dart';
@@ -30,8 +31,7 @@ class Body extends StatelessWidget {
                       color: Theme.of(context).buttonColor,
                     ),
                     onPressed: () => Navigator.pushNamed(
-                        context, QuickPhrasesView.routeName)
-                ),
+                        context, QuickPhrasesView.routeName)),
                 IconButton(
                     icon: Icon(
                       kIconFolder,
@@ -49,17 +49,26 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
+          BlocProvider.value(
+              value: BlocProvider.of<PhrasesCubit>(context),
+              child: BlocBuilder<LanguagesCubit, LanguagesState>(
+                  builder: (context, languagesState) {
+                if (languagesState is LanguagesLoadedState) {
+                  return Container(
+                    child: ASR(
+                      selectedLanguage: languagesState.languages
+                          .firstWhere((element) =>
+                              element.languageCode ==
+                              Localizations.localeOf(context).languageCode)
+                          .languageCode,
+                    ),
+                  );
+                }
+                return Container();
+              })),
           Container(
             child: BlocProvider.value(
-              value: BlocProvider.of<PhrasesCubit>(context), 
-              child: ASR(),
-            )
-          ),
-          Container(
-            child: BlocProvider.value(
-              value: BlocProvider.of<PhrasesCubit>(context), 
-              child: TTS()
-            ),
+                value: BlocProvider.of<PhrasesCubit>(context), child: TTS()),
           ),
         ],
       ),

@@ -19,8 +19,7 @@ import 'package:sonus/utils/logger.dart';
 
 class TTS extends StatelessWidget {
   final FlutterTts flutterTts = FlutterTts();
-
-  final String language = "ru-RU";
+ 
   // final _formKey = new GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
 
