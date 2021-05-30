@@ -16,7 +16,7 @@ import 'package:sonus/utils/icons.dart';
 
 class TTS extends StatelessWidget {
   final FlutterTts flutterTts = FlutterTts();
- 
+
   // final _formKey = new GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
 
@@ -33,113 +33,113 @@ class TTS extends StatelessWidget {
               return BlocProvider(
                 create: (context) => TtsFiedCubit(),
                 child: BlocBuilder<TtsFiedCubit, String>(
-                builder: (context, ttsFiedValue) {
-                  return BlocBuilder<LanguagesCubit, LanguagesState>(
-                    builder: (context, languagesState) {
-                      if (languagesState is LanguagesLoadedState) {
-                        if (phrasesState is PhrasesLoadedState) {
-                          if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
-                            return Container(
-                              color: Theme.of(context).backgroundColor,
-                              child: Column(
-                                children: [
-                                  Divider(
-                                    height: 1,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                                    child: phrasesState.phrases.isNotEmpty 
-                                    ? Container(
-                                      constraints: BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
-                                      child: Scrollbar(
-                                        radius: Radius.circular(20),
-                                        child: ListView(
-                                            shrinkWrap: true,
-                                            padding: EdgeInsets.zero,
-                                            children: [
-                                              SizedBox(
-                                                height: kPaddingBlockChips,
-                                              ),
-                                              ChipBuilder(
-                                                phrases: phrasesState.phrases,
-                                                onPress: "sound",
-                                                flutterTts: flutterTts,
-                                                language: languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode,
-                                              ),
-                                              SizedBox(
-                                                height: kPaddingBlockChips,
-                                              ),
-                                            ],
-                                        ) 
-                                      ),
-                                    ) 
-                                    : Container(),
-                                  ),
-                                  buildTTSField(context, ttsFiedValue, languagesState)
-                                ],
-                              ),
-                            );
-                          }
-                          if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
-                            if (phrasesState.phrases.isNotEmpty) {
-                              return Expanded(
+                  builder: (context, ttsFiedValue) {
+                    return BlocBuilder<LanguagesCubit, LanguagesState>(
+                      builder: (context, languagesState) {
+                        if (languagesState is LanguagesLoadedState) {
+                          if (phrasesState is PhrasesLoadedState) {
+                            if (Converter.intToBool(settingsState.settings.textToSpeech) && Converter.intToBool(settingsState.settings.speechRecognition)) {
+                              return Container(
+                                color: Theme.of(context).backgroundColor,
                                 child: Column(
                                   children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                                        child:  Container(
-                                          height: MediaQuery.of(context).size.height/1.28,
+                                    Divider(
+                                      height: 1,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                                      child: phrasesState.phrases.isNotEmpty 
+                                      ? Container(
+                                        constraints: BoxConstraints(minHeight: 0, maxHeight: kSizeBlockChips),
+                                        child: Scrollbar(
+                                          radius: Radius.circular(20),
                                           child: ListView(
-                                            shrinkWrap: true,
-                                            padding: EdgeInsets.zero,
-                                            children: [
-                                              SizedBox(
-                                                height: kPaddingBlockChips,
-                                              ),
-                                              ChipBuilder(
-                                                phrases: phrasesState.phrases,
-                                                onPress: "sound",
-                                                flutterTts: flutterTts,
-                                                language: languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode,
-                                              ),
-                                              SizedBox(
-                                                height: kPaddingBlockChips,
-                                              ),
-                                            ],
-                                          ),
+                                              shrinkWrap: true,
+                                              padding: EdgeInsets.zero,
+                                              children: [
+                                                SizedBox(
+                                                  height: kPaddingBlockChips,
+                                                ),
+                                                ChipBuilder(
+                                                  phrases: phrasesState.phrases,
+                                                  onPress: "sound",
+                                                  flutterTts: flutterTts,
+                                                  language: languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode,
+                                                ),
+                                                SizedBox(
+                                                  height: kPaddingBlockChips,
+                                                ),
+                                              ],
+                                          ) 
                                         ),
-                                      ),
+                                      ) 
+                                      : Container(),
                                     ),
-                                    buildTTSField(context, ttsFiedValue, languagesState)
-                                  ],
-                                ),
-                              );
-                            } else {
-                              return Expanded(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
-                                        child: Center(
-                                          child: Text(AppLocalizations.of(context).no_phrases)
-                                        )
-                                      )
-                                    ),
-                                    buildTTSField(context, ttsFiedValue, languagesState)
+                                    buildTTSField(context, ttsFiedValue, languagesState, settingsState)
                                   ],
                                 ),
                               );
                             }
+                            if (Converter.intToBool(settingsState.settings.textToSpeech) && !Converter.intToBool(settingsState.settings.speechRecognition)) {
+                              if (phrasesState.phrases.isNotEmpty) {
+                                return Expanded(
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                                          child:  Container(
+                                            height: MediaQuery.of(context).size.height/1.28,
+                                            child: ListView(
+                                              shrinkWrap: true,
+                                              padding: EdgeInsets.zero,
+                                              children: [
+                                                SizedBox(
+                                                  height: kPaddingBlockChips,
+                                                ),
+                                                ChipBuilder(
+                                                  phrases: phrasesState.phrases,
+                                                  onPress: "sound",
+                                                  flutterTts: flutterTts,
+                                                  language: languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode,
+                                                ),
+                                                SizedBox(
+                                                  height: kPaddingBlockChips,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      buildTTSField(context, ttsFiedValue, languagesState, settingsState)
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Expanded(
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                                          child: Center(
+                                            child: Text(AppLocalizations.of(context).no_phrases)
+                                          )
+                                        )
+                                      ),
+                                      buildTTSField(context, ttsFiedValue, languagesState, settingsState)
+                                    ],
+                                  ),
+                                );
+                              }
+                            }
                           }
                         }
-                      }
-                      return Container();
-                    },
-                  );
-                }
-              )
+                        return Container();
+                      },
+                    );
+                  }
+                )
               );
             }
           );
@@ -149,19 +149,19 @@ class TTS extends StatelessWidget {
     );
   }
 
-  TextInputField buildTTSField(BuildContext context, String ttsFiedValue, LanguagesLoadedState languagesState) {
+  TextInputField buildTTSField(BuildContext context, String ttsFiedValue, LanguagesLoadedState languagesState, SettingsLoadedState settingsLoadedState) {
     List words;
     return TextInputField(
       onChanged: (String value) async {
         BlocProvider.of<TtsFiedCubit>(context).update(value);
-        words = value.split(' ');
-        print(words);
-        print(value.substring(value.length - 1));        
-        if (words.length >= 2 && value.substring(value.length - 1) == " ") {
-          await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
-          await flutterTts.setPitch(1.0);
-          await flutterTts.setSpeechRate(0.9);
-          await flutterTts.speak(words[words.length-2]);
+        if (Converter.intToBool(settingsLoadedState.settings.quickTts)) {
+          words = value.split(' ');
+          if (words.length >= 2 && value.substring(value.length - 1) == " ") {
+            await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
+            await flutterTts.setPitch(1.0);
+            await flutterTts.setSpeechRate(0.9);
+            await flutterTts.speak(words[words.length-2]);
+          }
         }
       },
       controller: _controller,

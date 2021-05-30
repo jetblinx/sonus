@@ -7,7 +7,6 @@ import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
-import 'package:sonus/utils/logger.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -133,13 +132,17 @@ class _BodyState extends State<Body> {
                                       onChanged: (bool value) {
                                         if (!value) {
                                           return settingsCubit.update(
-                                              settingsState.settings.copyWith(
-                                                  SettingsModel(
-                                                    theme: settingsState.settings.theme,
-                                                      speechRecognition:
-                                                          Converter.boolToInt(
-                                                              value),
-                                                      textToSpeech: 1)));
+                                            settingsState.settings.copyWith(
+                                              SettingsModel(
+                                                theme: settingsState.settings.theme,
+                                                  speechRecognition:
+                                                      Converter.boolToInt(
+                                                        value
+                                                      ),
+                                                textToSpeech: 1
+                                              )
+                                            )
+                                          );
                                         }
                                         settingsCubit.update(settingsState
                                             .settings
@@ -268,7 +271,7 @@ class _BodyState extends State<Body> {
                                         ).toList();
                                         return DropdownButton(
                                           value: settingsState.settings.language,
-                                          hint: Text(AppLocalizations.of(context).system_language),
+                                          hint: Text(AppLocalizations.of(context).system_language, style: TextStyle(color: Theme.of(context).accentColor)),
                                           items: items,
                                           dropdownColor: Theme.of(context).backgroundColor,
                                           onChanged: (value) {
