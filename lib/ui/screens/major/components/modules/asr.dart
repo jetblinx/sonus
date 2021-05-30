@@ -9,79 +9,6 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
 
-// class ASR extends StatelessWidget {
-//   final FlutterTts flutterTts = FlutterTts();
-
-//   final bool asrOn = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<SettingsCubit, SettingsState>(
-//       builder: (context, state) {
-//         if (state is SettingsLoadedState) {
-//           if (Converter.intToBool(state.settings.speechRecognition)) {
-//             return BlocProvider(
-//               create: (context) => AsrCubit(),
-//               child: BlocBuilder<AsrCubit, bool>(
-//                 builder: (context, isAsr) {
-//                   if (isAsr) {
-//                     return Column(
-//                       children: [
-//                         Container(
-//                           child: Text("Some text"),
-//                         ),
-//                         Center(
-//                           child: SingleChildScrollView(
-//                             child: Container(
-//                               child: IconButton(
-//                                 iconSize: kSizeButtonEnd,
-//                                 icon: Icon(
-//                                   kIconEnd,
-//                                   color: Theme.of(context).buttonColor,
-//                                 ),
-//                                 onPressed: () {
-//                                   BlocProvider.of<AsrCubit>(context).changed();
-//                                   HapticFeedback.heavyImpact();
-//                                 }
-//                               ),
-//                             )
-//                           ),
-//                         ),
-//                       ],
-//                     );
-//                   } else {
-//                     return Expanded(
-//                       child: Center(
-//                         child: SingleChildScrollView(
-//                           child: Container(
-//                             child: IconButton(
-//                               iconSize: kSizeButtonMic,
-//                               icon: Icon(
-//                                 kIconMic,
-//                                 color: Theme.of(context).buttonColor,
-//                               ),
-//                               onPressed: () {
-//                                 BlocProvider.of<AsrCubit>(context).changed();
-//                                 HapticFeedback.heavyImpact();
-//                               }
-//                             ),
-//                           )
-//                         ),
-//                       ),
-//                     );
-//                   }
-//                 }
-//               )
-//             );
-//           }
-//           return Container();
-//         }
-//         return Container();
-//       },
-//     );
-//   }
-// }
-
 class ASR extends StatefulWidget {
   final String selectedLanguage;
   const ASR({
@@ -90,15 +17,13 @@ class ASR extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ASRState createState() => _ASRState(selectedLanguage);
+  _ASRState createState() => _ASRState();
 }
 
 class _ASRState extends State<ASR> {
   final FlutterTts flutterTts = FlutterTts();
 
   SpeechRecognition _speech = SpeechRecognition();
-  String selectedLang;
-  _ASRState(this.selectedLang);
 
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
@@ -111,7 +36,7 @@ class _ASRState extends State<ASR> {
   initState() {
     super.initState();
     activateSpeechRecognizer();
-    print(selectedLang);
+    print(widget.selectedLanguage);
   }
 
   ScrollController _scrollController = ScrollController();
@@ -136,12 +61,12 @@ class _ASRState extends State<ASR> {
     _speech.setRecognitionResultHandler(onRecognitionResult);
     _speech.setRecognitionCompleteHandler(onRecognitionComplete);
     _speech.setErrorHandler(errorHandler);
-    _speech.activate(selectedLang).then((res) {
+    _speech.activate(widget.selectedLanguage).then((res) {
       setState(() => _speechRecognitionAvailable = res);
     });
   }
 
-  void start() => _speech.activate(selectedLang).then((_) {
+  void start() => _speech.activate(widget.selectedLanguage).then((_) {
         return _speech.listen().then((result) {
           setState(() {
             _isListening = result;
