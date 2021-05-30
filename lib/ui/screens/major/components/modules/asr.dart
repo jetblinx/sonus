@@ -142,12 +142,7 @@ class _ASRState extends State<ASR> {
         _speech.cancel().then((_) => setState(() => {
               _isListening = false,
               isPaused = false,
-              
-              print(speechRecognized),
-              HapticFeedback.heavyImpact(),
             })),
-            speechRecognized.clear(),
-            print(speechRecognized),
       };
 
   void stop() => _speech.stop().then((_) {
@@ -293,6 +288,7 @@ class _ASRState extends State<ASR> {
                                                 BlocProvider.of<AsrCubit>(
                                                         context)
                                                     .changed();
+                                                speechRecognized.clear();
                                                 HapticFeedback.heavyImpact();
                                               }),
                                         ],
