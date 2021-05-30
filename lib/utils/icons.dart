@@ -3,7 +3,9 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 /* ICONS */
 
 const kIconMic = FluentIcons.mic_on_20_regular;
-const kIconEnd = FluentIcons.square_16_regular;
+const kIconStop = FluentIcons.square_16_regular;
+const kIconPause = FluentIcons.pause_20_filled;
+const kIconPlay = FluentIcons.play_20_regular;
 
 const kIconBookmark = FluentIcons.bookmark_20_filled;
 const kIconFolder = FluentIcons.folder_20_filled;

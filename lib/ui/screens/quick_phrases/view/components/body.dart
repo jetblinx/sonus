@@ -56,7 +56,7 @@ class Body extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-                      child: Container(child: Center(child: Text(AppLocalizations.of(context).no_phrases)))
+                      child: Container(child: Center(child: Text(AppLocalizations.of(context).no_phrases, style: Theme.of(context).textTheme.headline3,)))
                     ),
                   ),
                   Container(

@@ -52,7 +52,7 @@ class TextInputField extends StatelessWidget {
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
             textCapitalization: TextCapitalization.sentences,
             onChanged: onChanged,
-            cursorColor: Colors.black,
+            cursorColor: Theme.of(context).accentColor,
             decoration: InputDecoration(
                 border: InputBorder.none,
                 hintStyle: Theme.of(context).textTheme.headline3,
