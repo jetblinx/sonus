@@ -76,7 +76,8 @@ class DatabaseProvider {
     await db.execute('''
       CREATE TABLE records(
         id INTEGER PRIMARY KEY,
-        record TEXT,
+        name TEXT,
+        value TEXT,
         group_id INTEGER,
         FOREIGN KEY (group_id) REFERENCES records_groups (id)
       )

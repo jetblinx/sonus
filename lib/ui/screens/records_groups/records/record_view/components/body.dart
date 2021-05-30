@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/models/record_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
@@ -31,17 +33,15 @@ class Body extends StatelessWidget {
                     ),
                     centerTitle: true,
                     title: Text(
-                      AppLocalizations.of(context).notes,
+                      record.name,
                       style: Theme.of(context).textTheme.caption,
                     ),
                     actions: [
                       IconButton(
                       icon: Icon(kIconDelete),
                       onPressed: () {
-                        // if (phrase != null) {
-                        //   BlocProvider.of<PhrasesCubit>(context).delete(phrase.id);
-                        //   Navigator.pop(context);
-                        // }
+                          BlocProvider.of<RecordsCubit>(context).delete(record.id);
+                          Navigator.pop(context);
                       },
                     ),
                     ],
@@ -52,33 +52,15 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
-          // Expanded(
-          //   child: Padding(
-          //     padding:
-          //         EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-          //     child: ListView.separated(
-          //       separatorBuilder: (BuildContext context, int index) {
-          //         return Divider();
-          //       },
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return InkWell(
-          //           customBorder: CircleBorder(),
-          //           child: ListTile(
-          //             title: Text(
-          //               notes[index],
-          //               overflow: TextOverflow.ellipsis,
-          //               style: Theme.of(context).textTheme.headline3,
-          //             ),
-          //           ),
-          //           onTap: () {
-          //             Navigator.push(context, MaterialPageRoute(builder: (context) => RecordView()));
-          //           },
-          //         );
-          //       },
-          //       itemCount: notes.length,
-          //     ),
-          //   ),
-          // ),
+          Expanded(
+            child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+              child: Container(
+                child: Text(record.value),
+              )
+            ),
+          ),
         ],
       ),
     );

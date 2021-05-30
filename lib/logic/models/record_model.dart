@@ -2,31 +2,35 @@ import 'package:equatable/equatable.dart';
 
 class RecordModel extends Equatable {
   final int id;
+  final String name;
   final String value;
-  final int group;
+  final int groupId;
 
-  RecordModel({this.id, this.value, this.group});
+  RecordModel({this.id, this.name, this.value, this.groupId});
 
   factory RecordModel.fromMap(Map<String, dynamic> row) => RecordModel(
     id: row["id"],
+    name: row["name"],
     value: row["value"],
-    group: row["group"]
+    groupId: row["group_id"]
   );
 
   Map<String, dynamic> toMap() => {
     "id": this.id,
+    "name": this.name,
     "value": this.value,
-    "group": this.group
+    "group_id": this.groupId
   };
 
-  RecordModel copyWith({int id, String text, String group}) {
+  RecordModel copyWith({int id, String name, String value, String groupId}) {
     return RecordModel(
       id: id ?? this.id,
+      name: name ?? this.name,
       value: value ?? this.value,
-      group: group ?? this.group
+      groupId: groupId ?? this.groupId
     );
   }
 
   @override
-  List<Object> get props => [id, value, group];
+  List<Object> get props => [id, name, value, groupId];
 }
