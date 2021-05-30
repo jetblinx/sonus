@@ -113,7 +113,6 @@ class _ASRState extends State<ASR> {
   }
 
   void activateSpeechRecognizer() {
-    print("Activating Speech");
     _speech = SpeechRecognition();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -134,7 +133,7 @@ class _ASRState extends State<ASR> {
             isPaused = false;
             HapticFeedback.heavyImpact();
           }
-          print(_isListening);
+          transcription = '';
           speechRecognized.add(transcription);
         });
       });
@@ -143,12 +142,12 @@ class _ASRState extends State<ASR> {
         _speech.cancel().then((_) => setState(() => {
               _isListening = false,
               isPaused = false,
-              speechRecognized = [],
+              
+              print(speechRecognized),
               HapticFeedback.heavyImpact(),
             })),
-        setState(() => {
-              speechRecognized = [],
-            }),
+            speechRecognized.clear(),
+            print(speechRecognized),
       };
 
   void stop() => _speech.stop().then((_) {
@@ -159,8 +158,6 @@ class _ASRState extends State<ASR> {
         if (transcription.trim() == '') {
           speechRecognized.removeLast();
         }
-        HapticFeedback.heavyImpact();
-        transcription = '';
       });
 
   void onSpeechAvailability(bool result) =>
@@ -171,23 +168,22 @@ class _ASRState extends State<ASR> {
   }
 
   void onRecognitionResult(String text) {
-    setState(() => transcription = text);
-    speechRecognized.last = transcription;
+    setState(() => {transcription = text, speechRecognized.last = transcription});
+    
     _scrollToBottom();
-    transcription = '';
   }
 
   void onRecognitionComplete(String text) {
     setState(() => {
           _isListening = false,
           isPaused = true,
+          speechRecognized.last = text,
+          transcription = '',
+          if (text.trim() == '') {
+            speechRecognized.removeLast()
+          }
         });
-    speechRecognized.last = text;
-    if (text.trim() == '') {
-      speechRecognized.removeLast();
-    }
     HapticFeedback.heavyImpact();
-    transcription = '';
   }
 
   void errorHandler() => activateSpeechRecognizer();
@@ -242,18 +238,22 @@ class _ASRState extends State<ASR> {
                                             color:
                                                 Theme.of(context).buttonColor,
                                           ),
-                                          onPressed: () {
-                                            _isListening ? stop() : null;
-                                            HapticFeedback.heavyImpact();
-                                            print(speechRecognized);
-                                            if (speechRecognized == []) {
-                                              setState(() {
-                                                isPaused = false;
-                                              });
-                                              BlocProvider.of<AsrCubit>(
-                                                        context)
-                                                    .changed();
-                                            }
+                                          onPressed: () async {
+                                            _isListening
+                                                ? {
+                                                    await stop(),
+                                                    if (speechRecognized
+                                                            .length ==
+                                                        0)
+                                                      {
+                                                        BlocProvider.of<
+                                                                    AsrCubit>(
+                                                                context)
+                                                            .changed(),
+                                                        cancel(),
+                                                      },
+                                                  }
+                                                : null;
                                           }),
                                     )
                                   : Container(
@@ -271,12 +271,14 @@ class _ASRState extends State<ASR> {
                                               onPressed: () {
                                                 _speechRecognitionAvailable &&
                                                         !_isListening
-                                                    ? {
-                                                        start(),
-                                                        HapticFeedback
-                                                            .heavyImpact(),
-                                                      }
-                                                    : {};
+                                                    ? 
+                                                        start()
+                                                        
+                                                      
+                                                    
+                                                    : null;
+                                                    HapticFeedback
+                                                            .heavyImpact();
                                               }),
                                           IconButton(
                                               iconSize: kSizeButtonEnd,
@@ -286,7 +288,8 @@ class _ASRState extends State<ASR> {
                                                     .buttonColor,
                                               ),
                                               onPressed: () {
-                                                _isListening ? cancel() : null;
+                                                _isListening ? 
+                                                cancel() : null;
                                                 BlocProvider.of<AsrCubit>(
                                                         context)
                                                     .changed();
@@ -313,13 +316,10 @@ class _ASRState extends State<ASR> {
                               ),
                               onPressed: () {
                                 _speechRecognitionAvailable && !_isListening
-                                    ? {
-                                        start(),
-                                        HapticFeedback.heavyImpact(),
-                                        BlocProvider.of<AsrCubit>(context)
-                                            .changed(),
-                                      }
+                                    ? start()
                                     : null;
+                                HapticFeedback.heavyImpact();
+                                BlocProvider.of<AsrCubit>(context).changed();
                               }),
                         )),
                       ),
