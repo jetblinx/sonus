@@ -7,6 +7,7 @@ import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
+import 'package:sonus/utils/logger.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -163,8 +164,7 @@ class _BodyState extends State<Body> {
                                           .headline2),
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
-                                      value: Converter.intToBool(
-                                          settingsState.settings.textToSpeech),
+                                      value: Converter.intToBool(settingsState.settings.textToSpeech),
                                       onChanged: (bool value) {
                                         if (!value) {
                                           return settingsCubit.update(
@@ -174,52 +174,33 @@ class _BodyState extends State<Body> {
                                                       textToSpeech:
                                                           Converter.boolToInt(
                                                               value),
-                                                      speechRecognition: 1)
+                                                      speechRecognition: 1, quickTts: 0)
                                               )
                                           );
                                         }
-                                        settingsCubit.update(settingsState
-                                            .settings
-                                            .copyWith(SettingsModel(
-                                                textToSpeech:
-                                                    Converter.boolToInt(
-                                                        value))));
+                                        settingsCubit.update(settingsState.settings.copyWith(SettingsModel(
+                                          textToSpeech: Converter.boolToInt(value))));
                                       })
                                 ]),
                             SizedBox(
                               height: getProportionateScreenHeight(15),
                             ),
                             Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(AppLocalizations.of(context).quick_tts,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline2),
+                                    style: Theme.of(context).textTheme.headline2
+                                  ),
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
-                                      value: Converter.intToBool(
-                                          settingsState.settings.quickTts),
+                                      value: Converter.intToBool(settingsState.settings.quickTts),
                                       onChanged: (bool value) {
-                                        if (!value) {
-                                          return settingsCubit.update(
-                                              settingsState.settings.copyWith(
-                                                  SettingsModel(
-                                                    theme: settingsState.settings.theme,
-                                                      quickTts:
-                                                          Converter.boolToInt(
-                                                              value),
-                                                      )
-                                              )
-                                          );
-                                        }
-                                        settingsCubit.update(settingsState
-                                            .settings
-                                            .copyWith(SettingsModel(
-                                                textToSpeech:
-                                                    Converter.boolToInt(
-                                                        value))));
+                                        BlocProvider.of<SettingsCubit>(context).update(settingsState.settings.copyWith(SettingsModel(
+                                          quickTts: Converter.boolToInt(value),
+                                          theme: settingsState.settings.theme, 
+                                          speechRecognition: settingsState.settings.speechRecognition,
+                                          textToSpeech: settingsState.settings.textToSpeech
+                                        )));
                                       })
                                 ]),
                             SizedBox(
