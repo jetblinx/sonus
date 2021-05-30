@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
                     ),
                     centerTitle: true,
                     title: Text(
-                      AppLocalizations.of(context).notes,
+                      recordsGroup.name,
                       style: Theme.of(context).textTheme.caption,
                     ),
                     actions: [
