@@ -126,6 +126,10 @@ class _ASRState extends State<ASR> {
     });
   }
 
+  void save() {
+    print(speechRecognized);
+  }
+
   void activateSpeechRecognizer() {
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -268,6 +272,20 @@ class _ASRState extends State<ASR> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
+                                          IconButton(
+                                              iconSize: kSizeButtonEnd,
+                                              icon: Icon(
+                                                kIconSave,
+                                                color: Theme.of(context)
+                                                    .buttonColor,
+                                              ),
+                                              onPressed: () {
+                                                _speechRecognitionAvailable &&
+                                                        !_isListening
+                                                    ? save()
+                                                    : null;
+                                                HapticFeedback.heavyImpact();
+                                              }),
                                           IconButton(
                                               iconSize: kSizeButtonEnd,
                                               icon: Icon(

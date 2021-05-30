@@ -90,6 +90,10 @@ class DatabaseProvider {
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(2, 'Русский', 'ru', 'ru-RU');
     ''');
 
+    await db.rawInsert('''
+      INSERT INTO records_groups(id, name) VALUES(1, 'Default');
+    ''');
+
     await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
   }
 }

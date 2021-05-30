@@ -16,14 +16,14 @@ class PhrasesDao {
   Future<int> add(PhraseModel phrase) async {
     final db = await _provider.database;
     return await db.rawInsert('''
-      INSERT INTO $_table(value) VALUES ('${phrase.value}') 
+      INSERT INTO $_table(value) VALUES ("${phrase.value}") 
     ''');
   }
 
   Future<int> update(PhraseModel phrase) async {
     final db = await _provider.database;
     return await db.rawUpdate('''
-      UPDATE $_table SET value='${phrase.value}' WHERE id=${phrase.id}
+      UPDATE $_table SET value="${phrase.value}" WHERE id=${phrase.id}
     ''');
   }
 
