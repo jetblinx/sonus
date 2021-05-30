@@ -52,7 +52,7 @@ class _ASRState extends State<ASR> {
 
   Future<String> _displayRecordNameDialog(BuildContext context) async {
     TextEditingController _textFieldController = TextEditingController();
-    showDialog(
+    return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -159,11 +159,11 @@ class _ASRState extends State<ASR> {
     int groupId = await _displayGroupChooserDialog(context);
     String recordName = await _displayRecordNameDialog(context);
 
-    // if (groupId != null && recordName != null) {
-    //   String speechString = speechRecognized.join("|");
-    //   await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
-    //       value: speechString.trim(), name: recordName, groupId: groupId));
-    // }
+    if (groupId != null && recordName != null) {
+      String speechString = speechRecognized.join("|");
+      await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
+          value: speechString.trim(), name: recordName, groupId: groupId));
+    }
     print(groupId);
     print(recordName);
   }
