@@ -91,10 +91,14 @@ class _ASRState extends State<ASR> {
   final FlutterTts flutterTts = FlutterTts();
 
   SpeechRecognition _speech;
+
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
+  bool isPaused = false;
+
   String transcription = '';
   String selectedLang = "ru_RU";
+  List<String> speechRecognized = [];
 
   @override
   initState() {
@@ -102,8 +106,13 @@ class _ASRState extends State<ASR> {
     activateSpeechRecognizer();
   }
 
+  ScrollController _scrollController = ScrollController();
+
+  _scrollToBottom() {
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  }
+
   void activateSpeechRecognizer() {
-    print("Activating Speech");
     _speech = SpeechRecognition();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -116,20 +125,34 @@ class _ASRState extends State<ASR> {
   }
 
   void start() => _speech.activate(selectedLang).then((_) {
-        print("Listening Speech");
         return _speech.listen().then((result) {
           setState(() {
             _isListening = result;
           });
+          if (result) {
+            isPaused = false;
+            HapticFeedback.heavyImpact();
+          }
+          transcription = '';
+          speechRecognized.add(transcription);
         });
       });
 
   void cancel() => {
-        _speech.cancel().then((_) => setState(() => _isListening = false)),
+        _speech.cancel().then((_) => setState(() => {
+              _isListening = false,
+              isPaused = false,
+            })),
       };
 
   void stop() => _speech.stop().then((_) {
-        setState(() => _isListening = false);
+        setState(() => {
+              _isListening = false,
+              isPaused = true,
+            });
+        if (transcription.trim() == '') {
+          speechRecognized.removeLast();
+        }
       });
 
   void onSpeechAvailability(bool result) =>
@@ -140,12 +163,22 @@ class _ASRState extends State<ASR> {
   }
 
   void onRecognitionResult(String text) {
-    setState(() => transcription = text);
+    setState(() => {transcription = text, speechRecognized.last = transcription});
+    
+    _scrollToBottom();
   }
 
   void onRecognitionComplete(String text) {
-    setState(() => _isListening = false);
-    print("Completed.");
+    setState(() => {
+          _isListening = false,
+          isPaused = true,
+          speechRecognized.last = text,
+          transcription = '',
+          if (text.trim() == '') {
+            speechRecognized.removeLast()
+          }
+        });
+    HapticFeedback.heavyImpact();
   }
 
   void errorHandler() => activateSpeechRecognizer();
@@ -162,29 +195,105 @@ class _ASRState extends State<ASR> {
                   if (isAsr) {
                     return Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                kPaddingScreenPage + kPaddingScreenPageContent),
                         child: Column(
                           children: [
                             Expanded(
-                              child: SingleChildScrollView(
-                                child: Text(transcription, style: Theme.of(context).textTheme.caption,),
+                              child: ListView.separated(
+                                controller: _scrollController,
+                                itemCount: speechRecognized.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListTile(
+                                    title: Text(
+                                      speechRecognized[index],
+                                      style:
+                                          Theme.of(context).textTheme.caption,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  );
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return Divider();
+                                },
                               ),
                             ),
+                            Divider(
+                              height: 1,
+                            ),
                             Center(
-                              child: Container(
-                                child: IconButton(
-                                    iconSize: kSizeButtonEnd,
-                                    icon: Icon(
-                                      kIconEnd,
-                                      color: Theme.of(context).buttonColor,
+                              child: !isPaused
+                                  ? Container(
+                                      child: IconButton(
+                                          iconSize: kSizeButtonEnd,
+                                          icon: Icon(
+                                            kIconPause,
+                                            color:
+                                                Theme.of(context).buttonColor,
+                                          ),
+                                          onPressed: () async {
+                                            _isListening
+                                                ? {
+                                                    await stop(),
+                                                    if (speechRecognized
+                                                            .length ==
+                                                        0)
+                                                      {
+                                                        BlocProvider.of<
+                                                                    AsrCubit>(
+                                                                context)
+                                                            .changed(),
+                                                        cancel(),
+                                                      },
+                                                  }
+                                                : null;
+                                          }),
+                                    )
+                                  : Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                              iconSize: kSizeButtonEnd,
+                                              icon: Icon(
+                                                kIconPlay,
+                                                color: Theme.of(context)
+                                                    .buttonColor,
+                                              ),
+                                              onPressed: () {
+                                                _speechRecognitionAvailable &&
+                                                        !_isListening
+                                                    ? 
+                                                        start()
+                                                        
+                                                      
+                                                    
+                                                    : null;
+                                                    HapticFeedback
+                                                            .heavyImpact();
+                                              }),
+                                          IconButton(
+                                              iconSize: kSizeButtonEnd,
+                                              icon: Icon(
+                                                kIconStop,
+                                                color: Theme.of(context)
+                                                    .buttonColor,
+                                              ),
+                                              onPressed: () {
+                                                _isListening ? 
+                                                cancel() : null;
+                                                BlocProvider.of<AsrCubit>(
+                                                        context)
+                                                    .changed();
+                                                speechRecognized.clear();
+                                                HapticFeedback.heavyImpact();
+                                              }),
+                                        ],
+                                      ),
                                     ),
-                                    onPressed: () {
-                                      _isListening ? stop() : null;
-                                      BlocProvider.of<AsrCubit>(context)
-                                          .changed();
-                                      HapticFeedback.heavyImpact();
-                                    }),
-                              ),
                             ),
                           ],
                         ),
@@ -205,8 +314,8 @@ class _ASRState extends State<ASR> {
                                 _speechRecognitionAvailable && !_isListening
                                     ? start()
                                     : null;
-                                BlocProvider.of<AsrCubit>(context).changed();
                                 HapticFeedback.heavyImpact();
+                                BlocProvider.of<AsrCubit>(context).changed();
                               }),
                         )),
                       ),
