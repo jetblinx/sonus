@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
+import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
 import 'package:sonus/utils/constants.dart';
@@ -26,7 +27,8 @@ class Main extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) =>SettingsCubit()),
         BlocProvider(create: (context) => PhrasesCubit()),
-        BlocProvider(create: (context) => LanguagesCubit())
+        BlocProvider(create: (context) => LanguagesCubit()),
+        BlocProvider(create: (context) => RecordsGroupsCubit())
       ],
       child: BlocConsumer<SettingsCubit, SettingsState>(
         listener: (context, state) {

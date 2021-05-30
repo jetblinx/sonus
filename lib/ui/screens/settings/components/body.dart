@@ -7,7 +7,6 @@ import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
-import 'package:sonus/utils/logger.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatefulWidget {

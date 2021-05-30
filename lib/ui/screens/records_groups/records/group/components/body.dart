@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sonus/ui/screens/notes/note/note.dart';
+import 'package:sonus/logic/models/record_group_model.dart';
+import 'package:sonus/ui/screens/records_groups/editing/records_group_editing.dart';
+import 'package:sonus/ui/screens/records_groups/records/record_view/record_view.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
+  final RecordsGroupModel recordsGroup;
+
+
   final List notes = [
     'Default',
     'Friends',
@@ -20,6 +25,8 @@ class Body extends StatelessWidget {
     'School',
     'Food',
   ];
+
+  Body({Key key, this.recordsGroup}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +54,9 @@ class Body extends StatelessWidget {
                     ),
                     actions: [
                       IconButton(
-                      icon: Icon(kIconDelete),
+                      icon: Icon(kIconEdit),
                       onPressed: () {
-                        // if (phrase != null) {
-                        //   BlocProvider.of<PhrasesCubit>(context).delete(phrase.id);
-                        //   Navigator.pop(context);
-                        // }
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => RecordsGroupEditing(recordsGroup: recordsGroup,)));
                       },
                     ),
                     ],
@@ -82,7 +86,7 @@ class Body extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, Note.routeName);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => RecordView()));
                     },
                   );
                 },

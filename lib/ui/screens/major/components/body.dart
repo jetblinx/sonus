@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/ui/screens/major/components/modules/tts.dart';
-import 'package:sonus/ui/screens/notes/groups/groups.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrases_view.dart';
+import 'package:sonus/ui/screens/records_groups/view/records_groups_view.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                       color: Theme.of(context).buttonColor,
                     ),
                     onPressed: () =>
-                        Navigator.pushNamed(context, Groups.routeName)),
+                        Navigator.pushNamed(context, RecordsGroupsView.routeName)),
                 IconButton(
                     icon: Icon(
                       kIconSettings,

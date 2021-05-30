@@ -17,3 +17,4 @@ const kIconDismiss = FluentIcons.dismiss_24_regular;
 
 const kIconComplete = FluentIcons.checkmark_24_regular;
 const kIconDelete = FluentIcons.delete_24_regular;
+const kIconEdit = FluentIcons.edit_16_filled;
