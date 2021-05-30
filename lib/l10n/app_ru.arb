@@ -21,5 +21,9 @@
   "settings_general": "Общие",
   "quick_tts": "Быстрая озвучка",
   "notes": "Заметки",
-  "note_groups": "Группы заметок"
+  "note_groups": "Группы заметок",
+  "record_name": "Название записи",
+  "record_save": "Сохранить",
+  "close": "Закрыть",
+  "choose_group": "Выберите группу"
 }

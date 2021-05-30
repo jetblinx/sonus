@@ -14,6 +14,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List archiveSpeech = record.value.split("|");
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,12 +39,13 @@ class Body extends StatelessWidget {
                     ),
                     actions: [
                       IconButton(
-                      icon: Icon(kIconDelete),
-                      onPressed: () {
-                          BlocProvider.of<RecordsCubit>(context).delete(record.id);
+                        icon: Icon(kIconDelete),
+                        onPressed: () {
+                          BlocProvider.of<RecordsCubit>(context)
+                              .delete(record.id);
                           Navigator.pop(context);
-                      },
-                    ),
+                        },
+                      ),
                     ],
                     backgroundColor: Colors.transparent,
                     elevation: 0.0,
@@ -53,14 +55,33 @@ class Body extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-              child: Container(
-                child: Text(record.value),
-              )
+              child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+            child: Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+                child: Expanded(
+                  child: ListView.separated(
+                    itemCount: archiveSpeech.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(
+                          archiveSpeech[index],
+                          style: Theme.of(context).textTheme.caption,
+                          textAlign: TextAlign.start,
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider();
+                    },
+                  ),
+                ),
+              ),
             ),
-          ),
+          ))
         ],
       ),
     );

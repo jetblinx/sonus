@@ -21,5 +21,9 @@
   "settings_general": "General",
   "quick_tts": "Quick TTS",
   "notes": "Notes",
-  "note_groups": "Note Groups"
+  "note_groups": "Note Groups",
+  "record_name": "Record Name",
+  "record_save": "Save",
+  "close": "Close",
+  "choose_group": "Choose group"
 }
