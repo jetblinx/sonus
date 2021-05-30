@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:sonus/logic/models/record_group_model.dart';
+import 'package:sonus/logic/models/record_model.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -83,6 +85,8 @@ class DatabaseProvider {
       )
     ''');
     
+    await db.insert("records_groups", RecordsGroupModel(id: 1, name: "Default").toMap());
+
     await db.rawInsert('''
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(1, 'English', 'en', 'en-US');
     ''');
