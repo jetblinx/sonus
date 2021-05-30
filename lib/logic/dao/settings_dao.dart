@@ -11,7 +11,7 @@ class SettingsDao {
       List<Map<String, dynamic>> result;
       result = await db.rawQuery('''
         SELECT $_table.id, $_table.language, $_table.theme, 
-        $_table.speech_recognition, $_table.text_to_speech, 
+        $_table.speech_recognition, $_table.text_to_speech, $_table.quick_tts, 
         languages.language_code, languages.tts_code FROM $_table
         LEFT JOIN languages ON $_table.language=languages.id
       ''');

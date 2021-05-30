@@ -50,6 +50,7 @@ class DatabaseProvider {
         language INTEGER,
         speech_recognition INTEGER,
         text_to_speech INTEGER,
+        quick_tts INTEGER,
         FOREIGN KEY (language) REFERENCES languages (id)
       )
     ''');
@@ -88,6 +89,6 @@ class DatabaseProvider {
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(2, 'Русский', 'ru', 'ru-RU');
     ''');
 
-    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
   }
 }

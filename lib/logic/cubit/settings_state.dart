@@ -20,6 +20,7 @@ class SettingsLoadedState extends SettingsState {
       language: settings.language ?? this.settings.language,
       theme: settings.theme != null ? settings.theme : this.settings.theme,
       speechRecognition: settings.speechRecognition != null ? settings.speechRecognition : this.settings.speechRecognition,
+      quickTts: settings.quickTts != null ? settings.quickTts : this.settings.quickTts,
       textToSpeech: settings.textToSpeech != null ? settings.textToSpeech : this.settings.textToSpeech,
       languageCode: settings.languageCode ?? this.settings.languageCode,
       localeCode: settings.localeCode ?? this.settings.localeCode

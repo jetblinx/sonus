@@ -200,17 +200,17 @@ class _BodyState extends State<Body> {
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
                                       value: Converter.intToBool(
-                                          settingsState.settings.textToSpeech),
+                                          settingsState.settings.quickTts),
                                       onChanged: (bool value) {
                                         if (!value) {
                                           return settingsCubit.update(
                                               settingsState.settings.copyWith(
                                                   SettingsModel(
                                                     theme: settingsState.settings.theme,
-                                                      textToSpeech:
+                                                      quickTts:
                                                           Converter.boolToInt(
                                                               value),
-                                                      speechRecognition: 1)
+                                                      )
                                               )
                                           );
                                         }
