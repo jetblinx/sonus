@@ -82,7 +82,50 @@ class _BodyState extends State<Body> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline2),
-                                  // FlatSwitch(asrOn: asrOn),
+                                  // InkWell(
+                                  //   splashColor: Colors.transparent,
+                                    
+                                  //   onTap: () {
+                                  //     if (!value) {
+                                  //         return settingsCubit.update(
+                                  //             settingsState.settings.copyWith(
+                                  //                 SettingsModel(
+                                  //                   theme: settingsState.settings.theme,
+                                  //                     speechRecognition:
+                                  //                         Converter.boolToInt(
+                                  //                             value),
+                                  //                     textToSpeech: 1)));
+                                  //       }
+                                  //       settingsCubit.update(settingsState
+                                  //           .settings
+                                  //           .copyWith(SettingsModel(
+                                  //               speechRecognition:
+                                  //                   Converter.boolToInt(
+                                  //                       value))));
+                                  //   },
+                                  //   child: AnimatedContainer(
+                                  //     duration: kDurationSwitch,
+                                  //     curve: Curves.decelerate,
+                                  //     width: kSizeSwitchWidth,
+                                  //     decoration: BoxDecoration(
+                                  //         borderRadius: BorderRadius.circular(50),
+                                  //         color: value ? kColorPrimary : kColorSwitchGrey),
+                                  //     child: Padding(
+                                  //       padding: const EdgeInsets.all(kPaddingSwitchCircle),
+                                  //       child: AnimatedAlign(
+                                  //         duration: kDurationSwitch,
+                                  //         curve: Curves.decelerate,
+                                  //         alignment: asrOn ? Alignment.centerRight : Alignment.centerLeft,
+                                  //         child: Container(
+                                  //           width: kSizeSwitchCircle,
+                                  //           height: kSizeSwitchCircle,
+                                  //           decoration: BoxDecoration(
+                                  //               color: kColorWhite, borderRadius: BorderRadius.circular(100)),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   Switch(
                                       value: Converter.intToBool(settingsState
                                           .settings.speechRecognition),
@@ -155,6 +198,29 @@ class _BodyState extends State<Body> {
                                           .textTheme
                                           .headline2),
                                   // FlatSwitch(asrOn: asrOn),
+                                  Switch(
+                                      value: Converter.intToBool(
+                                          settingsState.settings.textToSpeech),
+                                      onChanged: (bool value) {
+                                        if (!value) {
+                                          return settingsCubit.update(
+                                              settingsState.settings.copyWith(
+                                                  SettingsModel(
+                                                    theme: settingsState.settings.theme,
+                                                      textToSpeech:
+                                                          Converter.boolToInt(
+                                                              value),
+                                                      speechRecognition: 1)
+                                              )
+                                          );
+                                        }
+                                        settingsCubit.update(settingsState
+                                            .settings
+                                            .copyWith(SettingsModel(
+                                                textToSpeech:
+                                                    Converter.boolToInt(
+                                                        value))));
+                                      })
                                 ]),
                             SizedBox(
                               height: getProportionateScreenHeight(15),
