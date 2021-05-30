@@ -10,7 +10,15 @@ class RecordsDao {
     List<Map<String, dynamic>> result = await db.query(_table);
     return result.isNotEmpty
     ? result.map((e) => RecordModel.fromMap(e))
-    : null;
+    : [];
+  }
+
+  Future<List<RecordModel>> getRecordsByRecordsGroupId(int id) async {
+    final db = await _provider.database;
+    List<Map<String, dynamic>> result = await db.query(_table, where: "group_id", whereArgs: [id]);
+    return result.isNotEmpty
+    ? result.map((e) => RecordModel.fromMap(e))
+    : [];
   }
 
   Future<int> add(RecordModel record) async {
