@@ -5,27 +5,33 @@ class RecordsGroupsDao {
   final DatabaseProvider _provider = DatabaseProvider.instance;
   final String _table = "records_groups";
 
-  Future<List<RecordGroupModel>> getRecordsGroups() async {
+  Future<List<RecordsGroupModel>> getRecordsGroups() async {
     final db = await _provider.database;
     List<Map<String, dynamic>> result = await db.query(_table);
     return result.isNotEmpty
-    ? result.map((e) => RecordGroupModel.fromMap(e))
-    : null;
+    ? result.map((e) => RecordsGroupModel.fromMap(e)).toList()
+    : [];
   }
 
-  Future<int> add(RecordGroupModel recordGroupModel) async {
+  Future<int> add(RecordsGroupModel recordGroupModel) async {
     final db = await _provider.database;
     return db.insert(_table, recordGroupModel.toMap());
   }
 
-  Future<int> update(RecordGroupModel recordGroupModel) async {
+  Future<int> update(RecordsGroupModel recordGroupModel) async {
     final db = await _provider.database;
-    return db.update(_table, recordGroupModel.toMap());
+    return db.rawUpdate('''
+      UPDATE $_table SET name='${recordGroupModel.name}' WHERE id=${recordGroupModel.id}
+    ''');
   }
 
   Future<int> delete(int id) async {
     final db = await _provider.database;
-    await db.delete("records", where: "group", whereArgs: [id]);
-    return db.delete(_table, where: "id", whereArgs: [id]);
+    await db.rawDelete('''
+      DELETE FROM records WHERE group_id=$id
+    ''');
+    return db.rawDelete('''
+      DELETE FROM $_table WHERE id=$id
+    ''');
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class Groups extends StatelessWidget {
+class RecordsGroupsView extends StatelessWidget {
   static String routeName = "/groups";
 
   @override

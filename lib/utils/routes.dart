@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
-import 'package:sonus/ui/screens/notes/group/group.dart';
-import 'package:sonus/ui/screens/notes/groups/groups.dart';
 import 'package:sonus/ui/screens/major/major.dart';
-import 'package:sonus/ui/screens/notes/note/note.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrase_editing.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrases_view.dart';
+import 'package:sonus/ui/screens/records_groups/editing/records_group_editing.dart';
+import 'package:sonus/ui/screens/records_groups/records/group/records_view.dart';
+import 'package:sonus/ui/screens/records_groups/records/record_view/record_view.dart';
+import 'package:sonus/ui/screens/records_groups/view/records_groups_view.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
 import 'package:sonus/ui/screens/splash/splash.dart';
 
@@ -14,10 +15,12 @@ final Map<String, WidgetBuilder> routes = {
   Major.routeName: (context) => Major(),
   Settings.routeName: (context) => Settings(),
 
-  Groups.routeName: (context) => Groups(),
-  GroupView.routeName: (context) => GroupView(),
-  Note.routeName: (context) => Note(),
+  RecordsGroupEditing.routeName: (context) => RecordsGroupEditing(),
+  RecordsGroupsView.routeName: (context) => RecordsGroupsView(),
+  RecordsView.routeName: (context) => RecordsView(),
+  RecordView.routeName: (context) => RecordView(),
 
   QuickPhraseEditing.routeName: (context) => QuickPhraseEditing(),
   QuickPhrasesView.routeName: (context) => QuickPhrasesView(),
+
 };

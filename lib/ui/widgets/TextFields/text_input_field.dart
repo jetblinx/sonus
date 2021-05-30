@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sonus/utils/icons.dart';
 
 class TextInputField extends StatelessWidget {
   TextInputField(

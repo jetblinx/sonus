@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:intl/locale.dart';
 import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/cubit/tts_fied_cubit.dart';
-import 'package:sonus/logic/models/language_model.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/utils/icons.dart';
-import 'package:sonus/utils/logger.dart';
 
 
 class TTS extends StatelessWidget {

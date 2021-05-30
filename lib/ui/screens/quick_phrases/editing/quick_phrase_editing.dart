@@ -4,7 +4,7 @@ import 'package:sonus/logic/models/phrase_model.dart';
 import './components/body.dart';
 
 class QuickPhraseEditing extends StatelessWidget {
-  static String routeName = "/quick_phrase_view";
+  static String routeName = "/quick_phrase_editing";
   final PhraseModel phrase;
   QuickPhraseEditing({this.phrase});
 

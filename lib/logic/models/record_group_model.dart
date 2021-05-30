@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class RecordGroupModel extends Equatable {
+class RecordsGroupModel extends Equatable {
   final int id;
   final String name;
 
-  RecordGroupModel({this.id, this.name});
+  RecordsGroupModel({this.id, this.name});
 
-  factory RecordGroupModel.fromMap(Map<String, dynamic> row) => RecordGroupModel(
+  factory RecordsGroupModel.fromMap(Map<String, dynamic> row) => RecordsGroupModel(
     id: row["id"],
     name: row["name"],
   );
@@ -16,8 +16,8 @@ class RecordGroupModel extends Equatable {
     "name": this.name
   };
 
-  RecordGroupModel copyWith({int id, String name}) {
-    return RecordGroupModel(
+  RecordsGroupModel copyWith({int id, String name}) {
+    return RecordsGroupModel(
       id: id ?? this.id,
       name: name ?? this.name,
     );
