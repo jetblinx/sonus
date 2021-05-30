@@ -9,7 +9,15 @@ class LanguageDao {
     final db = await _databaseProvider.database;
     List<Map<String, dynamic>> result = await db.query(_table);
     return result.isNotEmpty
-    ? result.map((e) => LanguageModel.fromMap(e))
-    : null;
+    ? result.map((e) => LanguageModel.fromMap(e)).toList()
+    : [];
+  }
+
+  Future<String> getLanguageCode(int id) async {
+    final db = await _databaseProvider.database;
+    final result = await db.query(_table, columns: ["language_code"]);
+    return result.isNotEmpty ?
+    result.map((e) => LanguageModel.fromMap(e).languageCode) 
+    : "";
   }
 }

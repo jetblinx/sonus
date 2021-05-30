@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
@@ -24,7 +25,8 @@ class Main extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) =>SettingsCubit()),
-        BlocProvider(create: (context) => PhrasesCubit())
+        BlocProvider(create: (context) => PhrasesCubit()),
+        BlocProvider(create: (context) => LanguagesCubit())
       ],
       child: BlocConsumer<SettingsCubit, SettingsState>(
         listener: (context, state) {
@@ -66,7 +68,7 @@ class Main extends StatelessWidget {
                 GlobalCupertinoLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate
               ],
-              // locale: state.settings.languageCode != null ? Locale(state.settings.languageCode) : null,
+              locale: state.settings.languageCode != null ? Locale(state.settings.languageCode) : null,
               home: new AnnotatedRegion<SystemUiOverlayStyle>(
                   value: SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,

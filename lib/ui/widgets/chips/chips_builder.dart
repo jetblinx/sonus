@@ -35,8 +35,13 @@ class ChipBuilder extends StatelessWidget {
         ),
         onPressed: () {
           if (onPress == "open") {
-            onPressed(phrase);
+            if (onPressed != null) {
+              onPressed(phrase);
+            }
           } else {
+            if (onPressed != null) {
+              onPressed(phrase);
+            }
             _speak(phrase);
           }
         },

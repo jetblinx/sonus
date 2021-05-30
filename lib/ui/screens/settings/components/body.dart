@@ -2,182 +2,253 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
+import 'package:sonus/utils/logger.dart';
 import 'package:sonus/utils/size_config.dart';
 
-class Body  extends StatefulWidget {
-  Body ({Key key}) : super(key: key);
+class Body extends StatefulWidget {
+  Body({Key key}) : super(key: key);
 
-  @override
+  @override 
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  bool speechRecognition = false;
-  bool speechToText = false;
-  bool theme = true;
-  int language = 1;
 
   @override
   Widget build(BuildContext context) {
     final SettingsCubit settingsCubit = BlocProvider.of<SettingsCubit>(context);
     return BlocConsumer<SettingsCubit, SettingsState>(
-      listener: (context, state) {
-        if (state is SettingsInitialState) settingsCubit.load();
-        if (state is SettingsErrorState) settingsCubit.load();
-      },
-      builder: (context, state) {
-        if (state is SettingsLoadedState) {
-          return Container(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                //color: Theme.of(context).backgroundColor,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-                      child: AppBar(
-                        iconTheme: IconThemeData(
-                          color: Theme.of(context).accentColor,
-                        ),
-                        centerTitle: true,
-                        title: Text(
-                          AppLocalizations.of(context).settings,
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0.0,
-                      ),
-                    ),
-                  ],
+        listener: (context, state) {
+      if (state is SettingsInitialState) settingsCubit.load();
+      if (state is SettingsErrorState) settingsCubit.load();
+    }, builder: (context, settingsState) {
+      if (settingsState is SettingsLoadedState) {
+        return Container(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            //color: Theme.of(context).backgroundColor,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
                 ),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
+                  child: AppBar(
+                    iconTheme: IconThemeData(
+                      color: Theme.of(context).accentColor,
+                    ),
+                    centerTitle: true,
+                    title: Text(
+                      AppLocalizations.of(context).settings,
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+              child: SingleChildScrollView(
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: getProportionateScreenHeight(20),
-                        ),
-                        Text(AppLocalizations.of(context).modules,
-                            style: Theme.of(context).textTheme.headline1),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: EdgeInsets.symmetric(
+                          horizontal:
+                              kPaddingScreenPage + kPaddingScreenPageContent),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(AppLocalizations.of(context).speech_recognition,
-                              style: Theme.of(context).textTheme.headline2
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
                             ),
-                            // FlatSwitch(asrOn: asrOn),
-                            Switch(
-                              value: Converter.intToBool(state.settings.speechRecognition), 
-                              onChanged: (bool value) {
-                                if (!value) {
-                                  return settingsCubit.update(state.settings.copyWith(SettingsModel(speechRecognition: Converter.boolToInt(value), textToSpeech: 1)));
-                                }
-                                settingsCubit.update(state.settings.copyWith(SettingsModel(speechRecognition: Converter.boolToInt(value))));
-                              }
-                            )
-                          ]
-                        ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(AppLocalizations.of(context).speech_to_text,
-                                style: Theme.of(context).textTheme.headline2),
-                            // FlatSwitch(asrOn: asrOn),
-                            Switch(
-                              value: Converter.intToBool(state.settings.textToSpeech), 
-                              onChanged: (bool value) {
-                                if (!value) { 
-                                  return settingsCubit.update(state.settings.copyWith(SettingsModel(textToSpeech: Converter.boolToInt(value), speechRecognition: 1)));
-                                }
-                                settingsCubit.update(state.settings.copyWith(SettingsModel(textToSpeech: Converter.boolToInt(value))));
-                              }
-                            )
-                          ]
-                        ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(AppLocalizations.of(context).quick_tts,
-                              style: Theme.of(context).textTheme.headline2
+                            Text(AppLocalizations.of(context).modules,
+                                style: Theme.of(context).textTheme.headline1),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
                             ),
-                            // FlatSwitch(asrOn: asrOn),
-                          ]),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Divider(
-                          height: 1,
-                        ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Text(AppLocalizations.of(context).settings_general,
-                            style: Theme.of(context).textTheme.headline1),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(AppLocalizations.of(context).dark_theme,
-                                style: Theme.of(context).textTheme.headline2),
-                            // FlatSwitch(asrOn: asrOn),
-                            Switch(
-                              value: Converter.intToBool( state.settings.theme),
-                              onChanged: (bool isDark) {
-                                settingsCubit.update(state.settings.copyWith(SettingsModel(theme: Converter.boolToInt(isDark))));
-                              }
-                            )
-                          ]
-                        ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(AppLocalizations.of(context).language,
-                                style: Theme.of(context).textTheme.headline2),
-                            Text(AppLocalizations.of(context).language_choosen,
-                                style: Theme.of(context).textTheme.headline1)
-                          ]
-                        )
-                      ]
-                    )
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                      AppLocalizations.of(context)
+                                          .speech_recognition,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  // FlatSwitch(asrOn: asrOn),
+                                  Switch(
+                                      value: Converter.intToBool(settingsState
+                                          .settings.speechRecognition),
+                                      onChanged: (bool value) {
+                                        if (!value) {
+                                          return settingsCubit.update(
+                                              settingsState.settings.copyWith(
+                                                  SettingsModel(
+                                                    theme: settingsState.settings.theme,
+                                                      speechRecognition:
+                                                          Converter.boolToInt(
+                                                              value),
+                                                      textToSpeech: 1)));
+                                        }
+                                        settingsCubit.update(settingsState
+                                            .settings
+                                            .copyWith(SettingsModel(
+                                                speechRecognition:
+                                                    Converter.boolToInt(
+                                                        value))));
+                                      })
+                                ]),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                      AppLocalizations.of(context)
+                                          .speech_to_text,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  // FlatSwitch(asrOn: asrOn),
+                                  Switch(
+                                      value: Converter.intToBool(
+                                          settingsState.settings.textToSpeech),
+                                      onChanged: (bool value) {
+                                        if (!value) {
+                                          return settingsCubit.update(
+                                              settingsState.settings.copyWith(
+                                                  SettingsModel(
+                                                    theme: settingsState.settings.theme,
+                                                      textToSpeech:
+                                                          Converter.boolToInt(
+                                                              value),
+                                                      speechRecognition: 1)
+                                              )
+                                          );
+                                        }
+                                        settingsCubit.update(settingsState
+                                            .settings
+                                            .copyWith(SettingsModel(
+                                                textToSpeech:
+                                                    Converter.boolToInt(
+                                                        value))));
+                                      })
+                                ]),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(AppLocalizations.of(context).quick_tts,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  // FlatSwitch(asrOn: asrOn),
+                                ]),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+                            Divider(
+                              height: 1,
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+                            Text(AppLocalizations.of(context).settings_general,
+                                style: Theme.of(context).textTheme.headline1),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+
+                            // Theme
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(AppLocalizations.of(context).dark_theme,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  // FlatSwitch(asrOn: asrOn),
+                                  Switch(
+                                      value: Converter.intToBool(
+                                          settingsState.settings.theme),
+                                      onChanged: (bool isDark) {
+                                        settingsCubit.update(settingsState
+                                            .settings
+                                            .copyWith(SettingsModel(
+                                                theme: Converter.boolToInt(
+                                                    isDark))));
+                                      })
+                                ]),
+                            SizedBox(
+                              height: getProportionateScreenHeight(15),
+                            ),
+
+                            // Language
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(AppLocalizations.of(context).language,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  // Text(AppLocalizations.of(context).language_choosen,
+                                  //     style: Theme.of(context).textTheme.headline1)
+                                  BlocConsumer<LanguagesCubit, LanguagesState>(
+                                    listener: (context, languagesState) {
+                                      if (languagesState is LanguagesInitialState) BlocProvider.of<LanguagesCubit>(context).load();
+                                    },
+                                    builder: (context, languagesState) {
+                                      if (languagesState is LanguagesLoadedState) {
+                                        final items = languagesState.languages.map((language) => 
+                                            DropdownMenuItem(
+                                              child: Text(language.name),
+                                              value: language.id,
+                                            ),
+                                        ).toList();
+                                        return DropdownButton(
+                                          value: settingsState.settings.language,
+                                          hint: Text(AppLocalizations.of(context).system_language),
+                                          items: items,
+                                          dropdownColor: Theme.of(context).backgroundColor,
+                                          onChanged: (value) {
+                                              final language = languagesState.languages.firstWhere((element) => element.id == value, orElse: () => null);
+                                              settingsCubit.update(settingsState.settings.copyWith(SettingsModel(theme: settingsState.settings.theme, language: value, languageCode: language.languageCode, localeCode: language.ttsCode)));
+                                          },
+                                        );
+                                      }
+                                      return Container();
+                                    },
+                                  )
+                                ])
+                          ])
                   )
-                )
               )
-            ])
-          );
-        }
-        return Scaffold(
-          body:  Center(
-            child: SvgPicture.asset("assets/logo/logo_transparent.svg", height: 150.0, width: 150.0,)
           )
-        );    
+        ]));
       }
-    );
+      return Scaffold(
+          body: Center(
+              child: SvgPicture.asset(
+        "assets/logo/logo_transparent.svg",
+        height: 150.0,
+        width: 150.0,
+      )));
+    });
   }
 }
 
@@ -307,7 +378,7 @@ class _BodyState extends State<Body> {
 //       }
 //       }
 //     );
-      
+
 //   }
 // }
 

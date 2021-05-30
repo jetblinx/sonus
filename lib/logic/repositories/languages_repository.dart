@@ -5,4 +5,5 @@ class LanguagesRepository {
   final LanguageDao _dao = new LanguageDao();
 
   Future<List<LanguageModel>> get languages async => await _dao.getLanguages();
+  Future<String> languageCode (int id) async => await _dao.getLanguageCode(id);
 }

@@ -3,30 +3,34 @@ import 'package:equatable/equatable.dart';
 class LanguageModel extends Equatable{
   final int id;
   final String name;
-  final String code;
+  final String languageCode;
+  final String ttsCode;
 
-  LanguageModel({this.id = 0, this.name, this.code});
+  LanguageModel({this.id = 0, this.name, this.languageCode, this.ttsCode});
 
   factory LanguageModel.fromMap(Map<String, dynamic> row) => LanguageModel(
     id: row["id"],
     name: row["name"],
-    code: row["language_code"]
+    languageCode: row["language_code"],
+    ttsCode: row["tts_code"]
   );
 
   Map<String, dynamic> toMap() => {
     "id": this.id,
     "name": this.name,
-    "language_code": this.code
+    "language_code": this.languageCode,
+    "tts_code": this.ttsCode
   };
 
-  LanguageModel copyWith({int id, String name, String code}) {
+  LanguageModel copyWith({int id, String name, String languageCode, String ttsCode}) {
     return LanguageModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      code: code ?? this.code
+      languageCode: languageCode ?? this.languageCode,
+      ttsCode: ttsCode ?? this.ttsCode
     );
   }
 
   @override
-  List<Object> get props => [id, name, code];
+  List<Object> get props => [id, name, languageCode];
 }

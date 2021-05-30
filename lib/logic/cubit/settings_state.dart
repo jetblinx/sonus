@@ -14,12 +14,15 @@ class SettingsLoadedState extends SettingsState {
   SettingsLoadedState(this.settings);
 
   SettingsLoadedState copyWith(SettingsModel settings) {
+    Logger.log(settings.toString());
     return SettingsLoadedState(SettingsModel(
       id: settings.id ?? this.settings,
       language: settings.language ?? this.settings.language,
       theme: settings.theme != null ? settings.theme : this.settings.theme,
       speechRecognition: settings.speechRecognition != null ? settings.speechRecognition : this.settings.speechRecognition,
-      textToSpeech: settings.textToSpeech != null ? settings.textToSpeech : this.settings.textToSpeech
+      textToSpeech: settings.textToSpeech != null ? settings.textToSpeech : this.settings.textToSpeech,
+      languageCode: settings.languageCode ?? this.settings.languageCode,
+      localeCode: settings.localeCode ?? this.settings.localeCode
     ));
   }
 }

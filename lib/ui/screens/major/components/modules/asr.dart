@@ -159,7 +159,6 @@ class _ASRState extends State<ASR> {
             return BlocProvider(
                 create: (context) => AsrCubit(),
                 child: BlocBuilder<AsrCubit, bool>(builder: (context, isAsr) {
-                 
                   if (isAsr) {
                     return Expanded(
                       child: Padding(

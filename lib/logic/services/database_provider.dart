@@ -37,7 +37,8 @@ class DatabaseProvider {
       CREATE TABLE languages(
         id INTEGER PRIMARY KEY,
         name TEXT,
-        language_code TEXT
+        language_code TEXT,
+        tts_code TEXT
       )
     ''');
 
@@ -81,12 +82,12 @@ class DatabaseProvider {
     ''');
     
     await db.rawInsert('''
-      INSERT INTO languages(id, name, language_code) VALUES(1, 'English', 'en');
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(1, 'English', 'en', 'en-US');
     ''');
     await db.rawInsert('''
-      INSERT INTO languages(id, name, language_code) VALUES(2, 'Русский', 'ru');
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(2, 'Русский', 'ru', 'ru-RU');
     ''');
 
-    await db.insert("settings", SettingsModel(id: 1, language: 2, theme: 0, speechRecognition: 1, textToSpeech: 1).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1).toMap());
   }
 }
