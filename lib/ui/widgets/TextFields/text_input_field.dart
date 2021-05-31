@@ -61,7 +61,7 @@ class TextInputField extends StatelessWidget {
                     ? IconButton(
                         icon: icon,
                         onPressed: () {
-                          onPressed();
+                          
                           if (autoClear) {
                             controller.clear();
                           }
@@ -70,7 +70,7 @@ class TextInputField extends StatelessWidget {
                     : null,
                 suffixIcon: suffixIcon != null
                     ? IconButton(
-                        icon: icon,
+                        icon: suffixIcon,
                         onPressed: () {
                           onPressed();
                           if (autoClear) {
