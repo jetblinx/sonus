@@ -15,7 +15,7 @@ class LanguageDao {
 
   Future<String> getLanguageCode(int id) async {
     final db = await _databaseProvider.database;
-    final result = await db.query(_table, columns: ["language_code"]);
+    final result = await db.query(_table, columns: ["language_code"], orderBy: "name");
     return result.isNotEmpty ?
     result.map((e) => LanguageModel.fromMap(e).languageCode) 
     : "";

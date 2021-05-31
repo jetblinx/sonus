@@ -93,6 +93,16 @@ class DatabaseProvider {
     await db.rawInsert('''
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(2, 'Русский', 'ru', 'ru-RU');
     ''');
+    await db.rawInsert('''
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(3, 'Français', 'fr', 'fr-FR');
+    ''');
+    await db.rawInsert('''
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(4, 'Deutsche', 'de', 'ru-RU');
+    ''');
+    await db.rawInsert('''
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(5, 'Español', 'es', 'es-ES');
+    ''');
+    
 
     await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
   }

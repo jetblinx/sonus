@@ -56,6 +56,7 @@ class _ASRState extends State<ASR> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Theme.of(context).backgroundColor,
             elevation: 0.0,
             actions: [
               Row(
@@ -82,7 +83,7 @@ class _ASRState extends State<ASR> {
                 ],
               ),
             ],
-            title: Text(AppLocalizations.of(context).record_name),
+            title: Text(AppLocalizations.of(context).record_name, style: Theme.of(context).textTheme.headline3),
             content: Container(
               padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
               decoration: BoxDecoration(
@@ -114,6 +115,7 @@ class _ASRState extends State<ASR> {
           }, builder: (context, recordsGroupsState) {
             if (recordsGroupsState is RecordsGroupsLoadedState) {
               return AlertDialog(
+                backgroundColor: Theme.of(context).backgroundColor,
                 elevation: 0.0,
                 actions: [
                   TextButton(
@@ -125,7 +127,7 @@ class _ASRState extends State<ASR> {
                         style: Theme.of(context).textTheme.headline3,
                       )),
                 ],
-                title: Text(AppLocalizations.of(context).choose_group),
+                title: Text(AppLocalizations.of(context).choose_group, style: Theme.of(context).textTheme.headline3),
                 content: Container(
                   width: MediaQuery.of(context).size.width / 0.5,
                   child: ListView.separated(
