@@ -9,6 +9,8 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/size_config.dart';
 
+import '../../../../main.dart';
+
 class Body extends StatefulWidget {
   Body({Key key}) : super(key: key);
 
@@ -277,6 +279,7 @@ class _BodyState extends State<Body> {
                                           onChanged: (value) {
                                               final language = languagesState.languages.firstWhere((element) => element.id == value, orElse: () => null);
                                               settingsCubit.update(settingsState.settings.copyWith(SettingsModel(theme: settingsState.settings.theme, language: value, languageCode: language.languageCode, localeCode: language.ttsCode)));
+                                              //RestartWidget.restartApp(context);
                                           },
                                         );
                                       }

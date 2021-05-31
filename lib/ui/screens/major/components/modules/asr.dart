@@ -162,10 +162,8 @@ class _ASRState extends State<ASR> {
     if (groupId != null && recordName != null) {
       String speechString = speechRecognized.join("|");
       await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
-          value: speechString.trim(), name: recordName, groupId: groupId));
+          name: recordName, value: speechString.trim(), groupId: groupId));
     }
-    print(groupId);
-    print(recordName);
   }
 
   void activateSpeechRecognizer() {
@@ -318,8 +316,7 @@ class _ASRState extends State<ASR> {
                                                     .buttonColor,
                                               ),
                                               onPressed: () {
-                                                _speechRecognitionAvailable &&
-                                                        !_isListening
+                                                !_isListening
                                                     ? save(context)
                                                     : null;
                                                 HapticFeedback.heavyImpact();
