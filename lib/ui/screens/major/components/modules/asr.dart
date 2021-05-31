@@ -52,7 +52,7 @@ class _ASRState extends State<ASR> {
 
   Future<String> _displayRecordNameDialog(BuildContext context) async {
     TextEditingController _textFieldController = TextEditingController();
-    showDialog(
+    return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
