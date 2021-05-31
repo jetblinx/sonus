@@ -14,7 +14,7 @@ class TextInputField extends StatelessWidget {
       this.onChanged,
       this.autoClear = false,
       this.initialValue,
-      this.controller})
+      this.controller, this.suffixIcon})
       : super(key: key);
 
   final TextEditingController controller;
@@ -23,6 +23,7 @@ class TextInputField extends StatelessWidget {
   final Function onPressed;
   final String initialValue;
   final Icon icon;
+  final Icon suffixIcon;
   final bool isBorder;
   final bool backgroundTransaprent;
   final bool centerAlign;
@@ -56,7 +57,18 @@ class TextInputField extends StatelessWidget {
                 border: InputBorder.none,
                 hintStyle: Theme.of(context).textTheme.headline3,
                 hintText: AppLocalizations.of(context).enter_text,
-                suffixIcon: icon != null
+                icon: icon != null
+                    ? IconButton(
+                        icon: icon,
+                        onPressed: () {
+                          onPressed();
+                          if (autoClear) {
+                            controller.clear();
+                          }
+                        },
+                      )
+                    : null,
+                suffixIcon: suffixIcon != null
                     ? IconButton(
                         icon: icon,
                         onPressed: () {

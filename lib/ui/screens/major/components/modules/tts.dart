@@ -167,7 +167,8 @@ class TTS extends StatelessWidget {
       controller: _controller,
       autoClear: true,
       isBorder: true,
-      icon: _controller.text.isEmpty ? null : Icon(kIconSend),
+      suffixIcon: _controller.text.isEmpty ? null : Icon(kIconSend),
+      icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
       onPressed: () async {
         HapticFeedback.lightImpact();
         await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
