@@ -25,5 +25,15 @@
   "record_name": "Nombre de registro",
   "record_save": "Guardar",
   "close": "Cerca",
-  "choose_group": "Elegir grupo"
+  "choose_group": "Elegir grupo",
+  "record_added": "Registro agregado",
+  "record_edited": "Registro editado",
+  "record_deleted": "Registro eliminado",
+  "quick_phrase_added": "Frase rápida agregado",
+  "quick_phrase_edited": "Frase rápida editada",
+  "quick_phrase_deleted": "Frase rápida eliminada",
+  "record_group_added": "Grupo de registros agregado",
+  "record_group_edited": "Grupo de registros editado",
+  "record_group_deleted": "Grupo de registros eliminado",
+  "phrase_copied": "Frase copiada"
 }

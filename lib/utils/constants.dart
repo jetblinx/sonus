@@ -11,6 +11,8 @@ const Color kColorLightAccent = Color(0xFF333333);
 Color kColorLightDivider = Colors.grey[300];
 Color kColorLightSecondary = Colors.grey[200];
 
+Color kColorLightSnackbar = Colors.grey[400];
+
 // Common
 const Color kColorPrimary = Color(0xFF4CAF50);
 const Color kColorWhite = Colors.white;
@@ -24,6 +26,8 @@ const Color kColorDarkText = Color(0xFFFFFFFF);
 const Color kColorDarkAccent = Color(0xFFFFFFFF);
 Color kColorDarkDivider = Colors.grey[700];
 Color kColorDarkSecondary = Colors.grey[900];
+
+Color kColorDarkSnackbar = Colors.grey[800];
 
 /* PADDINGS & MARGINS */
 // Chips

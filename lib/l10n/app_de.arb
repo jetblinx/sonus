@@ -25,5 +25,15 @@
   "record_name": "Datensatzname",
   "record_save": "Speichern",
   "close": "Schließen",
-  "choose_group": "Gruppe auswählen"
+  "choose_group": "Gruppe auswählen",
+  "record_added": "Datensatzgruppe hinzugefügt",
+  "record_edited": "Datensatz bearbeitet",
+  "record_deleted": "Datensatz gelöscht",
+  "quick_phrase_added": "Schnelle Phrase hinzugefügt",
+  "quick_phrase_edited": "Schnelle Phrase bearbeitet",
+  "quick_phrase_deleted": "Schnelle Phrase gelöscht",
+  "record_group_added": "Datensatzgruppe hinzugefügt",
+  "record_group_edited": "Datensatzgruppe bearbeitet",
+  "record_group_deleted": "Datensatzgruppe gelöscht",
+  "phrase_copied": "Phrase kopiert"
 }

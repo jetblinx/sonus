@@ -25,5 +25,15 @@
   "record_name": "Record Name",
   "record_save": "Save",
   "close": "Close",
-  "choose_group": "Choose group"
+  "choose_group": "Choose group",
+  "record_added": "Record added",
+  "record_edited": "Record edited",
+  "record_deleted": "Record deleted",
+  "quick_phrase_added": "Quick phrase added",
+  "quick_phrase_edited": "Quick phrase edited",
+  "quick_phrase_deleted": "Quick phrase deleted",
+  "record_group_added": "Records group added",
+  "record_group_edited": "Records group edited",
+  "record_group_deleted": "Records group deleted",
+  "phrase_copied": "Phrase copied"
 }

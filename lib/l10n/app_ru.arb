@@ -25,5 +25,15 @@
   "record_name": "Название записи",
   "record_save": "Сохранить",
   "close": "Закрыть",
-  "choose_group": "Выберите группу"
+  "choose_group": "Выберите группу",
+  "record_added": "Запись сохранена",
+  "record_edited": "Запись изменена",
+  "record_deleted": "Запись удалена",
+  "quick_phrase_added": "Быстрая фраза добавлена",
+  "quick_phrase_edited": "Быстрая фраза изменена",
+  "quick_phrase_deleted": "Быстрая фраза удалена",
+  "record_group_added": "Группа записей добавлена",
+  "record_group_edited": "Группа записей изменена",
+  "record_group_deleted": "Группа записей удалена",
+  "phrase_copied": "Фраза скопирована"
 }

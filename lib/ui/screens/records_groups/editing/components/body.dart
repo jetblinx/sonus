@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/models/record_group_model.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
+import 'package:sonus/ui/widgets/snackbars/snackbar.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/logger.dart';
@@ -38,15 +39,27 @@ class Body extends StatelessWidget {
                       icon: Icon(kIconDelete),
                       onPressed: () {
                         if (recordsGroup != null) {
-                          BlocProvider.of<RecordsGroupsCubit>(context).delete(recordsGroup.id);
+                          BlocProvider.of<RecordsGroupsCubit>(context)
+                              .delete(recordsGroup.id);
                           Navigator.pop(context);
+                          Navigator.pop(context);
+                          final snackBar = FloatingSnackbar.floatingSnackBar(
+                            Icon(
+                              kIconDelete,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            AppLocalizations.of(context).record_group_deleted,
+                            AppLocalizations.of(context).close,
+                            context);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       },
                     ),
                   ],
-                  title: Text(recordsGroup != null ?
-                    AppLocalizations.of(context).edit_records_group
-                    : AppLocalizations.of(context).add_records_group,
+                  title: Text(
+                    recordsGroup != null
+                        ? AppLocalizations.of(context).edit_records_group
+                        : AppLocalizations.of(context).add_records_group,
                     style: Theme.of(context).textTheme.caption,
                   ),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -57,21 +70,20 @@ class Body extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-            child: Center(
-              child: TextInputField(
-                initialValue: text,
-                maxLines: null,
-                backgroundTransaprent: true,
-                centerAlign: true,
-                onChanged: (String value) {
-                  text = value;
-                },
-              ),
-            )
-          )
-        ),
+            child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
+                child: Center(
+                  child: TextInputField(
+                    initialValue: text,
+                    maxLines: null,
+                    backgroundTransaprent: true,
+                    centerAlign: true,
+                    onChanged: (String value) {
+                      text = value;
+                    },
+                  ),
+                ))),
         Container(
           child: IconButton(
             icon: Icon(
@@ -81,10 +93,29 @@ class Body extends StatelessWidget {
             onPressed: () {
               if (text.trim() != "") {
                 if (recordsGroup != null) {
-                  BlocProvider.of<RecordsGroupsCubit>(context).update(recordsGroup.copyWith(name: text.trim()));
-                }
-                else {
-                  BlocProvider.of<RecordsGroupsCubit>(context).add(RecordsGroupModel(name: text.trim()));
+                  BlocProvider.of<RecordsGroupsCubit>(context)
+                      .update(recordsGroup.copyWith(name: text.trim()));
+                  final snackBar = FloatingSnackbar.floatingSnackBar(
+                      Icon(
+                        kIconEditSnack,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      AppLocalizations.of(context).record_group_edited,
+                      AppLocalizations.of(context).close,
+                      context);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  BlocProvider.of<RecordsGroupsCubit>(context)
+                      .add(RecordsGroupModel(name: text.trim()));
+                  final snackBar = FloatingSnackbar.floatingSnackBar(
+                      Icon(
+                        kIconAdd,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      AppLocalizations.of(context).record_group_added,
+                      AppLocalizations.of(context).close,
+                      context);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
                 Navigator.pop(context);
               }
@@ -93,8 +124,7 @@ class Body extends StatelessWidget {
           ),
         ),
         SizedBox(
-          child: Container(
-          ),
+          child: Container(),
           height: getProportionateScreenHeight(15),
         ),
       ]),

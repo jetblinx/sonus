@@ -25,5 +25,15 @@
   "record_name": "Nom de l'enregistrement",
   "record_save": "Enregistrer",
   "close": "Fermer",
-  "choose_group": "Choisissez un groupe"
+  "choose_group": "Choisissez un groupe",
+  "record_added": "Enregistrement ajouté",
+  "record_edited": "Enregistrement édité",
+  "record_deleted": "Enregistrement supprimé",
+  "quick_phrase_added": "Expression rapide ajoutée",
+  "quick_phrase_edited": "Expression rapide modifiée",
+  "quick_phrase_deleted": "Expression rapide supprimée",
+  "record_group_added": "Groupe d'enregistrements ajouté",
+  "record_group_edited": "Groupe d'enregistrements modifié",
+  "record_group_deleted": "Groupe d'enregistrements supprimé",
+  "phrase_copied": "Phrase copiée"
 }

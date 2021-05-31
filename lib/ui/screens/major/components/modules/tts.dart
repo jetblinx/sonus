@@ -156,7 +156,8 @@ class TTS extends StatelessWidget {
         BlocProvider.of<TtsFiedCubit>(context).update(value);
         if (Converter.intToBool(settingsLoadedState.settings.quickTts)) {
           words = value.split(' ');
-          if (words.length >= 2 && value.substring(value.length - 1) == " ") {
+          String lastValue = value.substring(value.length - 1);
+          if (words.length >= 2 && lastValue == " ") {
             await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
             await flutterTts.setPitch(1.0);
             await flutterTts.setSpeechRate(0.9);

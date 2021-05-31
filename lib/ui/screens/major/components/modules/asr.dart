@@ -7,9 +7,10 @@ import 'package:sonus/logic/cubit/asr_cubit.dart';
 import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
-import 'package:sonus/logic/models/record_group_model.dart';
 import 'package:sonus/logic/models/record_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/ui/widgets/recognized_widgets_list.dart';
+import 'package:sonus/ui/widgets/snackbars/snackbar.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
@@ -41,7 +42,6 @@ class _ASRState extends State<ASR> {
   initState() {
     super.initState();
     activateSpeechRecognizer();
-    print(widget.selectedLanguage);
   }
 
   ScrollController _scrollController = ScrollController();
@@ -83,7 +83,8 @@ class _ASRState extends State<ASR> {
                 ],
               ),
             ],
-            title: Text(AppLocalizations.of(context).record_name, style: Theme.of(context).textTheme.headline3),
+            title: Text(AppLocalizations.of(context).record_name,
+                style: Theme.of(context).textTheme.headline3),
             content: Container(
               padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
               decoration: BoxDecoration(
@@ -127,7 +128,8 @@ class _ASRState extends State<ASR> {
                         style: Theme.of(context).textTheme.headline3,
                       )),
                 ],
-                title: Text(AppLocalizations.of(context).choose_group, style: Theme.of(context).textTheme.headline3),
+                title: Text(AppLocalizations.of(context).choose_group,
+                    style: Theme.of(context).textTheme.headline3),
                 content: Container(
                   width: MediaQuery.of(context).size.width / 0.5,
                   child: ListView.separated(
@@ -158,13 +160,28 @@ class _ASRState extends State<ASR> {
   }
 
   void save(BuildContext context) async {
+
     int groupId = await _displayGroupChooserDialog(context);
-    String recordName = await _displayRecordNameDialog(context);
+    String recordName;
+    if (groupId != null) 
+      recordName = await _displayRecordNameDialog(context);
+
+      print(groupId);
+      print(recordName);
 
     if (groupId != null && recordName != null) {
       String speechString = speechRecognized.join("|");
       await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
           name: recordName, value: speechString.trim(), groupId: groupId));
+      final snackBar = FloatingSnackbar.floatingSnackBar(
+          Icon(
+            kIconAdd,
+            color: Theme.of(context).accentColor,
+          ),
+          AppLocalizations.of(context).record_added,
+          AppLocalizations.of(context).close,
+          context);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -255,24 +272,7 @@ class _ASRState extends State<ASR> {
                         child: Column(
                           children: [
                             Expanded(
-                              child: ListView.separated(
-                                controller: _scrollController,
-                                itemCount: speechRecognized.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return ListTile(
-                                    title: Text(
-                                      speechRecognized[index],
-                                      style:
-                                          Theme.of(context).textTheme.caption,
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  );
-                                },
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return Divider();
-                                },
-                              ),
+                              child: RecognizedPhrasesList(scrollController: _scrollController, speechRecognized: speechRecognized),
                             ),
                             Divider(
                               height: 1,
