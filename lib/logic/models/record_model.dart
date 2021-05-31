@@ -22,7 +22,7 @@ class RecordModel extends Equatable {
     "group_id": this.groupId
   };
 
-  RecordModel copyWith({int id, String name, String value, String groupId}) {
+  RecordModel copyWith({int id, String name, String value, int groupId}) {
     return RecordModel(
       id: id ?? this.id,
       name: name ?? this.name,

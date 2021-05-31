@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/models/record_model.dart';
+import 'package:sonus/ui/screens/records_groups/view/records_groups_view.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
@@ -44,6 +45,7 @@ class Body extends StatelessWidget {
                           BlocProvider.of<RecordsCubit>(context)
                               .delete(record.id);
                           Navigator.pop(context);
+                          // Navigator.pushNamed(context, RecordsGroupsView.routeName);
                         },
                       ),
                     ],
@@ -58,27 +60,23 @@ class Body extends StatelessWidget {
               child: Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: kPaddingScreenPageContent),
-            child: Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
-                child: Expanded(
-                  child: ListView.separated(
-                    itemCount: archiveSpeech.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(
-                          archiveSpeech[index],
-                          style: Theme.of(context).textTheme.caption,
-                          textAlign: TextAlign.start,
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Divider();
-                    },
-                  ),
-                ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
+              child: ListView.separated(
+                itemCount: archiveSpeech.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(
+                      archiveSpeech[index],
+                      style: Theme.of(context).textTheme.caption,
+                      textAlign: TextAlign.start,
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider();
+                },
               ),
             ),
           ))

@@ -159,13 +159,11 @@ class _ASRState extends State<ASR> {
     int groupId = await _displayGroupChooserDialog(context);
     String recordName = await _displayRecordNameDialog(context);
 
-    // if (groupId != null && recordName != null) {
-    //   String speechString = speechRecognized.join("|");
-    //   await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
-    //       value: speechString.trim(), name: recordName, groupId: groupId));
-    // }
-    print(groupId);
-    print(recordName);
+    if (groupId != null && recordName != null) {
+      String speechString = speechRecognized.join("|");
+      await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
+          name: recordName, value: speechString.trim(), groupId: groupId));
+    }
   }
 
   void activateSpeechRecognizer() {
@@ -318,8 +316,7 @@ class _ASRState extends State<ASR> {
                                                     .buttonColor,
                                               ),
                                               onPressed: () {
-                                                _speechRecognitionAvailable &&
-                                                        !_isListening
+                                                !_isListening
                                                     ? save(context)
                                                     : null;
                                                 HapticFeedback.heavyImpact();
