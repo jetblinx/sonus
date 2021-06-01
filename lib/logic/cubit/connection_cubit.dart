@@ -4,17 +4,25 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 part 'connection_state.dart';
 
 class NetConnectionCubit extends Cubit<NetConnectionState> {
   InternetConnection internetConnection;
 
-  NetConnectionCubit() : super(NetConnectionLoading()) {
+  NetConnectionCubit() : super(NetConnectionLoadedState(false)) {
     Stream<bool> stream = InternetConnection().stream;
-    stream.listen((event) {
-      print(event);
-      emit(NetConnectionLoadedState(event));
-    });
+    internetListen(stream);
+  }
+
+  StreamSubscription<bool> internetListen(Stream<bool> stream) {
+    return stream.listen((event) {
+      if (event != state.isConnected) {
+        print(event);
+        emit(NetConnectionLoadedState(event));
+      }
+  });
   }
 }
 

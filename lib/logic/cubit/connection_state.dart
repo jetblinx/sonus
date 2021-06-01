@@ -1,10 +1,8 @@
 part of 'connection_cubit.dart';
 
-abstract class NetConnectionState extends Equatable {
-  const NetConnectionState();
-
-  @override
-  List<Object> get props => [];
+@immutable
+abstract class NetConnectionState {
+  Object get isConnected => null;
 }
 
 class NetConnectionLoading extends NetConnectionState {}

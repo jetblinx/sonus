@@ -67,8 +67,9 @@ class Main extends StatelessWidget {
           BlocProvider(create: (context) => RecordsCubit()),
           BlocProvider(create: (context) => NetConnectionCubit())
         ],
-        child: BlocListener<NetConnectionCubit, NetConnectionState>(
-          listener: (context, netState) {         
+        child: BlocBuilder<NetConnectionCubit, NetConnectionState>(
+          builder: (context, netState) { 
+               
             if (netState is NetConnectionLoadedState) {
                
               if (netState.isConnected) {
