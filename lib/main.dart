@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +14,6 @@ import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
-import 'logic/cubit/connection_cubit.dart';
 import 'ui/screens/major/major.dart';
 
 void main() {
@@ -65,7 +61,6 @@ class Main extends StatelessWidget {
           BlocProvider(create: (context) => LanguagesCubit()),
           BlocProvider(create: (context) => RecordsGroupsCubit()),
           BlocProvider(create: (context) => RecordsCubit()),
-          BlocProvider(create: (context) => NetConnectionCubit())
         ],
         child: BlocConsumer<SettingsCubit, SettingsState>(
                     listener: (context, state) {

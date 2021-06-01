@@ -110,11 +110,8 @@ class _ASRState extends State<ASR> {
     return showDialog(
         context: context,
         builder: (context) {
-          return BlocConsumer<RecordsGroupsCubit, RecordsGroupsState>(
-              listener: (context, recordsGroupInitialState) {
-            if (recordsGroupInitialState is RecordsGroupsLoadedState)
-              BlocProvider.of<RecordsGroupsCubit>(context).load();
-          }, builder: (context, recordsGroupsState) {
+          return BlocBuilder<RecordsGroupsCubit, RecordsGroupsState>(
+              builder: (context, recordsGroupsState) {
             if (recordsGroupsState is RecordsGroupsLoadedState) {
               return AlertDialog(
                 backgroundColor: Theme.of(context).backgroundColor,
@@ -161,26 +158,25 @@ class _ASRState extends State<ASR> {
   }
 
   void save(BuildContext context) async {
-    int groupId = await _displayGroupChooserDialog(context);
-    String recordName;
-    if (groupId != null) recordName = await _displayRecordNameDialog(context);
+    if (speechRecognized.length != 0) {
+      int groupId = await _displayGroupChooserDialog(context);
+      String recordName;
+      if (groupId != null) recordName = await _displayRecordNameDialog(context);
 
-    print(groupId);
-    print(recordName);
-
-    if (groupId != null && recordName != null) {
-      String speechString = speechRecognized.join("|");
-      await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
-          name: recordName, value: speechString.trim(), groupId: groupId));
-      final snackBar = FloatingSnackbar.floatingSnackBar(
-          Icon(
-            kIconAdd,
-            color: Theme.of(context).accentColor,
-          ),
-          AppLocalizations.of(context).record_added,
-          AppLocalizations.of(context).close,
-          context);
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (groupId != null && recordName != null) {
+        String speechString = speechRecognized.join("|");
+        await BlocProvider.of<RecordsCubit>(context).add(RecordModel(
+            name: recordName, value: speechString.trim(), groupId: groupId));
+        final snackBar = FloatingSnackbar.floatingSnackBar(
+            Icon(
+              kIconAdd,
+              color: Theme.of(context).accentColor,
+            ),
+            AppLocalizations.of(context).record_added,
+            AppLocalizations.of(context).close,
+            context);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
   }
 
@@ -251,12 +247,14 @@ class _ASRState extends State<ASR> {
           _isListening = false,
           isPaused = true,
           speechRecognized.last = text,
-          transcription = '',
-          if (text.trim() == '') {speechRecognized.removeLast()},
+          // if (speechRecognized.last == '') {
+          //   print("Calling text == ''"),
+          //   speechRecognized.removeLast()
+          // },
         });
-    if (speechRecognized.length == 0) {
-      BlocProvider.of<AsrCubit>(context).changed();
-    }
+    speechRecognized.last = text;
+    print("Speech List");
+    print(speechRecognized);
     HapticFeedback.heavyImpact();
   }
 
@@ -264,15 +262,15 @@ class _ASRState extends State<ASR> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NetConnectionCubit(),
-      child: BlocBuilder<NetConnectionCubit, bool>(
-          builder: (context, isConnected) {
-        if (isConnected) {
-          return BlocBuilder<SettingsCubit, SettingsState>(
-            builder: (context, state) {
-              if (state is SettingsLoadedState) {
-                if (Converter.intToBool(state.settings.speechRecognition)) {
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        if (state is SettingsLoadedState) {
+          if (Converter.intToBool(state.settings.speechRecognition)) {
+            return BlocProvider(
+              create: (context) => NetConnectionCubit(),
+              child: BlocBuilder<NetConnectionCubit, bool>(
+                  builder: (context, isConnected) {
+                if (isConnected) {
                   return BlocProvider(
                       create: (context) => AsrCubit(),
                       child: BlocBuilder<AsrCubit, bool>(
@@ -348,10 +346,8 @@ class _ASRState extends State<ASR> {
                                                           .buttonColor,
                                                     ),
                                                     onPressed: () {
-                                                      _speechRecognitionAvailable &&
-                                                              !_isListening
-                                                          ? start()
-                                                          : null;
+                                                       start()
+                                                          ;
                                                       HapticFeedback
                                                           .heavyImpact();
                                                     }),
@@ -407,33 +403,35 @@ class _ASRState extends State<ASR> {
                         }
                       }));
                 }
-                return Container();
-              }
-              return Container();
-            },
-          );
+                return Expanded(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        child: Column(children: [
+                          Icon(
+                            kIconDisconnected,
+                            color: Theme.of(context).accentColor,
+                            size: kSizeButtonMic,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            AppLocalizations.of(context).no_internet_connection,
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            );
+          }
+          return Container();
         }
-        return Expanded(
-          child: Center(
-            child: SingleChildScrollView(
-              child: Container(
-                child: Column(children: [
-                  Icon(
-                    kIconDisconnected,
-                    color: Theme.of(context).accentColor,
-                    size: kSizeButtonMic,
-                  ),
-                  SizedBox(height: 20,),
-                  Text(
-                    AppLocalizations.of(context).no_internet_connection,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                ]),
-              ),
-            ),
-          ),
-        );
-      }),
+        return Container();
+      },
     );
   }
 }

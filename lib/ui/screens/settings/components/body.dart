@@ -9,8 +9,6 @@ import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/size_config.dart';
 
-import '../../../../main.dart';
-
 class Body extends StatefulWidget {
   Body({Key key}) : super(key: key);
 

@@ -18,8 +18,7 @@ class ChipBuilder extends StatelessWidget {
     await flutterTts.setLanguage(language);
     await flutterTts.setPitch(1.0);
     await flutterTts.setSpeechRate(0.9);
-    await flutterTts.speak(phrase.value);
-    print(phrase.value);                     
+    await flutterTts.speak(phrase.value);                 
   }
 
   @override

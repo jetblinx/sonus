@@ -34,7 +34,7 @@ class RecognizedPhrasesList extends StatelessWidget {
                           kIconCopy,
                           color: Theme.of(context).accentColor,
                         ),
-                        AppLocalizations.of(context).record_added,
+                        AppLocalizations.of(context).phrase_copied,
                         AppLocalizations.of(context).close,
                         context);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -64,7 +64,7 @@ class RecognizedPhrasesList extends StatelessWidget {
                           kIconCopy,
                           color: Theme.of(context).accentColor,
                         ),
-                        AppLocalizations.of(context).record_added,
+                        AppLocalizations.of(context).phrase_copied,
                         AppLocalizations.of(context).close,
                         context);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);

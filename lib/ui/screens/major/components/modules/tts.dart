@@ -164,11 +164,6 @@ class TTS extends StatelessWidget {
             await flutterTts.setSpeechRate(0.9);
             await flutterTts.speak(words[words.length-2]);
           }
-          print("value");
-          print(value);
-          print("textValue");
-          print(textValue);
-          textValue = value;
         }
       },
       controller: _controller,
@@ -186,7 +181,6 @@ class TTS extends StatelessWidget {
         await flutterTts.setPitch(1.0);
         await flutterTts.setSpeechRate(0.9);
         await flutterTts.speak(ttsFiedValue);
-        print(ttsFiedValue);
         BlocProvider.of<TtsFiedCubit>(context).clear();                    
       },
     );

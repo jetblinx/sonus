@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/models/record_model.dart';
-import 'package:sonus/ui/screens/records_groups/view/records_groups_view.dart';
 import 'package:sonus/ui/widgets/recognized_widgets_list.dart';
 import 'package:sonus/ui/widgets/snackbars/snackbar.dart';
 import 'package:sonus/utils/constants.dart';

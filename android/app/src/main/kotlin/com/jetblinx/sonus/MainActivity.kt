@@ -1,4 +1,4 @@
-package com.example.sonus
+package com.jetblinx.sonus
 
 import io.flutter.embedding.android.FlutterActivity
 

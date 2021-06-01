@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sonus"
+    package="com.jetblinx.sonus"
     android:installLocation="preferExternal">
     <!-- FIXME: Change command name -->
     <!-- Flutter needs it to communicate with the running application

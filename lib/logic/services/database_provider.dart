@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:sonus/logic/models/record_group_model.dart';
-import 'package:sonus/logic/models/record_model.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
