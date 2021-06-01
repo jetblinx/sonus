@@ -1,26 +1,25 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
 part 'connection_state.dart';
 
-class NetConnectionCubit extends Cubit<NetConnectionState> {
+class NetConnectionCubit extends Cubit<bool> {
   InternetConnection internetConnection;
 
-  NetConnectionCubit() : super(NetConnectionLoadedState(false)) {
+  NetConnectionCubit() : super(false) {
     Stream<bool> stream = InternetConnection().stream;
     internetListen(stream);
   }
 
   StreamSubscription<bool> internetListen(Stream<bool> stream) {
     return stream.listen((event) {
-      if (event != state.isConnected) {
+      if (event != state) {
         print(event);
-        emit(NetConnectionLoadedState(event));
+        emit(!state);
       }
   });
   }
@@ -51,21 +50,3 @@ class InternetConnection {
     _streamController.close();
   }
 }
-
-// import 'package:bloc/bloc.dart';
-// import 'dart:io';
-
-// class ConnectionCubit extends Cubit<bool> {
-//   ConnectionCubit() : super(null);
-
-//   void check() async {
-//     try {
-//       final result = await InternetAddress.lookup('example.com');
-//       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-//         emit(true);
-//       }
-//     } on SocketException catch (_) {
-//       emit(false);
-//     }
-//   }
-// }

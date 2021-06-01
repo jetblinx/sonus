@@ -67,14 +67,7 @@ class Main extends StatelessWidget {
           BlocProvider(create: (context) => RecordsCubit()),
           BlocProvider(create: (context) => NetConnectionCubit())
         ],
-        child: BlocBuilder<NetConnectionCubit, NetConnectionState>(
-          builder: (context, netState) { 
-               
-            if (netState is NetConnectionLoadedState) {
-               
-              if (netState.isConnected) {
-
-                return BlocConsumer<SettingsCubit, SettingsState>(
+        child: BlocConsumer<SettingsCubit, SettingsState>(
                     listener: (context, state) {
                   if (state is SettingsErrorState)
                     BlocProvider.of<SettingsCubit>(context).load();
@@ -177,12 +170,7 @@ class Main extends StatelessWidget {
                             "assets/logo/logo_transparent.svg",
                             height: 75.0,
                           )))));
-                });
-              }
-              return MaterialApp(home: Scaffold(body: Center(child: Container(child: Text("No internet connection"),))));
-            }
-            return Container();
-          },
-        ));
+                })
+              );
   }
 }

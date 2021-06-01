@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/logic/cubit/asr_cubit.dart';
+import 'package:sonus/logic/cubit/connection_cubit.dart';
 import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
@@ -263,140 +264,176 @@ class _ASRState extends State<ASR> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: (context, state) {
-        if (state is SettingsLoadedState) {
-          if (Converter.intToBool(state.settings.speechRecognition)) {
-            return BlocProvider(
-                create: (context) => AsrCubit(),
-                child: BlocBuilder<AsrCubit, bool>(builder: (context, isAsr) {
-                  if (isAsr) {
-                    return Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                kPaddingScreenPage + kPaddingScreenPageContent),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: RecognizedPhrasesList(
-                                  scrollController: _scrollController,
-                                  speechRecognized: speechRecognized),
-                            ),
-                            Divider(
-                              height: 1,
-                            ),
-                            Center(
-                              child: !isPaused
-                                  ? Container(
-                                      child: IconButton(
-                                          iconSize: kSizeButtonEnd,
-                                          icon: Icon(
-                                            kIconPause,
-                                            color:
-                                                Theme.of(context).buttonColor,
+    return BlocProvider(
+      create: (context) => NetConnectionCubit(),
+      child: BlocBuilder<NetConnectionCubit, bool>(
+          builder: (context, isConnected) {
+        if (isConnected) {
+          return BlocBuilder<SettingsCubit, SettingsState>(
+            builder: (context, state) {
+              if (state is SettingsLoadedState) {
+                if (Converter.intToBool(state.settings.speechRecognition)) {
+                  return BlocProvider(
+                      create: (context) => AsrCubit(),
+                      child: BlocBuilder<AsrCubit, bool>(
+                          builder: (context, isAsr) {
+                        if (isAsr) {
+                          return Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: kPaddingScreenPage +
+                                      kPaddingScreenPageContent),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: RecognizedPhrasesList(
+                                        scrollController: _scrollController,
+                                        speechRecognized: speechRecognized),
+                                  ),
+                                  Divider(
+                                    height: 1,
+                                  ),
+                                  Center(
+                                    child: !isPaused
+                                        ? Container(
+                                            child: IconButton(
+                                                iconSize: kSizeButtonEnd,
+                                                icon: Icon(
+                                                  kIconPause,
+                                                  color: Theme.of(context)
+                                                      .buttonColor,
+                                                ),
+                                                onPressed: () async {
+                                                  _isListening
+                                                      ? {
+                                                          await stop(),
+                                                          if (speechRecognized
+                                                                  .length ==
+                                                              0)
+                                                            {
+                                                              BlocProvider.of<
+                                                                          AsrCubit>(
+                                                                      context)
+                                                                  .changed(),
+                                                              cancel(),
+                                                            },
+                                                        }
+                                                      : null;
+                                                }),
+                                          )
+                                        : Container(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                IconButton(
+                                                    iconSize: kSizeButtonEnd,
+                                                    icon: Icon(
+                                                      kIconSave,
+                                                      color: Theme.of(context)
+                                                          .buttonColor,
+                                                    ),
+                                                    onPressed: () {
+                                                      !_isListening
+                                                          ? save(context)
+                                                          : null;
+                                                      HapticFeedback
+                                                          .heavyImpact();
+                                                    }),
+                                                IconButton(
+                                                    iconSize: kSizeButtonEnd,
+                                                    icon: Icon(
+                                                      kIconPlay,
+                                                      color: Theme.of(context)
+                                                          .buttonColor,
+                                                    ),
+                                                    onPressed: () {
+                                                      _speechRecognitionAvailable &&
+                                                              !_isListening
+                                                          ? start()
+                                                          : null;
+                                                      HapticFeedback
+                                                          .heavyImpact();
+                                                    }),
+                                                IconButton(
+                                                    iconSize: kSizeButtonEnd,
+                                                    icon: Icon(
+                                                      kIconStop,
+                                                      color: Theme.of(context)
+                                                          .buttonColor,
+                                                    ),
+                                                    onPressed: () {
+                                                      _isListening
+                                                          ? cancel()
+                                                          : null;
+                                                      BlocProvider.of<AsrCubit>(
+                                                              context)
+                                                          .changed();
+                                                      speechRecognized.clear();
+                                                      HapticFeedback
+                                                          .heavyImpact();
+                                                    }),
+                                              ],
+                                            ),
                                           ),
-                                          onPressed: () async {
-                                            _isListening
-                                                ? {
-                                                    await stop(),
-                                                    if (speechRecognized
-                                                            .length ==
-                                                        0)
-                                                      {
-                                                        BlocProvider.of<
-                                                                    AsrCubit>(
-                                                                context)
-                                                            .changed(),
-                                                        cancel(),
-                                                      },
-                                                  }
-                                                : null;
-                                          }),
-                                    )
-                                  : Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          IconButton(
-                                              iconSize: kSizeButtonEnd,
-                                              icon: Icon(
-                                                kIconSave,
-                                                color: Theme.of(context)
-                                                    .buttonColor,
-                                              ),
-                                              onPressed: () {
-                                                !_isListening
-                                                    ? save(context)
-                                                    : null;
-                                                HapticFeedback.heavyImpact();
-                                              }),
-                                          IconButton(
-                                              iconSize: kSizeButtonEnd,
-                                              icon: Icon(
-                                                kIconPlay,
-                                                color: Theme.of(context)
-                                                    .buttonColor,
-                                              ),
-                                              onPressed: () {
-                                                _speechRecognitionAvailable &&
-                                                        !_isListening
-                                                    ? start()
-                                                    : null;
-                                                HapticFeedback.heavyImpact();
-                                              }),
-                                          IconButton(
-                                              iconSize: kSizeButtonEnd,
-                                              icon: Icon(
-                                                kIconStop,
-                                                color: Theme.of(context)
-                                                    .buttonColor,
-                                              ),
-                                              onPressed: () {
-                                                _isListening ? cancel() : null;
-                                                BlocProvider.of<AsrCubit>(
-                                                        context)
-                                                    .changed();
-                                                speechRecognized.clear();
-                                                HapticFeedback.heavyImpact();
-                                              }),
-                                        ],
-                                      ),
-                                    ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  } else {
-                    return Expanded(
-                      child: Center(
-                        child: SingleChildScrollView(
-                            child: Container(
-                          child: IconButton(
-                              iconSize: kSizeButtonMic,
-                              icon: Icon(
-                                kIconMic,
-                                color: Theme.of(context).buttonColor,
+                                  ),
+                                ],
                               ),
-                              onPressed: () {
-                                _speechRecognitionAvailable && !_isListening
-                                    ? start()
-                                    : null;
-                                HapticFeedback.heavyImpact();
-                                BlocProvider.of<AsrCubit>(context).changed();
-                              }),
-                        )),
-                      ),
-                    );
-                  }
-                }));
-          }
-          return Container();
+                            ),
+                          );
+                        } else {
+                          return Expanded(
+                            child: Center(
+                              child: SingleChildScrollView(
+                                  child: Container(
+                                child: IconButton(
+                                    iconSize: kSizeButtonMic,
+                                    icon: Icon(
+                                      kIconMic,
+                                      color: Theme.of(context).buttonColor,
+                                    ),
+                                    onPressed: () {
+                                      _speechRecognitionAvailable &&
+                                              !_isListening
+                                          ? start()
+                                          : null;
+                                      HapticFeedback.heavyImpact();
+                                      BlocProvider.of<AsrCubit>(context)
+                                          .changed();
+                                    }),
+                              )),
+                            ),
+                          );
+                        }
+                      }));
+                }
+                return Container();
+              }
+              return Container();
+            },
+          );
         }
-        return Container();
-      },
+        return Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(children: [
+                  Icon(
+                    kIconDisconnected,
+                    color: Theme.of(context).accentColor,
+                    size: kSizeButtonMic,
+                  ),
+                  SizedBox(height: 20,),
+                  Text(
+                    AppLocalizations.of(context).no_internet_connection,
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ]),
+              ),
+            ),
+          ),
+        );
+      }),
     );
   }
 }

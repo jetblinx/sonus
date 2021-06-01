@@ -21,3 +21,5 @@ const kIconEditSnack = FluentIcons.edit_24_regular;
 const kIconComplete = FluentIcons.checkmark_24_regular;
 const kIconDelete = FluentIcons.delete_24_regular;
 const kIconEdit = FluentIcons.edit_16_filled;
+
+const kIconDisconnected = FluentIcons.plug_disconnected_20_filled;
