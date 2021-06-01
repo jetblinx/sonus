@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +17,7 @@ import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
+import 'logic/cubit/connection_cubit.dart';
 import 'ui/screens/major/major.dart';
 
 void main() {
@@ -54,113 +58,130 @@ class _RestartWidgetState extends State<RestartWidget> {
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
         providers: [
-    BlocProvider(create: (context) =>SettingsCubit()),
-    BlocProvider(create: (context) => PhrasesCubit()),
-    BlocProvider(create: (context) => LanguagesCubit()),
-    BlocProvider(create: (context) => RecordsGroupsCubit()),
-    BlocProvider(create: (context) => RecordsCubit())
+          BlocProvider(create: (context) => SettingsCubit()),
+          BlocProvider(create: (context) => PhrasesCubit()),
+          BlocProvider(create: (context) => LanguagesCubit()),
+          BlocProvider(create: (context) => RecordsGroupsCubit()),
+          BlocProvider(create: (context) => RecordsCubit()),
+          BlocProvider(create: (context) => NetConnectionCubit())
         ],
-        child: BlocConsumer<SettingsCubit, SettingsState>(
-    listener: (context, state) {
-      if (state is SettingsErrorState) BlocProvider.of<SettingsCubit>(context).load();
-    },
-    builder: (context, state) {
-      if (state is SettingsLoadedState) {
-        //   SystemChrome.setSystemUIOverlayStyle(
-        //   SystemUiOverlayStyle(
-        //       statusBarColor: Colors.transparent,
-        //       statusBarIconBrightness: Brightness.light,
-        //       systemNavigationBarColor: state.settings.theme == 0 || state.settings.theme == null ? kColorLightScaffoldBackground : kColorDarkScaffoldBackground,
-        //       systemNavigationBarIconBrightness: Brightness.light,
-        //       systemNavigationBarDividerColor: Colors.transparent,
-        //     ),
-        // );
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Sonus',
+        child: BlocListener<NetConnectionCubit, NetConnectionState>(
+          listener: (context, netState) {         
+            if (netState is NetConnectionLoadedState) {
+               
+              if (netState.isConnected) {
 
-            // Removes Scroll Glow Everywhere
-            builder: (context, child) {
-              return ScrollConfiguration(
-                behavior: RemoveScrollGlow(),
-                child: child,
-              );
-            },
+                return BlocConsumer<SettingsCubit, SettingsState>(
+                    listener: (context, state) {
+                  if (state is SettingsErrorState)
+                    BlocProvider.of<SettingsCubit>(context).load();
+                }, builder: (context, state) {
+                  if (state is SettingsLoadedState) {
+                    //   SystemChrome.setSystemUIOverlayStyle(
+                    //   SystemUiOverlayStyle(
+                    //       statusBarColor: Colors.transparent,
+                    //       statusBarIconBrightness: Brightness.light,
+                    //       systemNavigationBarColor: state.settings.theme == 0 || state.settings.theme == null ? kColorLightScaffoldBackground : kColorDarkScaffoldBackground,
+                    //       systemNavigationBarIconBrightness: Brightness.light,
+                    //       systemNavigationBarDividerColor: Colors.transparent,
+                    //     ),
+                    // );
+                    return MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Sonus',
 
-            themeMode:
-                state.settings.theme == 0 || state.settings.theme == null
-                    ? ThemeMode.light
-                    : ThemeMode.dark,
-            theme: ThemesRepisotory.light,
-            darkTheme: ThemesRepisotory.dark,
-            supportedLocales: L10n.all,
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate
-            ],
-            locale: state.settings.languageCode != null ? Locale(state.settings.languageCode) : null,
-            home: new AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                  statusBarIconBrightness: state.settings.theme == 0 ||
-            state.settings.theme == null
-        ? Brightness.dark
-        : Brightness.light,
-                  systemNavigationBarColor: state.settings.theme == 0 ||
-            state.settings.theme == null
-        ? kColorLightScaffoldBackground
-        : kColorDarkScaffoldBackground,
-                  systemNavigationBarIconBrightness:
-        state.settings.theme == 0 ||
-                state.settings.theme == null
-            ? Brightness.dark
-            : Brightness.light,
-                  systemNavigationBarDividerColor: Colors.transparent,
-                ),
-                child: Major()),
-            routes: routes,
-          );
-      }
-      return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Sonus',
+                      // Removes Scroll Glow Everywhere
+                      builder: (context, child) {
+                        return ScrollConfiguration(
+                          behavior: RemoveScrollGlow(),
+                          child: child,
+                        );
+                      },
 
-          // Removes Scroll Glow Everywhere
-          builder: (context, child) {
-            return ScrollConfiguration(
-              behavior: RemoveScrollGlow(),
-              child: child,
-            );
+                      themeMode: state.settings.theme == 0 ||
+                              state.settings.theme == null
+                          ? ThemeMode.light
+                          : ThemeMode.dark,
+                      theme: ThemesRepisotory.light,
+                      darkTheme: ThemesRepisotory.dark,
+                      supportedLocales: L10n.all,
+                      localizationsDelegates: [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate
+                      ],
+                      locale: state.settings.languageCode != null
+                          ? Locale(state.settings.languageCode)
+                          : null,
+                      home: new AnnotatedRegion<SystemUiOverlayStyle>(
+                          value: SystemUiOverlayStyle(
+                            statusBarColor: Colors.transparent,
+                            statusBarIconBrightness:
+                                state.settings.theme == 0 ||
+                                        state.settings.theme == null
+                                    ? Brightness.dark
+                                    : Brightness.light,
+                            systemNavigationBarColor:
+                                state.settings.theme == 0 ||
+                                        state.settings.theme == null
+                                    ? kColorLightScaffoldBackground
+                                    : kColorDarkScaffoldBackground,
+                            systemNavigationBarIconBrightness:
+                                state.settings.theme == 0 ||
+                                        state.settings.theme == null
+                                    ? Brightness.dark
+                                    : Brightness.light,
+                            systemNavigationBarDividerColor: Colors.transparent,
+                          ),
+                          child: Major()),
+                      routes: routes,
+                    );
+                  }
+                  return MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Sonus',
+
+                      // Removes Scroll Glow Everywhere
+                      builder: (context, child) {
+                        return ScrollConfiguration(
+                          behavior: RemoveScrollGlow(),
+                          child: child,
+                        );
+                      },
+                      themeMode: ThemeMode.dark,
+                      theme: ThemesRepisotory.light,
+                      darkTheme: ThemesRepisotory.dark,
+                      supportedLocales: L10n.all,
+                      localizationsDelegates: [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate
+                      ],
+                      home: new AnnotatedRegion<SystemUiOverlayStyle>(
+                          value: SystemUiOverlayStyle(
+                            statusBarColor: Colors.transparent,
+                            statusBarIconBrightness: Brightness.light,
+                            systemNavigationBarColor:
+                                kColorDarkScaffoldBackground,
+                            systemNavigationBarIconBrightness: Brightness.light,
+                            systemNavigationBarDividerColor: Colors.transparent,
+                          ),
+                          child: Scaffold(
+                              body: Center(
+                                  child: SvgPicture.asset(
+                            "assets/logo/logo_transparent.svg",
+                            height: 75.0,
+                          )))));
+                });
+              }
+              return MaterialApp(home: Scaffold(body: Center(child: Container(child: Text("No internet connection"),))));
+            }
+            return Container();
           },
-          themeMode: ThemeMode.dark,
-          theme: ThemesRepisotory.light,
-          darkTheme: ThemesRepisotory.dark,
-          supportedLocales: L10n.all,
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate
-          ],
-          home: new AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                statusBarIconBrightness: Brightness.light,
-                systemNavigationBarColor: kColorDarkScaffoldBackground,
-                systemNavigationBarIconBrightness: Brightness.light,
-                systemNavigationBarDividerColor: Colors.transparent,
-              ),
-              child: Scaffold(
-                  body: Center(
-                      child: SvgPicture.asset(
-                "assets/logo/logo_transparent.svg",
-                height: 75.0,
-              )))));
-    }));
+        ));
   }
 }

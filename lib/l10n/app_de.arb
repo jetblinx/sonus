@@ -35,5 +35,6 @@
   "record_group_added": "Datensatzgruppe hinzugefügt",
   "record_group_edited": "Datensatzgruppe bearbeitet",
   "record_group_deleted": "Datensatzgruppe gelöscht",
-  "phrase_copied": "Phrase kopiert"
+  "phrase_copied": "Phrase kopiert",
+  "no_internet_connection": "Keine Internetverbindung"
 }

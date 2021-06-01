@@ -160,14 +160,12 @@ class _ASRState extends State<ASR> {
   }
 
   void save(BuildContext context) async {
-
     int groupId = await _displayGroupChooserDialog(context);
     String recordName;
-    if (groupId != null) 
-      recordName = await _displayRecordNameDialog(context);
+    if (groupId != null) recordName = await _displayRecordNameDialog(context);
 
-      print(groupId);
-      print(recordName);
+    print(groupId);
+    print(recordName);
 
     if (groupId != null && recordName != null) {
       String speechString = speechRecognized.join("|");
@@ -227,8 +225,15 @@ class _ASRState extends State<ASR> {
         }
       });
 
-  void onSpeechAvailability(bool result) =>
-      setState(() => _speechRecognitionAvailable = result);
+  void onSpeechAvailability(bool result) => {
+        setState(() => {
+              _speechRecognitionAvailable = result,
+              if (result == false)
+                {
+                  isPaused = true,
+                }
+            }),
+      };
 
   void onRecognitionStarted() {
     setState(() => _isListening = true);
@@ -237,7 +242,6 @@ class _ASRState extends State<ASR> {
   void onRecognitionResult(String text) {
     setState(
         () => {transcription = text, speechRecognized.last = transcription});
-
     _scrollToBottom();
   }
 
@@ -247,8 +251,11 @@ class _ASRState extends State<ASR> {
           isPaused = true,
           speechRecognized.last = text,
           transcription = '',
-          if (text.trim() == '') {speechRecognized.removeLast()}
+          if (text.trim() == '') {speechRecognized.removeLast()},
         });
+    if (speechRecognized.length == 0) {
+      BlocProvider.of<AsrCubit>(context).changed();
+    }
     HapticFeedback.heavyImpact();
   }
 
@@ -272,7 +279,9 @@ class _ASRState extends State<ASR> {
                         child: Column(
                           children: [
                             Expanded(
-                              child: RecognizedPhrasesList(scrollController: _scrollController, speechRecognized: speechRecognized),
+                              child: RecognizedPhrasesList(
+                                  scrollController: _scrollController,
+                                  speechRecognized: speechRecognized),
                             ),
                             Divider(
                               height: 1,

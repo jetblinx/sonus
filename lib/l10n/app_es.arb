@@ -35,5 +35,6 @@
   "record_group_added": "Grupo de registros agregado",
   "record_group_edited": "Grupo de registros editado",
   "record_group_deleted": "Grupo de registros eliminado",
-  "phrase_copied": "Frase copiada"
+  "phrase_copied": "Frase copiada",
+  "no_internet_connection": "Sin conexión a Internet"
 }

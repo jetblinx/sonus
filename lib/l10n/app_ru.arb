@@ -35,5 +35,6 @@
   "record_group_added": "Группа записей добавлена",
   "record_group_edited": "Группа записей изменена",
   "record_group_deleted": "Группа записей удалена",
-  "phrase_copied": "Фраза скопирована"
+  "phrase_copied": "Фраза скопирована",
+  "no_internet_connection": "Нет соединения"
 }

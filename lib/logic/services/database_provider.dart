@@ -104,6 +104,6 @@ class DatabaseProvider {
     ''');
     
 
-    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 0, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 1, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
   }
 }

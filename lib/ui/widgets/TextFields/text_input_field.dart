@@ -14,11 +14,15 @@ class TextInputField extends StatelessWidget {
       this.onChanged,
       this.autoClear = false,
       this.initialValue,
-      this.controller, this.suffixIcon, this.onDismiss})
+      this.controller,
+      this.suffixIcon,
+      this.onDismiss,
+      this.enableSuggestions})
       : super(key: key);
 
   final TextEditingController controller;
   final bool autoClear;
+  final bool enableSuggestions;
   final void Function(String) onChanged;
   final Function onPressed;
   final Function onDismiss;
@@ -48,6 +52,8 @@ class TextInputField extends StatelessWidget {
         child: Form(
           child: TextFormField(
             controller: controller,
+            enableSuggestions: enableSuggestions == false ? false : true,
+            keyboardType: enableSuggestions == false ? TextInputType.visiblePassword : null,
             initialValue: initialValue,
             style: Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
@@ -60,14 +66,13 @@ class TextInputField extends StatelessWidget {
                 hintText: AppLocalizations.of(context).enter_text,
                 icon: icon != null
                     ? IconButton(
-                      icon: icon,
-                      onPressed: () {
-                        if (autoClear) {
-                          controller.clear();
-                        }
-                        onDismiss();
-                      }
-                    )
+                        icon: icon,
+                        onPressed: () {
+                          if (autoClear) {
+                            controller.clear();
+                          }
+                          onDismiss();
+                        })
                     : null,
                 suffixIcon: suffixIcon != null
                     ? IconButton(

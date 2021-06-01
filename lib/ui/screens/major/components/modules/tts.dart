@@ -150,6 +150,7 @@ class TTS extends StatelessWidget {
   }
 
   TextInputField buildTTSField(BuildContext context, String ttsFiedValue, LanguagesLoadedState languagesState, SettingsLoadedState settingsLoadedState) {
+    String textValue = '';
     List words;
     return TextInputField(
       onChanged: (String value) async {
@@ -157,15 +158,21 @@ class TTS extends StatelessWidget {
         if (Converter.intToBool(settingsLoadedState.settings.quickTts)) {
           words = value.split(' ');
           String lastValue = value.substring(value.length - 1);
-          if (words.length >= 2 && lastValue == " ") {
+          if (words.length >= 2 && lastValue == " " && textValue.length < value.length) {
             await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
             await flutterTts.setPitch(1.0);
             await flutterTts.setSpeechRate(0.9);
             await flutterTts.speak(words[words.length-2]);
           }
+          print("value");
+          print(value);
+          print("textValue");
+          print(textValue);
+          textValue = value;
         }
       },
       controller: _controller,
+      enableSuggestions: false,
       autoClear: true,
       isBorder: true,
       suffixIcon: _controller.text.isEmpty ? null : Icon(kIconSend),

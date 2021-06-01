@@ -35,5 +35,6 @@
   "record_group_added": "Groupe d'enregistrements ajouté",
   "record_group_edited": "Groupe d'enregistrements modifié",
   "record_group_deleted": "Groupe d'enregistrements supprimé",
-  "phrase_copied": "Phrase copiée"
+  "phrase_copied": "Phrase copiée",
+  "no_internet_connection": "Pas de connexion Internet"
 }
