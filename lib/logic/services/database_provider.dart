@@ -96,7 +96,7 @@ class DatabaseProvider {
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(3, 'Français', 'fr', 'fr-FR');
     ''');
     await db.rawInsert('''
-      INSERT INTO languages(id, name, language_code, tts_code) VALUES(4, 'Deutsche', 'de', 'ru-RU');
+      INSERT INTO languages(id, name, language_code, tts_code) VALUES(4, 'Deutsche', 'de', 'de-DE');
     ''');
     await db.rawInsert('''
       INSERT INTO languages(id, name, language_code, tts_code) VALUES(5, 'Español', 'es', 'es-ES');

@@ -36,5 +36,7 @@
   "record_group_edited": "Groupe d'enregistrements modifié",
   "record_group_deleted": "Groupe d'enregistrements supprimé",
   "phrase_copied": "Phrase copiée",
-  "no_internet_connection": "Pas de connexion Internet"
+  "no_internet_connection": "Pas de connexion Internet",
+  "no_mic_permission": "La reconnaissance vocale nécessite l'utilisation d'un microphone",
+  "grant_mic_permission": "Appuyez sur l'icône pour accorder l'autorisation"
 }

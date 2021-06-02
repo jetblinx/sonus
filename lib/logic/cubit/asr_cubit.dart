@@ -5,7 +5,5 @@ class AsrCubit extends Cubit<bool> {
 
   void changed() {
     emit(!state);
-    print('From ASR cubit');
-    print(state);
   }
 }

@@ -36,5 +36,7 @@
   "record_group_edited": "Datensatzgruppe bearbeitet",
   "record_group_deleted": "Datensatzgruppe gelöscht",
   "phrase_copied": "Phrase kopiert",
-  "no_internet_connection": "Keine Internetverbindung"
+  "no_internet_connection": "Keine Internetverbindung",
+  "no_mic_permission": "Spracherkennung erfordert die Verwendung eines Mikrofons",
+  "grant_mic_permission": "Tippen Sie auf das Symbol, um die Erlaubnis zu erteilen"
 }

@@ -1,3 +1,4 @@
+import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,9 +20,18 @@ class TTS extends StatelessWidget {
 
   // final _formKey = new GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
+  
+  void getApps() async{
+    List<Application> apps = await DeviceApps.getInstalledApplications();
+    // for (var item in apps) {
+    //   print(item);
+    //   print("-----------------------------------------------------------------------");
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
+    getApps();
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, settingsState) {
         if (settingsState is SettingsLoadedState) {
@@ -150,7 +160,6 @@ class TTS extends StatelessWidget {
   }
 
   TextInputField buildTTSField(BuildContext context, String ttsFiedValue, LanguagesLoadedState languagesState, SettingsLoadedState settingsLoadedState) {
-    String textValue = '';
     List words;
     return TextInputField(
       onChanged: (String value) async {
@@ -158,7 +167,7 @@ class TTS extends StatelessWidget {
         if (Converter.intToBool(settingsLoadedState.settings.quickTts)) {
           words = value.split(' ');
           String lastValue = value.substring(value.length - 1);
-          if (words.length >= 2 && lastValue == " " && textValue.length < value.length) {
+          if (words.length >= 2 && lastValue == " ") {
             await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
             await flutterTts.setPitch(1.0);
             await flutterTts.setSpeechRate(0.9);

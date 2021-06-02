@@ -36,5 +36,7 @@
   "record_group_edited": "Группа записей изменена",
   "record_group_deleted": "Группа записей удалена",
   "phrase_copied": "Фраза скопирована",
-  "no_internet_connection": "Нет соединения"
+  "no_internet_connection": "Нет соединения",
+  "no_mic_permission": "Распознавание речи требует использование микрофона",
+  "grant_mic_permission": "Нажмите на иконку чтобы дать разрешение"
 }

@@ -34,28 +34,28 @@ class Body extends StatelessWidget {
                     color: Theme.of(context).accentColor,
                   ),
                   centerTitle: true,
-                  actions: [
-                    IconButton(
-                      icon: Icon(kIconDelete),
-                      onPressed: () {
-                        if (recordsGroup != null) {
-                          BlocProvider.of<RecordsGroupsCubit>(context)
-                              .delete(recordsGroup.id);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          final snackBar = FloatingSnackbar.floatingSnackBar(
-                            Icon(
-                              kIconDelete,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            AppLocalizations.of(context).record_group_deleted,
-                            AppLocalizations.of(context).close,
-                            context);
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                      },
-                    ),
-                  ],
+                  actions: recordsGroup != null ? [
+                      IconButton(
+                        icon: Icon(kIconDelete),
+                        onPressed: () {
+                          if (recordsGroup != null) {
+                            BlocProvider.of<RecordsGroupsCubit>(context)
+                                .delete(recordsGroup.id);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            final snackBar = FloatingSnackbar.floatingSnackBar(
+                              Icon(
+                                kIconDelete,
+                                color: Theme.of(context).accentColor,
+                              ),
+                              AppLocalizations.of(context).record_group_deleted,
+                              AppLocalizations.of(context).close,
+                              context);
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
+                        },
+                      ),
+                  ] : null,
                   title: Text(
                     recordsGroup != null
                         ? AppLocalizations.of(context).edit_records_group

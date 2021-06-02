@@ -3,6 +3,9 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 /* ICONS */
 
 const kIconMic = FluentIcons.mic_on_20_regular;
+const kIconMicProhibited = FluentIcons.mic_prohibited_20_regular;
+const kIconDisconnected = FluentIcons.plug_disconnected_20_filled;
+
 const kIconStop = FluentIcons.square_16_regular;
 const kIconPause = FluentIcons.pause_20_filled;
 const kIconPlay = FluentIcons.play_20_regular;
@@ -21,5 +24,3 @@ const kIconEditSnack = FluentIcons.edit_24_regular;
 const kIconComplete = FluentIcons.checkmark_24_regular;
 const kIconDelete = FluentIcons.delete_24_regular;
 const kIconEdit = FluentIcons.edit_16_filled;
-
-const kIconDisconnected = FluentIcons.plug_disconnected_20_filled;

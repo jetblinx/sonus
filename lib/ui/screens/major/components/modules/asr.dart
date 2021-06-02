@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:sonus/logic/cubit/asr_cubit.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:sonus/logic/cubit/asr_module_cubit.dart';
 import 'package:sonus/logic/cubit/connection_cubit.dart';
 import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
@@ -255,10 +256,26 @@ class _ASRState extends State<ASR> {
     speechRecognized.last = text;
     print("Speech List");
     print(speechRecognized);
+    deleteBlank();
     HapticFeedback.heavyImpact();
   }
 
   void errorHandler() => activateSpeechRecognizer();
+
+  void deleteBlank() {
+    if (speechRecognized.last == '') {
+      print("DELETEING");
+      print("Calling text == ''");
+      speechRecognized.removeLast();
+    }
+  }
+
+  Future<bool> checkMicPermission() async {
+    bool micPermission =  await Permission.microphone.request().isGranted;
+    print("000000000000000000000000000000");
+    print(micPermission);
+    return micPermission;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -272,10 +289,12 @@ class _ASRState extends State<ASR> {
                   builder: (context, isConnected) {
                 if (isConnected) {
                   return BlocProvider(
-                      create: (context) => AsrCubit(),
-                      child: BlocBuilder<AsrCubit, bool>(
-                          builder: (context, isAsr) {
-                        if (isAsr) {
+                      create: (context) => AsrModuleCubit(),
+                      child: BlocBuilder<AsrModuleCubit, AsrModuleState>(
+                          builder: (context, state) {
+                            if (state.isPermission) {
+                              
+                        if (state.isAsr) {
                           return Expanded(
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -310,9 +329,9 @@ class _ASRState extends State<ASR> {
                                                               0)
                                                             {
                                                               BlocProvider.of<
-                                                                          AsrCubit>(
+                                                                          AsrModuleCubit>(
                                                                       context)
-                                                                  .changed(),
+                                                                  .changeAsr(),
                                                               cancel(),
                                                             },
                                                         }
@@ -346,8 +365,7 @@ class _ASRState extends State<ASR> {
                                                           .buttonColor,
                                                     ),
                                                     onPressed: () {
-                                                       start()
-                                                          ;
+                                                       start();
                                                       HapticFeedback
                                                           .heavyImpact();
                                                     }),
@@ -362,9 +380,9 @@ class _ASRState extends State<ASR> {
                                                       _isListening
                                                           ? cancel()
                                                           : null;
-                                                      BlocProvider.of<AsrCubit>(
+                                                      BlocProvider.of<AsrModuleCubit>(
                                                               context)
-                                                          .changed();
+                                                          .changeAsr();
                                                       speechRecognized.clear();
                                                       HapticFeedback
                                                           .heavyImpact();
@@ -394,14 +412,55 @@ class _ASRState extends State<ASR> {
                                           ? start()
                                           : null;
                                       HapticFeedback.heavyImpact();
-                                      BlocProvider.of<AsrCubit>(context)
-                                          .changed();
+                                      _speechRecognitionAvailable == true ? 
+                                      BlocProvider.of<AsrModuleCubit>(context)
+                                          .changeAsr() : null;
                                     }),
                               )),
                             ),
                           );
                         }
-                      }));
+                      }
+                      return Expanded(
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
+                            child: SingleChildScrollView(
+                              child: Container(
+                                child: Column(children: [
+                                  IconButton(
+                                      iconSize: kSizeButtonMic,
+                                      icon: Icon(
+                                        kIconMicProhibited,
+                                        color: Theme.of(context).buttonColor,
+                                      ),
+                                      onPressed: () {
+                                        BlocProvider.of<AsrModuleCubit>(context).checkMicPermission();
+                                      }),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context).no_mic_permission,
+                                    style: Theme.of(context).textTheme.caption,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context).grant_mic_permission,
+                                    style: Theme.of(context).textTheme.headline3,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    ));
                 }
                 return Expanded(
                   child: Center(

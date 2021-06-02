@@ -36,5 +36,7 @@
   "record_group_edited": "Grupo de registros editado",
   "record_group_deleted": "Grupo de registros eliminado",
   "phrase_copied": "Frase copiada",
-  "no_internet_connection": "Sin conexión a Internet"
+  "no_internet_connection": "Sin conexión a Internet",
+  "no_mic_permission": "El reconocimiento de voz requiere el uso de micrófono",
+  "grant_mic_permission": "Toque el ícono para otorgar permiso"
 }

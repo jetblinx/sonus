@@ -36,5 +36,7 @@
   "record_group_edited": "Records group edited",
   "record_group_deleted": "Records group deleted",
   "phrase_copied": "Phrase copied",
-  "no_internet_connection": "No internet connection"
+  "no_internet_connection": "No internet connection",
+  "no_mic_permission": "Speech Recognition requires Microphone use",
+  "grant_mic_permission": "Tap on icon to grant permission"
 }
