@@ -10,7 +10,7 @@ class ChipBuilder extends StatelessWidget {
   final FlutterTts flutterTts;
   final String language;
 
-  const ChipBuilder({Key key, this.phrases, @required this.onPress, this.onPressed, this.flutterTts, @required this.language})
+  const ChipBuilder({Key key, this.phrases, @required this.onPress, this.onPressed, this.flutterTts, this.language})
       : super(key: key);
 
   void _speak(PhraseModel phrase) async {

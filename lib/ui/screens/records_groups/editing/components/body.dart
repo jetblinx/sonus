@@ -109,7 +109,7 @@ class Body extends StatelessWidget {
                       .add(RecordsGroupModel(name: text.trim()));
                   final snackBar = FloatingSnackbar.floatingSnackBar(
                       Icon(
-                        kIconAdd,
+                        kIconFolderAdd,
                         color: Theme.of(context).accentColor,
                       ),
                       AppLocalizations.of(context).record_group_added,

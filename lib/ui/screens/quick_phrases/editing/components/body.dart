@@ -106,7 +106,7 @@ class Body extends StatelessWidget {
                       .add(PhraseModel(value: text.trim()));
                   final snackBar = FloatingSnackbar.floatingSnackBar(
                       Icon(
-                        kIconAdd,
+                        kIconCollectionsAdd,
                         color: Theme.of(context).accentColor,
                       ),
                       AppLocalizations.of(context).quick_phrase_added,

@@ -6,6 +6,7 @@ import 'package:sonus/ui/screens/major/components/modules/tts.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrases_view.dart';
 import 'package:sonus/ui/screens/records_groups/view/records_groups_view.dart';
 import 'package:sonus/ui/screens/settings/settings.dart';
+import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
@@ -22,12 +23,13 @@ class Body extends StatelessWidget {
             height: getProportionateScreenHeight(40),
           ),
           Container(
+            padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
                     icon: Icon(
-                      kIconBookmark,
+                      kIconCollections,
                       color: Theme.of(context).buttonColor,
                     ),
                     onPressed: () => Navigator.pushNamed(

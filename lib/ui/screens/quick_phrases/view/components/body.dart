@@ -11,8 +11,6 @@ import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
 
-  final String language = "ru-RU";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PhrasesCubit, PhrasesState>(
@@ -123,7 +121,6 @@ class Body extends StatelessWidget {
                               onPressed: (PhraseModel phrase) {
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> QuickPhraseEditing(phrase: phrase)));
                               },
-                              language: language,
                             ),
                           ],
                         ),
@@ -138,6 +135,10 @@ class Body extends StatelessWidget {
                     }, 
                     icon: Icon(kIconAdd, color: Theme.of(context).accentColor)
                   ),
+                ),
+                SizedBox(
+                  child: Container(),
+                  height: getProportionateScreenHeight(15),
                 ),
               ],
             ),
