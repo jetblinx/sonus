@@ -27,3 +27,5 @@ const kIconEdit = FluentIcons.edit_16_filled;
 
 const kIconCollectionsAdd = FluentIcons.collections_add_20_regular;
 const kIconFolderAdd = FluentIcons.folder_add_20_regular;
+
+const kIconMore = FluentIcons.more_vertical_20_filled;

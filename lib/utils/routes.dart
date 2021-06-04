@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:sonus/ui/screens/help/help.dart';
 import 'package:sonus/ui/screens/major/major.dart';
 import 'package:sonus/ui/screens/quick_phrases/editing/quick_phrase_editing.dart';
 import 'package:sonus/ui/screens/quick_phrases/view/quick_phrases_view.dart';
@@ -13,7 +14,6 @@ final Map<String, WidgetBuilder> routes = {
 
   Splash.routeName: (context) => Splash(),
   Major.routeName: (context) => Major(),
-  Settings.routeName: (context) => Settings(),
 
   RecordsGroupEditing.routeName: (context) => RecordsGroupEditing(),
   RecordsGroupsView.routeName: (context) => RecordsGroupsView(),
@@ -23,4 +23,6 @@ final Map<String, WidgetBuilder> routes = {
   QuickPhraseEditing.routeName: (context) => QuickPhraseEditing(),
   QuickPhrasesView.routeName: (context) => QuickPhrasesView(),
 
+  Settings.routeName: (context) => Settings(),
+  HelpScreen.routeName: (context) => HelpScreen(),
 };

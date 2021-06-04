@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
+import 'package:sonus/ui/screens/help/help.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
+import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -50,6 +52,21 @@ class _BodyState extends State<Body> {
                     ),
                     backgroundColor: Colors.transparent,
                     elevation: 0.0,
+                    actions: [
+                      PopupMenuButton(
+                        icon: Icon(kIconMore),
+                        color: Theme.of(context).colorScheme.background,
+                        itemBuilder: (BuildContext context) { 
+                          return <PopupMenuEntry<String>>[
+                            PopupMenuItem(child: Text(AppLocalizations.of(context).help, style: Theme.of(context).textTheme.headline3,), value: 'help',),
+                          ];
+                       },
+                       onSelected: (value) => {
+                         if (value == 'help')
+                          Navigator.pushNamed(context, HelpScreen.routeName)
+                        },
+                       ),
+                    ],
                   ),
                 ),
               ],
@@ -81,7 +98,7 @@ class _BodyState extends State<Body> {
                                           .speech_recognition,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2),
+                                          .headline3),
                                   // InkWell(
                                   //   splashColor: Colors.transparent,
                                     
@@ -164,7 +181,7 @@ class _BodyState extends State<Body> {
                                           .speech_to_text,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2),
+                                          .headline3),
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
                                       value: Converter.intToBool(settingsState.settings.textToSpeech),
@@ -192,7 +209,7 @@ class _BodyState extends State<Body> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(AppLocalizations.of(context).quick_tts,
-                                    style: Theme.of(context).textTheme.headline2
+                                    style: Theme.of(context).textTheme.headline3
                                   ),
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
@@ -229,7 +246,7 @@ class _BodyState extends State<Body> {
                                   Text(AppLocalizations.of(context).dark_theme,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2),
+                                          .headline3),
                                   // FlatSwitch(asrOn: asrOn),
                                   Switch(
                                       value: Converter.intToBool(
@@ -254,7 +271,7 @@ class _BodyState extends State<Body> {
                                   Text(AppLocalizations.of(context).language,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2),
+                                          .headline3),
                                   // Text(AppLocalizations.of(context).language_choosen,
                                   //     style: Theme.of(context).textTheme.headline1)
                                   BlocConsumer<LanguagesCubit, LanguagesState>(
@@ -360,7 +377,7 @@ class _BodyState extends State<Body> {
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Text(AppLocalizations.of(context).speech_recognition,
-//                                   style: Theme.of(context).textTheme.headline2),
+//                                   style: Theme.of(context).textTheme.headline3),
 //                               // FlatSwitch(asrOn: asrOn),
 //                               Switch(value: state.settings.speechRecognition, onChanged: (bool value) {
 //                                 state.copyWith(SettingsModel(speechRecognition: value));
@@ -373,7 +390,7 @@ class _BodyState extends State<Body> {
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Text(AppLocalizations.of(context).speech_to_text,
-//                                   style: Theme.of(context).textTheme.headline2),
+//                                   style: Theme.of(context).textTheme.headline3),
 //                               // FlatSwitch(asrOn: asrOn),
 //                             ]),
 //                         SizedBox(
@@ -383,7 +400,7 @@ class _BodyState extends State<Body> {
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Text(AppLocalizations.of(context).quick_tts,
-//                                   style: Theme.of(context).textTheme.headline2),
+//                                   style: Theme.of(context).textTheme.headline3),
 //                               // FlatSwitch(asrOn: asrOn),
 //                             ]),
 //                         SizedBox(
@@ -404,7 +421,7 @@ class _BodyState extends State<Body> {
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Text(AppLocalizations.of(context).dark_theme,
-//                                   style: Theme.of(context).textTheme.headline2),
+//                                   style: Theme.of(context).textTheme.headline3),
 //                               // FlatSwitch(asrOn: asrOn),
 //                             ]),
 //                         SizedBox(
@@ -414,7 +431,7 @@ class _BodyState extends State<Body> {
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Text(AppLocalizations.of(context).language,
-//                                   style: Theme.of(context).textTheme.headline2),
+//                                   style: Theme.of(context).textTheme.headline3),
 //                               Text(AppLocalizations.of(context).language_choosen,
 //                                   style: Theme.of(context).textTheme.headline1)
 //                             ]

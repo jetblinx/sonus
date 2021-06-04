@@ -38,5 +38,10 @@
   "phrase_copied": "Frase copiada",
   "no_internet_connection": "Sin conexión a Internet",
   "no_mic_permission": "El reconocimiento de voz requiere el uso de micrófono",
-  "grant_mic_permission": "Toque el ícono para otorgar permiso"
+  "grant_mic_permission": "Toque el ícono para otorgar permiso",
+  "help": "Ayudar",
+  "help_stt_not_work": "El reconocimiento de voz no funciona",
+  "help_stt_not_work_solution": "El reconocimiento de voz utiliza los servicios de Google para reconocer su voz. Si no funciona, busca la aplicación de Google en la configuración y dale permiso al micrófono.",
+  "help_tts_not_work": "Texto a voz no funciona",
+  "help_tts_not_work_solution": "Speech to text utiliza el complemento Google Speech-to-text para la síntesis de voz. Es posible que no funcione si no ha instalado este complemento. Vaya a Google Play y busque Google Text-to-Speech, luego instálelo y reinicie SONUS (cierre y abra de nuevo)."
 }
