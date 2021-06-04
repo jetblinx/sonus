@@ -1,4 +1,9 @@
 {
+  "hello": "Hola",
+  "continue_forward": "Continuar",
+  "short_description": "Herramienta de síntesis y reconocimiento de voz",
+  "sonus": "SONUS",
+  "accept": "Accept",
   "add_phrase": "Agregar frase",
   "add_records_group": "Agregar grupo de registros",
   "archive_of_records": "Archivo de registros",
@@ -43,5 +48,7 @@
   "help_stt_not_work": "El reconocimiento de voz no funciona",
   "help_stt_not_work_solution": "El reconocimiento de voz utiliza los servicios de Google para reconocer su voz. Si no funciona, busca la aplicación de Google en la configuración y dale permiso al micrófono.",
   "help_tts_not_work": "Texto a voz no funciona",
-  "help_tts_not_work_solution": "Speech to text utiliza el complemento Google Speech-to-text para la síntesis de voz. Es posible que no funcione si no ha instalado este complemento. Vaya a Google Play y busque Google Text-to-Speech, luego instálelo y reinicie SONUS (cierre y abra de nuevo)."
+  "help_tts_not_work_solution": "Speech to text utiliza el complemento Google Speech-to-text para la síntesis de voz. Es posible que no funcione si no ha instalado este complemento. Vaya a Google Play y busque Google Text-to-Speech, luego instálelo y reinicie SONUS (cierre y abra de nuevo).",
+  "privacy_policy": "Privacy Policy",
+  "privacy_policy_content": "Privacy Policy Content"
 }

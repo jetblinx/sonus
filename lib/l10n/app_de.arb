@@ -1,4 +1,9 @@
 {
+  "hello": "Hallo",
+  "continue_forward": "Fortsetzen",
+  "short_description": "Spracherkennungs- und -synthesetool",
+  "sonus": "SONUS",
+  "accept": "Accept",
   "add_phrase": "Phrase hinzufügen",
   "add_records_group": "Datensatzgruppe hinzufügen",
   "archive_of_records": "Archiv der Aufzeichnungen",
@@ -43,5 +48,7 @@
   "help_stt_not_work": "Spracherkennung funktioniert nicht",
   "help_stt_not_work_solution": "Die Spracherkennung verwendet Google-Dienste, um Ihre Sprache zu erkennen. Wenn es nicht funktioniert, suchen Sie die Google App in den Einstellungen und erteilen Sie ihr eine Mikrofonberechtigung.",
   "help_tts_not_work": "Text-to-Speech funktioniert nicht",
-  "help_tts_not_work_solution": "Speech-to-Text verwendet das Google Speech-to-Text-Plug-in für die Sprachsynthese. Es funktioniert möglicherweise nicht, wenn Sie dieses Plugin nicht installiert haben. Gehen Sie zu Google Play und suchen Sie nach Google Text-to-Speech, installieren Sie es und starten Sie SONUS neu (schließen und erneut öffnen)."
+  "help_tts_not_work_solution": "Speech-to-Text verwendet das Google Speech-to-Text-Plug-in für die Sprachsynthese. Es funktioniert möglicherweise nicht, wenn Sie dieses Plugin nicht installiert haben. Gehen Sie zu Google Play und suchen Sie nach Google Text-to-Speech, installieren Sie es und starten Sie SONUS neu (schließen und erneut öffnen).",
+  "privacy_policy": "Privacy Policy",
+  "privacy_policy_content": "Privacy Policy Content"
 }

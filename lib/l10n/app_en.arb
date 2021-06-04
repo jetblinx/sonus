@@ -1,4 +1,9 @@
 {
+  "hello": "Hello",
+  "continue_forward": "Continue",
+  "short_description": "Speech recognition & synthesis tool",
+  "sonus": "SONUS",
+  "accept": "Accept",
   "add_phrase": "Add phrase",
   "add_records_group": "Add records group",
   "archive_of_records": "Archive of records",
@@ -43,5 +48,7 @@
   "help_stt_not_work": "Speech Recognition doesn't work",
   "help_stt_not_work_solution": "Speech Recognition uses Google services to recognize your speech. If it doesn't work - find the Google app in the settings and give a microphone permission to it.",
   "help_tts_not_work": "Text-To-Speech doesn't work",
-  "help_tts_not_work_solution": "Speech to text uses Google Speech-to-text plugin for speech synthesis. It may not work if you haven't installed this plugin. Go to Google Play and search for Google Text-to-speech, then install it and reboot SONUS (close and open again)."
+  "help_tts_not_work_solution": "Speech to text uses Google Speech-to-text plugin for speech synthesis. It may not work if you haven't installed this plugin. Go to Google Play and search for Google Text-to-speech, then install it and reboot SONUS (close and open again).",
+  "privacy_policy": "Privacy Policy",
+  "privacy_policy_content": "Privacy Policy Content"
 }

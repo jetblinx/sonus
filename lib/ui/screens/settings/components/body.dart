@@ -6,19 +6,14 @@ import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/ui/screens/help/help.dart';
+import 'package:sonus/ui/screens/privacy_policy/privacy_policy.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
 import 'package:sonus/utils/size_config.dart';
 
-class Body extends StatefulWidget {
-  Body({Key key}) : super(key: key);
+class Body extends StatelessWidget {
 
-  @override
-  _BodyState createState() => _BodyState();
-}
-
-class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     final SettingsCubit settingsCubit = BlocProvider.of<SettingsCubit>(context);
@@ -64,11 +59,18 @@ class _BodyState extends State<Body> {
                               ),
                               value: 'help',
                             ),
+                            PopupMenuItem(
+                              child: Text(
+                                AppLocalizations.of(context).privacy_policy,
+                                style: Theme.of(context).textTheme.headline3,
+                              ),
+                              value: 'privacy_policy',
+                            ),
                           ];
                         },
                         onSelected: (value) => {
-                          if (value == 'help')
-                            Navigator.pushNamed(context, HelpScreen.routeName)
+                          if (value == 'help') Navigator.pushNamed(context, HelpScreen.routeName),
+                          if (value == 'privacy_policy') Navigator.pushNamed(context, PrivacyPolicyScreen.routeName),
                         },
                       ),
                     ],
@@ -327,133 +329,3 @@ class _BodyState extends State<Body> {
     );
   }
 }
-
-// class Body extends StatelessWidget {
-//   final bool asrOn = true;
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//     String accentColorGroupName = "Accent color";
-
-//     return BlocBuilder<SettingsCubit, SettingsState>(
-//       builder: (context, state) {
-//       if (state is SettingsLoadedState) {
-//         return Container(
-//           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//             Container(
-//               color: Theme.of(context).backgroundColor,
-//               child: Column(
-//                 children: [
-//                   SizedBox(
-//                     height: getProportionateScreenHeight(10),
-//                   ),
-//                   Padding(
-//                     padding: EdgeInsets.symmetric(horizontal: kPaddingScreenPage),
-//                     child: AppBar(
-//                       iconTheme: IconThemeData(
-//                         color: Theme.of(context).accentColor,
-//                       ),
-//                       centerTitle: true,
-//                       title: Text(
-//                         AppLocalizations.of(context).settings,
-//                         style: Theme.of(context).textTheme.caption,
-//                       ),
-//                       backgroundColor: Colors.transparent,
-//                       elevation: 0.0,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             Expanded(
-//               child: SingleChildScrollView(
-//                 child: Padding(
-//                   padding:
-//                       EdgeInsets.symmetric(horizontal: kPaddingScreenPage + kPaddingScreenPageContent),
-//                   child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(20),
-//                         ),
-//                         Text(AppLocalizations.of(context).modules,
-//                             style: Theme.of(context).textTheme.headline1),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(AppLocalizations.of(context).speech_recognition,
-//                                   style: Theme.of(context).textTheme.headline3),
-//
-//                               Switch(value: state.settings.speechRecognition, onChanged: (bool value) {
-//                                 state.copyWith(SettingsModel(speechRecognition: value));
-//                               })
-//                             ]),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(AppLocalizations.of(context).speech_to_text,
-//                                   style: Theme.of(context).textTheme.headline3),
-//
-//                             ]),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(AppLocalizations.of(context).quick_tts,
-//                                   style: Theme.of(context).textTheme.headline3),
-//
-//                             ]),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Divider(
-//                           height: 1,
-//                         ),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Text(AppLocalizations.of(context).settings_general,
-//                             style: Theme.of(context).textTheme.headline1),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(AppLocalizations.of(context).dark_theme,
-//                                   style: Theme.of(context).textTheme.headline3),
-//
-//                             ]),
-//                         SizedBox(
-//                           height: getProportionateScreenHeight(15),
-//                         ),
-//                         Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(AppLocalizations.of(context).language,
-//                                   style: Theme.of(context).textTheme.headline3),
-//                               Text(AppLocalizations.of(context).language_choosen,
-//                                   style: Theme.of(context).textTheme.headline1)
-//                             ]
-//                         )
-//                       ])
-//                 )
-//               )
-//             )
-//           ])
-//         );
-//       }
-//       }
-//     );
-
-//   }
-// }

@@ -1,4 +1,9 @@
 {
+  "hello": "Привет",
+  "continue_forward": "Далее",
+  "short_description": "Инструмент распознавания и синтеза речи",
+  "sonus": "SONUS",
+  "accept": "Accept",
   "add_phrase": "Добавить фразу",
   "add_records_group": "Добавить группу записей",
   "archive_of_records": "Архив записей",
@@ -43,5 +48,7 @@
   "help_stt_not_work": "Распознавание речи не работает",
   "help_stt_not_work_solution": "Распознавание речи использует сервисы Google для преобразования речи в текст. Если оно не работает - найдите приложение Google в настройках и разрешите ему доступ к микрофону.",
   "help_tts_not_work": "Преобразование текста в речь не работает",
-  "help_tts_not_work_solution": "Речь в текст использует плагин Google Speech-to-text для синтеза речи. Оно может не работать, если вы не установили этот плагин. Зайдите в Google Play и найдите Google Text-to-Speech, затем установите его и перезагрузите SONUS (закройте и снова откройте)."
+  "help_tts_not_work_solution": "Речь в текст использует плагин Google Speech-to-text для синтеза речи. Оно может не работать, если вы не установили этот плагин. Зайдите в Google Play и найдите Google Text-to-Speech, затем установите его и перезагрузите SONUS (закройте и снова откройте).",
+  "privacy_policy": "Privacy Policy",
+  "privacy_policy_content": "Privacy Policy Content"
 }

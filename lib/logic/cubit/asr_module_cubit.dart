@@ -5,14 +5,15 @@ part 'asr_module_state.dart';
 
 class AsrModuleCubit extends Cubit<AsrModuleState> {
   AsrModuleCubit() : super(AsrModuleState(isAsr: false, isPermission: true)) {
-    checkMicPermission();
+    // checkMicPermission();
   }
 
   void checkMicPermission() async {
     print("Permission from cubit");
     print(state.isPermission);
-    bool micPermission =  await Permission.microphone.request().isGranted;
-    emit(AsrModuleState(isAsr: state.isAsr, isPermission: micPermission));
+    bool micPermission = await Permission.microphone.request().isGranted;
+    if (micPermission != state.isPermission)
+      emit(AsrModuleState(isAsr: state.isAsr, isPermission: micPermission));
   }
 
   void changeAsr() {

@@ -40,7 +40,6 @@ dependencies:
   flutter_speech: ^2.0.0
   flutter_tts: ^3.1.0
   permission_handler: ^8.0.0+2
-  device_apps: ^2.1.1
 
 
 dev_dependencies:

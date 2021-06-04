@@ -9,6 +9,7 @@ import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
+import 'package:sonus/ui/screens/onboarding/onboadring.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
@@ -85,7 +86,7 @@ class Main extends StatelessWidget {
                                     : Brightness.light,
                             systemNavigationBarDividerColor: Colors.transparent,
                           ),
-                          child: Major()),
+                          child: OnboardingScreen()),
                       routes: routes,
                     );
                   }

@@ -1,4 +1,9 @@
 {
+  "hello": "Bonjour",
+  "continue_forward": "Continuer",
+  "short_description": "Outil de reconnaissance et de synthèse vocale",
+  "sonus": "SONUS",
+  "accept": "Accept",
   "add_phrase": "Ajouter une phrase",
   "add_records_group": "Ajouter un groupe d'enregistrements",
   "archive_of_records": "Archive des enregistrements",
@@ -43,5 +48,7 @@
   "help_stt_not_work": "La reconnaissance vocale ne fonctionne pas",
   "help_stt_not_work_solution": "La reconnaissance vocale utilise les services Google pour reconnaître votre parole. Si cela ne fonctionne pas, recherchez l'application Google dans les paramètres et accordez-lui une autorisation de microphone.",
   "help_tts_not_work": "La synthèse vocale ne fonctionne pas",
-  "help_tts_not_work_solution": "Speech to text utilise le plug-in Google Speech-to-text pour la synthèse vocale. Cela peut ne pas fonctionner si vous n'avez pas installé ce plugin. Accédez à Google Play et recherchez Google Text-to-Speech, puis installez-le et redémarrez SONUS (fermez et ouvrez à nouveau)."
+  "help_tts_not_work_solution": "Speech to text utilise le plug-in Google Speech-to-text pour la synthèse vocale. Cela peut ne pas fonctionner si vous n'avez pas installé ce plugin. Accédez à Google Play et recherchez Google Text-to-Speech, puis installez-le et redémarrez SONUS (fermez et ouvrez à nouveau).",
+  "privacy_policy": "Privacy Policy",
+  "privacy_policy_content": "Privacy Policy Content"
 }

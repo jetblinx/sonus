@@ -280,7 +280,10 @@ class _ASRState extends State<ASR> {
                       create: (context) => AsrModuleCubit(),
                       child: BlocBuilder<AsrModuleCubit, AsrModuleState>(
                           builder: (context, state) {
+                            BlocProvider.of<AsrModuleCubit>(context).checkMicPermission();
+                            print(state.isPermission);
                             if (state.isPermission) {
+                              print(state.isPermission);
                               if (state.isAsr) {
                                 return Expanded(
                                   child: Padding(

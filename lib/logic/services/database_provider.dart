@@ -52,6 +52,7 @@ class DatabaseProvider {
         speech_recognition INTEGER,
         text_to_speech INTEGER,
         quick_tts INTEGER,
+        onboarding_shown INEGER,
         FOREIGN KEY (language) REFERENCES languages (id)
       )
     ''');
@@ -103,6 +104,6 @@ class DatabaseProvider {
     ''');
     
 
-    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 1, speechRecognition: 1, textToSpeech: 1, quickTts: 0).toMap());
+    await db.insert("settings", SettingsModel(id: 1, language: null, theme: 1, speechRecognition: 1, textToSpeech: 1, quickTts: 0, onboardingShown: 0).toMap());
   }
 }

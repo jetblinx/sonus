@@ -1,4 +1,3 @@
-import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,17 +25,8 @@ class _TTSState extends State<TTS> {
 
   final TextEditingController _controller = TextEditingController();
 
-  void getApps() async{
-    List<Application> apps = await DeviceApps.getInstalledApplications();
-    // for (var item in apps) {
-    //   print(item);
-    //   print("-----------------------------------------------------------------------");
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
-    getApps();
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, settingsState) {
         if (settingsState is SettingsLoadedState) {
@@ -126,6 +116,9 @@ class _TTSState extends State<TTS> {
                                           ),
                                         ),
                                       ),
+                                      Divider(
+                                        height: 1,
+                                      ),
                                       buildTTSField(context, ttsFieldValue, languagesState, settingsState)
                                     ],
                                   ),
@@ -141,6 +134,9 @@ class _TTSState extends State<TTS> {
                                             child: Text(AppLocalizations.of(context).no_phrases)
                                           )
                                         )
+                                      ),
+                                      Divider(
+                                        height: 1,
                                       ),
                                       buildTTSField(context, ttsFieldValue, languagesState, settingsState)
                                     ],

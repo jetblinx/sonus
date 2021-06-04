@@ -81,9 +81,9 @@ class ThemesRepisotory {
       headline4: TextStyle(
           fontFamily: "Open Sans", color: kColorLightAccentSecond, fontSize: 18.0),
       headline5: TextStyle(
-          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
+          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 48.0, fontWeight: FontWeight.w800),
       headline6: TextStyle(
-          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
+          fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 24.0, fontWeight: FontWeight.w800),
       overline: TextStyle(
           fontFamily: "Open Sans", color: kColorLightAccent, fontSize: 16.0),
     ),
@@ -166,9 +166,9 @@ class ThemesRepisotory {
         headline4: TextStyle(
             fontFamily: "Open Sans", color: kColorDarkAccentSecond, fontSize: 18.0),
         headline5: TextStyle(
-            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
+            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 48.0, fontWeight: FontWeight.w800),
         headline6: TextStyle(
-            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
+            fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 24.0, fontWeight: FontWeight.w800),
         overline: TextStyle(
             fontFamily: "Open Sans", color: kColorDarkAccent, fontSize: 16.0),
       ));
