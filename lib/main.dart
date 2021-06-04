@@ -20,37 +20,6 @@ void main() {
   runApp(Main());
 }
 
-class RestartWidget extends StatefulWidget {
-  RestartWidget({this.child});
-
-  final Widget child;
-
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_RestartWidgetState>().restartApp();
-  }
-
-  @override
-  _RestartWidgetState createState() => _RestartWidgetState();
-}
-
-class _RestartWidgetState extends State<RestartWidget> {
-  Key key = UniqueKey();
-
-  void restartApp() {
-    setState(() {
-      key = UniqueKey();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return KeyedSubtree(
-      key: key,
-      child: widget.child,
-    );
-  }
-}
-
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -68,15 +37,6 @@ class Main extends StatelessWidget {
                     BlocProvider.of<SettingsCubit>(context).load();
                 }, builder: (context, state) {
                   if (state is SettingsLoadedState) {
-                    //   SystemChrome.setSystemUIOverlayStyle(
-                    //   SystemUiOverlayStyle(
-                    //       statusBarColor: Colors.transparent,
-                    //       statusBarIconBrightness: Brightness.light,
-                    //       systemNavigationBarColor: state.settings.theme == 0 || state.settings.theme == null ? kColorLightScaffoldBackground : kColorDarkScaffoldBackground,
-                    //       systemNavigationBarIconBrightness: Brightness.light,
-                    //       systemNavigationBarDividerColor: Colors.transparent,
-                    //     ),
-                    // );
                     return MaterialApp(
                       debugShowCheckedModeBanner: false,
                       title: 'Sonus',
