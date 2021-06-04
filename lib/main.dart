@@ -9,13 +9,12 @@ import 'package:sonus/logic/cubit/records_cubit.dart';
 import 'package:sonus/logic/cubit/records_groups_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/repositories/themes_repository.dart';
-import 'package:sonus/ui/screens/onboarding/onboadring.dart';
+import 'package:sonus/ui/screens/launcher/launcher.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/remove_scroll_glow.dart';
 import 'package:sonus/utils/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
-import 'ui/screens/major/major.dart';
 
 void main() {
   runApp(Main());
@@ -86,7 +85,7 @@ class Main extends StatelessWidget {
                                     : Brightness.light,
                             systemNavigationBarDividerColor: Colors.transparent,
                           ),
-                          child: OnboardingScreen()),
+                          child: LauncherScreen()),
                       routes: routes,
                     );
                   }

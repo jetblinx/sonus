@@ -32,7 +32,7 @@ class SettingsModel extends Equatable {
     "speech_recognition": this.speechRecognition,
     "text_to_speech": this.textToSpeech,
     "quick_tts": this.quickTts,
-    "onboarding_hown": this.onboardingShown
+    "onboarding_shown": this.onboardingShown
   };
 
   SettingsModel copyWith(SettingsModel settings) {

@@ -72,7 +72,7 @@ class _ASRState extends State<ASR> {
                                                   onPressed: () async {
                                                     asrState.isListening
                                                         ? {
-                                                            await BlocProvider
+                                                            BlocProvider
                                                                     .of<AsrScreenCubit>(
                                                                         context)
                                                                 .stop(),
@@ -163,7 +163,7 @@ class _ASRState extends State<ASR> {
                                         BlocProvider.of<AsrScreenCubit>(context).printBools();
                                         BlocProvider.of<AsrScreenCubit>(context).changeAsr(true);
                                         
-                                        await BlocProvider.of<AsrScreenCubit>(context).start(widget.selectedLanguage);
+                                        BlocProvider.of<AsrScreenCubit>(context).start(widget.selectedLanguage);
                                         HapticFeedback.heavyImpact();
                                         print("------------");
                                         BlocProvider.of<AsrScreenCubit>(context).printBools();

@@ -313,7 +313,7 @@ class _ASRState extends State<ASR> {
                                                       onPressed: () async {
                                                         _isListening
                                                             ? {
-                                                                await stop(),
+                                                                stop(),
                                                                 if (speechRecognized
                                                                         .length ==
                                                                     0)
