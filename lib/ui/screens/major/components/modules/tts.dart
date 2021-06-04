@@ -6,7 +6,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/phrases_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
-import 'package:sonus/logic/cubit/tts_fied_cubit.dart';
+import 'package:sonus/logic/cubit/tts_field_cubit.dart';
 import 'package:sonus/ui/widgets/TextFields/text_input_field.dart';
 import 'package:sonus/ui/widgets/chips/chips_builder.dart';
 import 'package:sonus/utils/constants.dart';
@@ -15,12 +15,17 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/utils/icons.dart';
 
 
-class TTS extends StatelessWidget {
+class TTS extends StatefulWidget {
+
+  @override
+  _TTSState createState() => _TTSState();
+}
+
+class _TTSState extends State<TTS> {
   final FlutterTts flutterTts = FlutterTts();
 
-  // final _formKey = new GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
-  
+
   void getApps() async{
     List<Application> apps = await DeviceApps.getInstalledApplications();
     // for (var item in apps) {
@@ -41,9 +46,9 @@ class TTS extends StatelessWidget {
             },
             builder: (context, phrasesState) {
               return BlocProvider(
-                create: (context) => TtsFiedCubit(),
-                child: BlocBuilder<TtsFiedCubit, String>(
-                  builder: (context, ttsFiedValue) {
+                create: (context) => TtsFieldCubit(),
+                child: BlocBuilder<TtsFieldCubit, String>(
+                  builder: (context, ttsFieldValue) {
                     return BlocBuilder<LanguagesCubit, LanguagesState>(
                       builder: (context, languagesState) {
                         if (languagesState is LanguagesLoadedState) {
@@ -85,7 +90,7 @@ class TTS extends StatelessWidget {
                                       ) 
                                       : Container(),
                                     ),
-                                    buildTTSField(context, ttsFiedValue, languagesState, settingsState)
+                                    buildTTSField(context, ttsFieldValue, languagesState, settingsState)
                                   ],
                                 ),
                               );
@@ -121,7 +126,7 @@ class TTS extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      buildTTSField(context, ttsFiedValue, languagesState, settingsState)
+                                      buildTTSField(context, ttsFieldValue, languagesState, settingsState)
                                     ],
                                   ),
                                 );
@@ -137,7 +142,7 @@ class TTS extends StatelessWidget {
                                           )
                                         )
                                       ),
-                                      buildTTSField(context, ttsFiedValue, languagesState, settingsState)
+                                      buildTTSField(context, ttsFieldValue, languagesState, settingsState)
                                     ],
                                   ),
                                 );
@@ -159,11 +164,11 @@ class TTS extends StatelessWidget {
     );
   }
 
-  TextInputField buildTTSField(BuildContext context, String ttsFiedValue, LanguagesLoadedState languagesState, SettingsLoadedState settingsLoadedState) {
+  TextInputField buildTTSField(BuildContext context, String ttsFieldValue, LanguagesLoadedState languagesState, SettingsLoadedState settingsLoadedState) {
     List words;
     return TextInputField(
       onChanged: (String value) async {
-        BlocProvider.of<TtsFiedCubit>(context).update(value);
+        BlocProvider.of<TtsFieldCubit>(context).update(value);
         if (Converter.intToBool(settingsLoadedState.settings.quickTts)) {
           words = value.split(' ');
           String lastValue = value.substring(value.length - 1);
@@ -176,21 +181,21 @@ class TTS extends StatelessWidget {
         }
       },
       controller: _controller,
-      enableSuggestions: false,
+      enableSuggestions: settingsLoadedState.settings.quickTts == 1 ? false : true,
       autoClear: true,
       isBorder: true,
       suffixIcon: _controller.text.isEmpty ? null : Icon(kIconSend),
       icon: _controller.text.isEmpty ? null : Icon(kIconDismiss),
       onDismiss: () {
-        BlocProvider.of<TtsFiedCubit>(context).clear();                    
+        BlocProvider.of<TtsFieldCubit>(context).clear();                    
       },
       onPressed: () async {
         HapticFeedback.lightImpact();
         await flutterTts.setLanguage(languagesState.languages.firstWhere((element) => element.languageCode == Localizations.localeOf(context).languageCode).ttsCode);
         await flutterTts.setPitch(1.0);
         await flutterTts.setSpeechRate(0.9);
-        await flutterTts.speak(ttsFiedValue);
-        BlocProvider.of<TtsFiedCubit>(context).clear();                    
+        await flutterTts.speak(ttsFieldValue);
+        BlocProvider.of<TtsFieldCubit>(context).clear();                    
       },
     );
   }

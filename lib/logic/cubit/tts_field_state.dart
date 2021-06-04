@@ -1,4 +1,4 @@
-part of 'tts_fied_cubit.dart';
+part of 'tts_field_cubit.dart';
 
 abstract class TtsFiedState extends Equatable {
   const TtsFiedState();
