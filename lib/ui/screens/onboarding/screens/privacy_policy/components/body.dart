@@ -10,7 +10,6 @@ import 'package:sonus/utils/converter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sonus/utils/link_launcher.dart';
 import 'package:sonus/utils/size_config.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatelessWidget {
 
@@ -98,7 +97,7 @@ class Body extends StatelessWidget {
                               text: "Terms of Service",
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
-                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/");
+                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html");
                               }
                             ),
                             new TextSpan(
@@ -108,7 +107,7 @@ class Body extends StatelessWidget {
                               text: "Privacy Policy",
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
-                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/");
+                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html");
                               }
                             ),
                           ]

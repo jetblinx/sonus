@@ -77,8 +77,8 @@ class Body extends StatelessWidget {
                         },
                         onSelected: (value) => {
                           if (value == 'help') Navigator.pushNamed(context, HelpScreen.routeName),
-                          if (value == 'privacy_policy') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/"),
-                          if (value == 'terms_of_service') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/"),
+                          if (value == 'privacy_policy') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html"),
+                          if (value == 'terms_of_service') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html"),
                         },
                       ),
                     ],
