@@ -200,6 +200,9 @@ class _ASRState extends State<ASR> {
             isPaused = false;
             HapticFeedback.heavyImpact();
           }
+          if (speechRecognized.length != 0 && speechRecognized.last == '') {
+            speechRecognized.removeLast();
+          }
           transcription = '';
           speechRecognized.add(transcription);
         });
@@ -212,7 +215,7 @@ class _ASRState extends State<ASR> {
             })),
       };
 
-  void stop() => _speech.stop().then((_) {
+  void stop(BuildContext context) => _speech.stop().then((_) {
         setState(() => {
               _isListening = false,
               isPaused = true,
@@ -249,21 +252,10 @@ class _ASRState extends State<ASR> {
           speechRecognized.last = text,
         });
     speechRecognized.last = text;
-    print("Speech List");
-    print(speechRecognized);
-    //deleteBlank();
     HapticFeedback.heavyImpact();
   }
 
   void errorHandler() => activateSpeechRecognizer();
-
-  void deleteBlank() {
-    if (speechRecognized.last == '') {
-      print("DELETEING");
-      print("Calling text == ''");
-      speechRecognized.removeLast();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -281,9 +273,7 @@ class _ASRState extends State<ASR> {
                       child: BlocBuilder<AsrModuleCubit, AsrModuleState>(
                           builder: (context, state) {
                             BlocProvider.of<AsrModuleCubit>(context).checkMicPermission();
-                            print(state.isPermission);
                             if (state.isPermission) {
-                              print(state.isPermission);
                               if (state.isAsr) {
                                 return Expanded(
                                   child: Padding(
@@ -313,7 +303,7 @@ class _ASRState extends State<ASR> {
                                                       onPressed: () async {
                                                         _isListening
                                                             ? {
-                                                                stop(),
+                                                                stop(context),
                                                                 if (speechRecognized
                                                                         .length ==
                                                                     0)

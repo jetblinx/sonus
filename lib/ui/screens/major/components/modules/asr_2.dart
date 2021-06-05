@@ -39,8 +39,6 @@ class _ASRState extends State<ASR> {
                       child: BlocBuilder<AsrScreenCubit, AsrState>(
                           builder: (context, asrState) {
                         if (asrState is AsrState) {
-                          print("ASR State");
-                          print(asrState.isAsr);
                           if (asrState.isAsr) {
                             return Expanded(
                               child: Padding(

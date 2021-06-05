@@ -9,8 +9,6 @@ class AsrModuleCubit extends Cubit<AsrModuleState> {
   }
 
   void checkMicPermission() async {
-    print("Permission from cubit");
-    print(state.isPermission);
     bool micPermission = await Permission.microphone.request().isGranted;
     if (micPermission != state.isPermission)
       emit(AsrModuleState(isAsr: state.isAsr, isPermission: micPermission));
