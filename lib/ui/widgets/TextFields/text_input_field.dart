@@ -55,14 +55,14 @@ class TextInputField extends StatelessWidget {
             enableSuggestions: enableSuggestions == false ? false : true,
             keyboardType: enableSuggestions == false ? TextInputType.visiblePassword : null,
             initialValue: initialValue,
-            style: Theme.of(context).textTheme.headline3,
+            style: backgroundTransaprent ? Theme.of(context).textTheme.caption : Theme.of(context).textTheme.headline3,
             textAlign: centerAlign ? TextAlign.center : TextAlign.start,
             textCapitalization: TextCapitalization.sentences,
             onChanged: onChanged,
             cursorColor: Theme.of(context).accentColor,
             decoration: InputDecoration(
                 border: InputBorder.none,
-                hintStyle: Theme.of(context).textTheme.headline3,
+                hintStyle: backgroundTransaprent ? Theme.of(context).textTheme.caption : Theme.of(context).textTheme.headline3,
                 hintText: AppLocalizations.of(context).enter_text,
                 icon: icon != null
                     ? IconButton(

@@ -28,42 +28,12 @@ class Body extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Container(
-                //   child: Column(
-                //     children: [
-                //       SizedBox(
-                //         child: Container(),
-                //         height: getProportionateScreenHeight(10),
-                //       ),
-                //       Padding(
-                //         padding: EdgeInsets.symmetric(
-                //             horizontal: kPaddingScreenPage),
-                //         child: AppBar(
-                //           iconTheme: IconThemeData(
-                //             color: Theme.of(context).accentColor,
-                //           ),
-                //           centerTitle: true,
-                //           title: Text(
-                //             AppLocalizations.of(context).privacy_policy,
-                //             style: Theme.of(context).textTheme.caption,
-                //           ),
-                //           backgroundColor: Colors.transparent,
-                //           elevation: 0.0,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 Expanded(
                     child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
                   child: Column(
                     children: [
-                      // Divider(),
-                      // SizedBox(
-                      //   height: getProportionateScreenHeight(15),
-                      // ),
                       Spacer(flex: 6,),
                       Container(
                         child: SingleChildScrollView(
@@ -75,8 +45,9 @@ class Body extends StatelessWidget {
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                                 Text(
-                                  AppLocalizations.of(context).privacy_policy,
+                                  AppLocalizations.of(context).user_agreements,
                                   style: Theme.of(context).textTheme.caption,
+                                  textAlign: TextAlign.center,
                                 ),
                               ],
                             ),
@@ -84,27 +55,26 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       Spacer(flex: 4,),
-                      //Divider(),
                       RichText(
                         textAlign: TextAlign.center,
                         text: new TextSpan(
                           style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0),
                           children: [
                             new TextSpan(
-                              text: "By proceeding you agree with\n",
+                              text: AppLocalizations.of(context).hello_policies_text,
                             ),
                             new TextSpan(
-                              text: "Terms of Service",
+                              text: AppLocalizations.of(context).terms_of_service,
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
                                 LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html");
                               }
                             ),
                             new TextSpan(
-                              text: " and ",
+                              text: AppLocalizations.of(context).and,
                             ),
                             new TextSpan(
-                              text: "Privacy Policy",
+                              text: AppLocalizations.of(context).privacy_policy,
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
                                 LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html");
@@ -115,7 +85,7 @@ class Body extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       OnboardingButton(
-                        label: "Get Started",
+                        label: AppLocalizations.of(context).continue_forward,
                         onPressed: () {
                           Navigator.pushReplacementNamed(
                               context, Major.routeName);

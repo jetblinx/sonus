@@ -6,6 +6,7 @@ import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/ui/screens/help/help.dart';
+import 'package:sonus/ui/screens/onboarding/onboadring.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
@@ -291,7 +292,7 @@ class Body extends StatelessWidget {
                                       return Container();
                                     },
                                   )
-                                ])
+                                ]),
                           ]))))
         ]));
       }
