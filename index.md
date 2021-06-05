@@ -1,4 +1,4 @@
-# SONUS project
+# **SONUS** project
 
 ### Description
 
@@ -6,6 +6,13 @@
 It uses Google Services (STT and TTS).
 
 The project was created during Makeathon 2021 (TOM Kazakhstan) as a volunteer project to help people with speech and hearing disabilities better interact with the environment.
+
+## Agreements
+Using SONUS app you do accept:
+
+[Privacy Policy](https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html)
+
+[Terms Of Service](https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html)
 
 ### Build apk
 
@@ -28,12 +35,6 @@ The **SONUS** project is under Apache 2.0 License. [Learn More](https://github.c
 
 The authors of **SONUS** is not responsible for your actions and whether they violate the licenses of modules and tools which **SONUS** project depends on.  
 
-## Agreements
-### Using SONUS app you do accept:
-
-[Privacy Policy](https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html)
-
-[Terms Of Service](https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html)
 
 
 
