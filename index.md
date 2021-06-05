@@ -1,3 +1,7 @@
+# Agreements
+[Privacy Policy](https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html)
+[Terms Of Service](https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html)
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/CommanderXA/sonus/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
