@@ -47,7 +47,7 @@ class Body extends StatelessWidget {
                   SizedBox(height: getProportionateScreenHeight(20)),
                   OnboardingButton(
                       label: AppLocalizations.of(context).continue_forward,
-                      icon: Icon(kIconArrowRight),
+                      //icon: Icon(kIconArrowRight),
                       onPressed: () {
                         Navigator.pushReplacementNamed(
                             context, PrivacyPolicyReqScreen.routeName);

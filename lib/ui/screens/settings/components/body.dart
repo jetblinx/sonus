@@ -6,10 +6,10 @@ import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/ui/screens/help/help.dart';
-import 'package:sonus/ui/screens/privacy_policy/privacy_policy.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
+import 'package:sonus/utils/link_launcher.dart';
 import 'package:sonus/utils/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -55,22 +55,30 @@ class Body extends StatelessWidget {
                             PopupMenuItem(
                               child: Text(
                                 AppLocalizations.of(context).help,
-                                style: Theme.of(context).textTheme.headline3,
+                                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 16.0),
                               ),
                               value: 'help',
                             ),
                             PopupMenuItem(
                               child: Text(
                                 AppLocalizations.of(context).privacy_policy,
-                                style: Theme.of(context).textTheme.headline3,
+                                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 16.0),
                               ),
                               value: 'privacy_policy',
+                            ),
+                            PopupMenuItem(
+                              child: Text(
+                                AppLocalizations.of(context).terms_of_service,
+                                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 16.0),
+                              ),
+                              value: 'terms_of_service',
                             ),
                           ];
                         },
                         onSelected: (value) => {
                           if (value == 'help') Navigator.pushNamed(context, HelpScreen.routeName),
-                          if (value == 'privacy_policy') Navigator.pushNamed(context, PrivacyPolicyScreen.routeName),
+                          if (value == 'privacy_policy') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/"),
+                          if (value == 'terms_of_service') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/"),
                         },
                       ),
                     ],

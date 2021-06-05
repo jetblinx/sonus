@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
@@ -6,10 +7,13 @@ import 'package:sonus/ui/screens/major/major.dart';
 import 'package:sonus/ui/widgets/buttons/onboarding_button.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
-import 'package:sonus/utils/size_config.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sonus/utils/link_launcher.dart';
+import 'package:sonus/utils/size_config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     final SettingsCubit settingsCubit = BlocProvider.of<SettingsCubit>(context);
@@ -21,59 +25,98 @@ class Body extends StatelessWidget {
       builder: (context, settingsState) {
         if (settingsState is SettingsLoadedState) {
           return Container(
+            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(40)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        child: Container(),
-                        height: getProportionateScreenHeight(10),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: kPaddingScreenPage),
-                        child: AppBar(
-                          iconTheme: IconThemeData(
-                            color: Theme.of(context).accentColor,
-                          ),
-                          centerTitle: true,
-                          title: Text(
-                            AppLocalizations.of(context).privacy_policy,
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          backgroundColor: Colors.transparent,
-                          elevation: 0.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   child: Column(
+                //     children: [
+                //       SizedBox(
+                //         child: Container(),
+                //         height: getProportionateScreenHeight(10),
+                //       ),
+                //       Padding(
+                //         padding: EdgeInsets.symmetric(
+                //             horizontal: kPaddingScreenPage),
+                //         child: AppBar(
+                //           iconTheme: IconThemeData(
+                //             color: Theme.of(context).accentColor,
+                //           ),
+                //           centerTitle: true,
+                //           title: Text(
+                //             AppLocalizations.of(context).privacy_policy,
+                //             style: Theme.of(context).textTheme.caption,
+                //           ),
+                //           backgroundColor: Colors.transparent,
+                //           elevation: 0.0,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                     child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: kPaddingAllHorizontal),
                   child: Column(
                     children: [
-                      Divider(),
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
-                      Expanded(
+                      // Divider(),
+                      // SizedBox(
+                      //   height: getProportionateScreenHeight(15),
+                      // ),
+                      Spacer(flex: 6,),
+                      Container(
                         child: SingleChildScrollView(
                           child: Container(
-                            child: Text(
-                              AppLocalizations.of(context)
-                                  .privacy_policy_content,
-                              style: Theme.of(context).textTheme.headline3,
+                            child: Column(
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context).sonus,
+                                  style: Theme.of(context).textTheme.headline5,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context).privacy_policy,
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                      Divider(),
+                      Spacer(flex: 4,),
+                      //Divider(),
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: new TextSpan(
+                          style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0),
+                          children: [
+                            new TextSpan(
+                              text: "By proceeding you agree with\n",
+                            ),
+                            new TextSpan(
+                              text: "Terms of Service",
+                              style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
+                              recognizer: new TapGestureRecognizer()..onTap = () {
+                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/");
+                              }
+                            ),
+                            new TextSpan(
+                              text: " and ",
+                            ),
+                            new TextSpan(
+                              text: "Privacy Policy",
+                              style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
+                              recognizer: new TapGestureRecognizer()..onTap = () {
+                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/");
+                              }
+                            ),
+                          ]
+                        ),
+                      ),
+                      SizedBox(height: 10),
                       OnboardingButton(
-                        label: AppLocalizations.of(context).accept,
+                        label: "Get Started",
                         onPressed: () {
                           Navigator.pushReplacementNamed(
                               context, Major.routeName);
@@ -82,9 +125,10 @@ class Body extends StatelessWidget {
                                   onboardingShown: Converter.boolToInt(true))));
                         },
                       ),
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
+                      // SizedBox(
+                      //   height: getProportionateScreenHeight(25),
+                      // ),
+                      Spacer(),
                     ],
                   ),
                 )),

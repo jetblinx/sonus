@@ -20,6 +20,7 @@ const Color kColorWhite = Colors.white;
 const Color kColorSwitchGrey = Color(0xFFD0D0D0);
 
 Color kColorBackgroundScreenSplash = Colors.grey[900];
+Color kColorLink = Colors.blue[600];
 
 // Dark
 Color kColorDarkScaffoldBackground = Color(0xFF111111);
