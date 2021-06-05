@@ -3,11 +3,16 @@
 * {
     margin: 0;
     padding: 0;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }
 
 body {
     font-family: "Open Sans", sans-serif;
-    font-weight: 400;
     background-color: #F5F5F5;
 }
 
@@ -44,5 +49,5 @@ header, footer {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 }
