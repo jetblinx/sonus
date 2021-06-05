@@ -7,7 +7,7 @@ It uses Google Services (STT and TTS).
 
 The project was created during Makeathon 2021 (TOM Kazakhstan) as a volunteer project to help people with speech and hearing disabilities better interact with the environment.
 
-## Agreements
+### Agreements
 Using SONUS app you do accept:
 
 [Privacy Policy](https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html)
@@ -17,7 +17,7 @@ Using SONUS app you do accept:
 ### Build apk
 
 To build apk you need to install and setup Flutter (if you haven't).
-After you have flutter installed - download or clone the sonus repo and open it in your code editing tool.
+After you have flutter installed - download or clone the **sonus** repo and open it in your code editing tool.
 Open terminal and run in the project folder the following command:
 ```
 flutter pub get
