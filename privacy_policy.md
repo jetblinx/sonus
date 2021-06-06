@@ -1,5 +1,6 @@
 ---
 layout: doc
+title: SONUS
 description: Privacy Policy
 ---
 
