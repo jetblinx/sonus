@@ -2,39 +2,122 @@
 layout: default
 ---
 
-# **SONUS** project
+Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-## Description
+[Link to another page](./another-page.html).
 
-**SONUS** app is a speech recognition & synthesis tool.
-It uses Google Services (STT and TTS).
+There should be whitespace between paragraphs.
 
-The project was created during Makeathon 2021 (TOM Kazakhstan) as a volunteer project to help people with speech and hearing disabilities better interact with the environment.
+There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
-## Agreements
-Using SONUS app you do accept:
+# Header 1
 
-[Privacy Policy](https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html)
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-[Terms Of Service](https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html)
+## Header 2
 
-## Build apk
+> This is a blockquote following a header.
+>
+> When something is important enough, you do it even if the odds are not in your favor.
 
-To build apk you need to install and setup Flutter (if you haven't).
-After you have flutter installed - download or clone the **sonus** repo and open it in your code editing tool.
-Open terminal and run in the project folder the following command:
+### Header 3
+
+```js
+// Javascript code with syntax highlighting.
+var fun = function lang(l) {
+  dateformat.i18n = require('./lang/' + l)
+  return true;
+}
 ```
-flutter pub get
-```
-It will install necessary packages.
 
-After packages being installed run:
+```ruby
+# Ruby code with syntax highlighting
+GitHubPages::Dependencies.gems.each do |gem, version|
+  s.add_dependency(gem, "= #{version}")
+end
 ```
-flutter build apk
+
+#### Header 4
+
+*   This is an unordered list following a header.
+*   This is an unordered list following a header.
+*   This is an unordered list following a header.
+
+##### Header 5
+
+1.  This is an ordered list following a header.
+2.  This is an ordered list following a header.
+3.  This is an ordered list following a header.
+
+###### Header 6
+
+| head1        | head two          | three |
+|:-------------|:------------------|:------|
+| ok           | good swedish fish | nice  |
+| out of stock | good and plenty   | nice  |
+| ok           | good `oreos`      | hmm   |
+| ok           | good `zoute` drop | yumm  |
+
+### There's a horizontal rule below this.
+
+* * *
+
+### Here is an unordered list:
+
+*   Item foo
+*   Item bar
+*   Item baz
+*   Item zip
+
+### And an ordered list:
+
+1.  Item one
+1.  Item two
+1.  Item three
+1.  Item four
+
+### And a nested list:
+
+- level 1 item
+  - level 2 item
+  - level 2 item
+    - level 3 item
+    - level 3 item
+- level 1 item
+  - level 2 item
+  - level 2 item
+  - level 2 item
+- level 1 item
+  - level 2 item
+  - level 2 item
+- level 1 item
+
+### Small image
+
+![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+
+### Large image
+
+![Branching](https://guides.github.com/activities/hello-world/branching.png)
+
+
+### Definition lists can be used with HTML syntax.
+
+<dl>
+<dt>Name</dt>
+<dd>Godzilla</dd>
+<dt>Born</dt>
+<dd>1952</dd>
+<dt>Birthplace</dt>
+<dd>Japan</dd>
+<dt>Color</dt>
+<dd>Green</dd>
+</dl>
+
 ```
-This operation may take some minutes to complete. The apk file will be produced into `build/app/outputs/apk/release`
+Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+```
 
-## License
-The **SONUS** project is under Apache 2.0 License. [Learn More](https://github.com/CommanderXA/sonus/blob/main/LICENSE)
-
-The authors of **SONUS** is not responsible for your actions and whether they violate the licenses of modules and tools which **SONUS** project depends on.  
+```
+The final element.
+```
