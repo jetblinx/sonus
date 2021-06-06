@@ -1,4 +1,4 @@
-I"<h1 id="sonus-project"><strong>SONUS</strong> project</h1>
+I"ÿ<h1 id="sonus-project"><strong>SONUS</strong> project</h1>
 
 <h2 id="description">Description</h2>
 
@@ -21,9 +21,8 @@ After you have flutter installed - download or clone the <strong>sonus</strong> 
 Open terminal and run in the project folder the following command:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flutter pub get
 </code></pre></div></div>
-<p>It will install necessary packages.</p>
-
-<p>After packages being installed run:</p>
+<p>It will install necessary packages.
+After packages being installed run:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flutter build apk
 </code></pre></div></div>
 <p>This operation may take some minutes to complete. The apk file will be produced into <code class="language-plaintext highlighter-rouge">build/app/outputs/apk/release</code></p>

@@ -27,7 +27,6 @@ Open terminal and run in the project folder the following command:
 flutter pub get
 ```
 It will install necessary packages.
-
 After packages being installed run:
 ```
 flutter build apk
