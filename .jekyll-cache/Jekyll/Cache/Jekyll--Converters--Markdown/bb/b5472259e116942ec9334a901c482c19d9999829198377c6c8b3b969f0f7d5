@@ -1,0 +1,35 @@
+I"<h1 id="sonus-project"><strong>SONUS</strong> project</h1>
+
+<h2 id="description">Description</h2>
+
+<p><strong>SONUS</strong> app is a speech recognition &amp; synthesis tool.
+It uses Google Services (STT and TTS).</p>
+
+<p>The project was created during Makeathon 2021 (TOM Kazakhstan) as a volunteer project to help people with speech and hearing disabilities better interact with the environment.</p>
+
+<h2 id="agreements">Agreements</h2>
+<p>Using SONUS app you do accept:</p>
+
+<p><a href="./privacy_policy.html">Privacy Policy</a></p>
+
+<p><a href="./terms_of_service.html">Terms Of Service</a></p>
+
+<h2 id="build-apk">Build apk</h2>
+
+<p>To build apk you need to install and setup Flutter (if you haven’t).
+After you have flutter installed - download or clone the <strong>sonus</strong> repo and open it in your code editing tool.
+Open terminal and run in the project folder the following command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flutter pub get
+</code></pre></div></div>
+<p>It will install necessary packages.</p>
+
+<p>After packages being installed run:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flutter build apk
+</code></pre></div></div>
+<p>This operation may take some minutes to complete. The apk file will be produced into <code class="language-plaintext highlighter-rouge">build/app/outputs/apk/release</code></p>
+
+<h2 id="license">License</h2>
+<p>The <strong>SONUS</strong> project is under Apache 2.0 License. <a href="https://github.com/CommanderXA/sonus/blob/main/LICENSE">Learn More</a></p>
+
+<p>The authors of SONUS is not responsible for your actions and whether they violate the licenses of modules and tools which SONUS project depends on.</p>
+:ET
