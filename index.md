@@ -15,9 +15,8 @@ The project was created during Makeathon 2021 (TOM Kazakhstan) as a volunteer pr
 ## Agreements
 Using SONUS app you do accept:
 
-[Privacy Policy](./privacy_policy.html)
-
-[Terms Of Service](./terms_of_service.html)
+- [Privacy Policy](./privacy_policy.html)  
+- [Terms Of Service](./terms_of_service.html)
 
 ## Build apk
 
