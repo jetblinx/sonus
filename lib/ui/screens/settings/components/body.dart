@@ -6,7 +6,6 @@ import 'package:sonus/logic/cubit/languages_cubit.dart';
 import 'package:sonus/logic/cubit/settings_cubit.dart';
 import 'package:sonus/logic/models/settings_model.dart';
 import 'package:sonus/ui/screens/help/help.dart';
-import 'package:sonus/ui/screens/onboarding/onboadring.dart';
 import 'package:sonus/utils/constants.dart';
 import 'package:sonus/utils/converter.dart';
 import 'package:sonus/utils/icons.dart';
@@ -28,7 +27,6 @@ class Body extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            //color: Theme.of(context).backgroundColor,
             child: Column(
               children: [
                 SizedBox(
@@ -78,8 +76,8 @@ class Body extends StatelessWidget {
                         },
                         onSelected: (value) => {
                           if (value == 'help') Navigator.pushNamed(context, HelpScreen.routeName),
-                          if (value == 'privacy_policy') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html"),
-                          if (value == 'terms_of_service') LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html"),
+                          if (value == 'privacy_policy') LinkLauncher.launchPrivacyPolicy(),
+                          if (value == 'terms_of_service') LinkLauncher.launchTermsOfService(),
                         },
                       ),
                     ],

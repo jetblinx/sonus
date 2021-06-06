@@ -67,7 +67,7 @@ class Body extends StatelessWidget {
                               text: AppLocalizations.of(context).terms_of_service,
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
-                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/terms_of_service/terms_of_service.html");
+                                LinkLauncher.launchTermsOfService();
                               }
                             ),
                             new TextSpan(
@@ -77,7 +77,7 @@ class Body extends StatelessWidget {
                               text: AppLocalizations.of(context).privacy_policy,
                               style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14.0, color: kColorLink, decoration: TextDecoration.underline,),
                               recognizer: new TapGestureRecognizer()..onTap = () {
-                                LinkLauncher.launchURL("https://commanderxa.github.io/sonus/about/privacy_policy/privacy_policy.html");
+                                LinkLauncher.launchPrivacyPolicy();
                               }
                             ),
                           ]
@@ -94,9 +94,6 @@ class Body extends StatelessWidget {
                                   onboardingShown: Converter.boolToInt(true))));
                         },
                       ),
-                      // SizedBox(
-                      //   height: getProportionateScreenHeight(25),
-                      // ),
                       Spacer(),
                     ],
                   ),
