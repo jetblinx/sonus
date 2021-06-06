@@ -24,7 +24,7 @@ If User grants any of the permissions listed below, the respective Personal Data
 > ### Microphone permission
 > **Allows accessing and recording microphone audio from the User's device.**
 
-## What Data we collect
+## What Data We Collect
 Data that this Application collects, by itself or through third parties they are microphone permission, device language, and internet connectivity.
 All Data requested by this Application is mandatory and failure to provide this Data may make it impossible for this Application to provide its services.
 
@@ -55,4 +55,4 @@ To completely delete the stored data the user has to delete the app and all file
 By using this app you signify the acceptance of this policy and accept that the owner is not responsible for your data processed by third parties. If you do not agree to this policy, please do not use this app. 
 
 ## Terms Of Service
-To learn more, Users may refer to the terms of service of this Application.
+To learn more, Users may refer to the [Terms Of Service](./terms_of_service.html) of this Application.

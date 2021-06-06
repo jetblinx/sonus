@@ -18,21 +18,10 @@ Single or additional conditions of use or access may apply in specific scenarios
 
 By using this Application, Users confirm to meet the following requirements:
 
-There are no restrictions for Users in terms of being Consumers or Business Users;
+- There are no restrictions for Users in terms of being Consumers or Business Users;
 
 ## Content on this Application
 Unless where otherwise specified or clearly recognizable, all content available on this Application is owned or provided by the Owner or its licensors.
-
-## Rights regarding content on this Application - All rights reserved
-The Owner holds and reserves all intellectual property rights for any such content.
-
-Users may not therefore use such content in any way that is not necessary or implicit in the proper use of the Service.
-
-In particular, but without limitation, Users may not copy, download, share (beyond the limits set forth below), modify, translate, transform, publish, transmit, sell, sublicense, edit, transfer/assign to third parties or create derivative works from the content available on this Application, nor allow any third party to do so through the User or their device, even without the User's knowledge.
-
-Where explicitly stated on this Application, the User may download, copy and/or share some content available through this Application for its sole personal and non-commercial use and provided that the copyright attributions and all the other attributions requested by the Owner are correctly implemented.
-
-Any applicable statutory limitation or exception to copyright shall stay unaffected.
 
 ## Content provided by Users
 The Owner allows Users to upload, share or provide their own content to this Application.
@@ -111,10 +100,10 @@ To learn more about the use of their Personal Data, Users may refer to the [Priv
 ## Intellectual property rights
 Without prejudice to any more specific provision of these Terms, any intellectual property rights, such as copyrights, trademark rights, patent rights and design rights related to this Application are the exclusive property of the Owner or its licensors and are subject to the protection granted by applicable laws or international treaties relating to intellectual property.
 
-All trademarks — nominal or figurative — and all other marks, trade names, service marks, word marks, illustrations, images, or logos appearing in connection with this Application are, and remain, the exclusive property of the Owner or its licensors and are subject to the protection granted by applicable laws or international treaties related to intellectual property.
+All trademarks — nominal or figurative — and all other marks, trade names, service marks, word marks, logos appearing in connection with this Application are, and remain, the exclusive property of the Owner or its licensors and are subject to the protection granted by applicable laws or international treaties related to intellectual property.
 
 ## Changes to these Terms
-The Owner reserves the right to amend or otherwise modify these Terms at any time. In such cases, the Owner will appropriately inform the User of these changes.
+The Owner reserves the right to amend or otherwise modify these Terms at any time.
 
 Such changes will only affect the relationship with the User for the future.
 
