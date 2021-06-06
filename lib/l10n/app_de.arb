@@ -53,5 +53,8 @@
   "help_tts_not_work": "Text-to-Speech funktioniert nicht",
   "help_tts_not_work_solution": "Speech-to-Text verwendet das Google Speech-to-Text-Plug-in für die Sprachsynthese. Es funktioniert möglicherweise nicht, wenn Sie dieses Plugin nicht installiert haben. Gehen Sie zu Google Play und suchen Sie nach Google Text-to-Speech, installieren Sie es und starten Sie SONUS neu (schließen und erneut öffnen).",
   "privacy_policy": "Privacy Policy",
-  "terms_of_service": "Terms Of Service"
+  "terms_of_service": "Terms Of Service",
+  "delete": "Löschen",
+  "copy": "Kopieren",
+  "phrase_deleted": "Satz gelöscht"
 }

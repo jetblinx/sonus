@@ -53,5 +53,8 @@
   "help_tts_not_work": "Texto a voz no funciona",
   "help_tts_not_work_solution": "Speech to text utiliza el complemento Google Speech-to-text para la síntesis de voz. Es posible que no funcione si no ha instalado este complemento. Vaya a Google Play y busque Google Text-to-Speech, luego instálelo y reinicie SONUS (cierre y abra de nuevo).",
   "privacy_policy": "Privacy Policy",
-  "terms_of_service": "Terms Of Service"
+  "terms_of_service": "Terms Of Service",
+  "delete": "Borrar",
+  "copy": "Dupdo",
+  "phrase_deleted": "Frase eliminada"
 }

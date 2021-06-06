@@ -53,5 +53,8 @@
   "help_tts_not_work": "La synthèse vocale ne fonctionne pas",
   "help_tts_not_work_solution": "Speech to text utilise le plug-in Google Speech-to-text pour la synthèse vocale. Cela peut ne pas fonctionner si vous n'avez pas installé ce plugin. Accédez à Google Play et recherchez Google Text-to-Speech, puis installez-le et redémarrez SONUS (fermez et ouvrez à nouveau).",
   "privacy_policy": "Privacy Policy",
-  "terms_of_service": "Terms Of Service"
+  "terms_of_service": "Terms Of Service",
+  "delete": "Effacer",
+  "copy": "Copie",
+  "phrase_deleted": "Expression supprimée"
 }

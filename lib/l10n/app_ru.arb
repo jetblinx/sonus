@@ -53,5 +53,8 @@
   "help_tts_not_work": "Преобразование текста в речь не работает",
   "help_tts_not_work_solution": "Речь в текст использует плагин Google Speech-to-text для синтеза речи. Оно может не работать, если вы не установили этот плагин. Зайдите в Google Play и найдите Google Text-to-Speech, затем установите его и перезагрузите SONUS (закройте и снова откройте).",
   "privacy_policy": "Privacy Policy",
-  "terms_of_service": "Terms Of Service"
+  "terms_of_service": "Terms Of Service",
+  "delete": "Удалить",
+  "copy": "Копировать",
+  "phrase_deleted": "Фраза удалена"
 }
