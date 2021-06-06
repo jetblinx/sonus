@@ -12,3 +12,4 @@ This application collects some Sensitive Data from its users.
 jetblinx
 
 **Owner contact email:** jetblinx@gmail.com
+
