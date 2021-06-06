@@ -35,6 +35,6 @@ flutter build apk
 This operation may take some minutes to complete. The apk file will be produced into `build/app/outputs/apk/release`
 
 ## License
-The **SONUS** project is under Apache 2.0 License. [Learn More](https://github.com/CommanderXA/sonus/blob/main/LICENSE)
+The **SONUS** project is under Apache 2.0 License. [Learn More](https://github.com/jetblinx/sonus/blob/main/LICENSE)
 
 The authors of SONUS is not responsible for your actions and whether they violate the licenses of modules and tools which SONUS project depends on.  

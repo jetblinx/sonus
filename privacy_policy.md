@@ -53,3 +53,6 @@ To completely delete the stored data the user has to delete the app and all file
 
 ## Your Acceptance
 By using this app you signify the acceptance of this policy and accept that the owner is not responsible for your data processed by third parties. If you do not agree to this policy, please do not use this app. 
+
+## Terms Of Service
+To learn more, Users may refer to the terms of service of this Application.
