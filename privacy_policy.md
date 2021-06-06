@@ -25,7 +25,7 @@ If User grants any of the permissions listed below, the respective Personal Data
 > **Allows accessing and recording microphone audio from the User's device.**
 
 ## What Data We Collect
-Data that this Application collects, by itself or through third parties they are microphone permission, device language, and internet connectivity.
+Data that this Application collects, by itself or through third parties they are microphone permission, device language, and internet permission.
 All Data requested by this Application is mandatory and failure to provide this Data may make it impossible for this Application to provide its services.
 
 Users are responsible for any third-party Personal Data obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner. 
@@ -37,9 +37,9 @@ Data collected by this application or through third parties is shared with Googl
 When you use the App Third Parties may collect, store and/or process the information detailed in this Privacy Policy. 
 
 The list of Third Parties:
-- flutter_speech (Microphone Data)
+- flutter_speech (Microphone Data, Internet)
 - flutter_tts
-- Google (Speech Recognition and Speech-to-text)
+- Google (Speech Recognition and Speech-to-text, Internet)
 
 For further information regarding the collection, processing and usage of your information by the Third Parties, please review their privacy policy practices.
 
